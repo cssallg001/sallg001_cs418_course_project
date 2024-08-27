@@ -1,1 +1,1 @@
-# cs418_course_project
+# sallg001_cs418_course_project
