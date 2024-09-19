@@ -1,7 +1,7 @@
 # sallg001_cs418_course_project
 
 
-Features:
+#Required features:
 1. Users should be able to register new accounts using email addresses.
 2. Users are identified by email address.
 3. Password must be encrypted before storing in the database.
@@ -17,9 +17,9 @@ Features:
 13. An admin user has a different view from a regular user. (Later admin will approve the submitted advising sheet by student)
 
 
-In progress:
+#In progress:
 
 
-Completed:
+#Completed:
 
 
