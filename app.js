@@ -43,18 +43,32 @@ app.get('/pool', (req, res) => {
     })
 });
 
-app.get('/about', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'about.html'));
-});
 
 
-
-
-
-
+// Console output messages to show where the user is currently located.
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+app.get('/about', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'about.html'));
+});
+app.get('/account', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'account.html'));
+});
+app.get('/account/login', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'account/login.html'));
+});
+app.get('/account/createAccount', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'account/createAccount.html'));
+});
+app.get('/account/profile', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'account/profile.html'));
+});
+
+
+
+
+
 
   
 export default app;
