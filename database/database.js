@@ -7,4 +7,20 @@ const connection=mysql.createConnection({
     database:'user_accounts'
 })
 
+
+
+const pool=mysql.createPool({
+    host:'localhost',
+    user:'root',
+    password:'',
+    database:'nodejs_beers'
+})
+
+
+
+
+
+
+
 export { connection };
+export { pool };
