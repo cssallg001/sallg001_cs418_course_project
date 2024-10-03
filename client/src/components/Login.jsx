@@ -1,82 +1,84 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-
-export default function Login() {
-    const [enteredEmail, setEnteredEmail] = useState("");
-    const [enteredPassword, setEnteredPassword] = useState("");
-    const [submitted, setSubmitted] = useState(false);
-    const navigate=useNavigate();
-    // const [message, setMessage] = useState("");
+const Login = () => {
+    const [enteredEmail, setEnteredEmail] = useState('');
+    const [enteredPassword, setEnteredPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState(''); // For error messages
+    const navigate = useNavigate();
     
-    function handleInputChange(identifier, value) {
-        if (identifier === "email") {
-            setEnteredEmail(value);
-        } else {
-            setEnteredPassword(value);
-        }
-    }
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        
+        try {
+            const formBody=JSON.stringify({
+                email:enteredEmail,
+                password:enteredPassword
+            })
     
-    const handleLogin = async () => {
-        setSubmitted(true);
-
-        const formBody=JSON.stringify({
-            email:enteredEmail,
-            password:enteredPassword
-        })
-
-        const result= await fetch('http://localhost:8080/user/login',{
-            method:"POST",
-            body:formBody,
-            headers:{
-                'content-type':'application/json'
+            const response= await fetch('http://localhost:8080/user/login',{
+                method:"POST",
+                body:formBody,
+                headers:{
+                    'content-type':'application/json'
+                }
+            });
+    
+            if (!response.ok) {
+                throw new Error('Login failed'); // Handle HTTP errors
             }
-        });
+    
+            const data = await response.json();
+            console.log('Fetched user data:', data); // Log the fetched data
 
-        if(result.ok){
-            const data=result.json();
-            console.log("Data: " + data)
-            console.log("Result: " + result);
-            
+            // Check if login is successful
+            if (data.message === 'Login successful') {
+                // If login is successful, redirect to the profile page
+                localStorage.setItem('user', JSON.stringify(data.user));
+                navigate('/user/dashboard');
+            } else {
+                // Show error message if login fails
+                setErrorMessage(data.message);
+            }
+        } catch (error) {
+            console.error('Error during login:', error);
+            setErrorMessage('Error occurred while logging in. Please try again later.');
         }
-        navigate('/dashboard')
-
     };
 
-    const emailNotValid = submitted && !enteredEmail.includes("@");
-    const passwordNotValid = submitted && enteredPassword.trim().length < 6;
-
     return (
-        <div id="login">
-            {/* {message && <label>{message}</label>} */}
-            <div className="controls">
-                <p>
-                    <label>Email</label>
+        <div className="container mt-5">
+            <h1 className="text-center">Login</h1>
+            <form onSubmit={handleLogin}>
+                <div className="mb-3">
+                    <label className="form-label">Email</label>
                     <input
                         type="email"
-                        className={emailNotValid ? "invalid" : undefined}
-                        onChange={(event) => handleInputChange("email", event.target.value)}
+                        className="form-control"
+                        value={enteredEmail}
+                        onChange={(e) => setEnteredEmail(e.target.value)}
+                        required
                     />
-                </p>
-                <p>
-                    <label>Password</label>
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Password</label>
                     <input
                         type="password"
-                        className={passwordNotValid ? "invalid" : undefined}
-                        onChange={(event) =>
-                            handleInputChange("password", event.target.value)
-                        }
+                        className="form-control"
+                        value={enteredPassword}
+                        onChange={(e) => setEnteredPassword(e.target.value)}
+                        required
                     />
-                </p>
-            </div>
-            <div className="actions">
-                <button type="button" className="text-button">
-                    Create a new account
+                </div>
+
+                {errorMessage && <p className="text-danger">{errorMessage}</p>}
+
+                <button type="submit" className="btn btn-primary">
+                    Login
                 </button>
-                <button className="button" onClick={handleLogin}>
-                    Sign In
-                </button>
-            </div>
+            </form>
         </div>
     );
-}
+};
+
+export default Login;
