@@ -32,13 +32,14 @@ const Login = () => {
             console.log('Fetched user data:', data); // Log the fetched data
 
             // Check if login is successful
-            if (data.message === 'Login successful') {
+            if (data.data.length > 0) {
                 // If login is successful, redirect to the profile page
                 localStorage.setItem('user', JSON.stringify(data.user));
                 navigate('/user/dashboard');
             } else {
                 // Show error message if login fails
-                setErrorMessage(data.message);
+                console.log('Invalid credentials. Please try again.');
+                setErrorMessage('Invalid credentials. Please try again.');
             }
         } catch (error) {
             console.error('Error during login:', error);

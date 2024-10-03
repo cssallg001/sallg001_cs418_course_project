@@ -10,7 +10,7 @@ const port=8080;
 const myLogger=function(req,res,next){
     console.log('Calling Api');
     next()
-    console.log('Api calling has done');
+    console.log('Database has been successfully called');
 }
 
 app.use(myLogger);

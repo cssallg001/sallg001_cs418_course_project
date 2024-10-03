@@ -18,7 +18,7 @@
 
 
 # In progress:
-
+2. Users are identified by email address.
 
 # Completed:
 

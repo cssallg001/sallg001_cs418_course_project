@@ -69,7 +69,6 @@ const Profile = () => {
             <div className="card">
                 <div className="card-body">
                     <h6 className="card-subtitle mb-2 text-muted">{user.email || user.profile.email}</h6> {/* Display email, if exists */}
-                    <p className="card-text">{user.bio || user.profile.bio}</p> {/* Display bio, if exists */}
                     <button className="btn btn-primary">Edit Profile</button>
                     <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
                 </div>
