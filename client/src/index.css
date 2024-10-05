@@ -13,20 +13,79 @@ html {
 
 body {
   /* Taken from SVGBackgrounds.com */
-  background-color: #1f1621;
+  background-color: #131212;
   background-attachment: fixed;
   background-size: cover;
 }
 
 button {
   cursor: pointer;
-  background: none;
+  background-color: white;
   line-height: inherit;
+}
+
+.text-danger {
+  font-size:large;
+  color: red;
+  justify-content: center;
+}
+
+.small-btn {
+  width: 50px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.medium-btn {
+  width: 75px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.large-btn {
+  width: 100px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.large-wide-btn {
+  width: 225px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.container {
+  height: 300px;
+  position: relative;
+  border: 3px solid green;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 button:focus {
   outline: none;
 }
+
+.form-label {
+  width: 100px;
+  color: white;
+}
+
 
 header {
   display: flex;
@@ -99,6 +158,12 @@ header p {
   color: white;
 }
 
+.Title{
+  font-size:large;
+  color: #d1d5db;
+  justify-content: center;
+}
+
 .controls input {
   width: 100%;
   padding: 0.75rem 1rem;
@@ -135,6 +200,7 @@ input.invalid {
   background-color: white;
   border-radius: 6px;
   border: none;
+  margin: auto;
 }
 
 .button:hover {

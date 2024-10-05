@@ -38,11 +38,11 @@ user.get("/:id", (req, res) => {
 
 user.post("/", (req, res) => {
 
-  const hashedPassword = HashedPassword(req.body.password);
+  const hashedPassword = HashedPassword(req.body.password)
 
   connection.execute(
     "Insert into user_information (First_Name,Last_Name,Email,Password) values(?,?,?,?)",
-    [req.body.firstName,req.body.lastName,req.body.email,hashedPassword],
+    [req.body.firstName, req.body.lastName, req.body.email, hashedPassword],
     function (err, result) {
       if (err) {
         res.json(err.message);
@@ -100,16 +100,18 @@ user.put("/:id", (req, res) => {
 
 user.post("/login", (req, res) => {
   connection.execute(
-    "select * from user_information where email=? and password=?",
+    "select * from user_information where email=?",
     [req.body.email],
     function (err, result) {
       if (err) {
         res.json(err.message);
+      } else if (result.length === 0) {
+        res.json("Invalid Password"); 
       } else {
-        console.log(result[0].PASSWORD);
-        if (ComparePasword(req.body.password, result[0].PASSWORD)){
+        console.log(result[0].Password);
+        if (ComparePasword(req.body.Password, result[0].Password)) {
 
-          SendMail(req.body.email, "Login Verification","Your login verification is 1234567")
+          SendMail(req.body.email,"Login Verification","Your login verification code is 1234567")
 
           res.json({
             status: 200,
@@ -120,10 +122,54 @@ user.post("/login", (req, res) => {
         else {
           res.json("Invalid Password");
         }
-        
+
       }
     }
   );
 });
+
+user.post("/register", (req, res) => {
+  const hashedPassword = HashedPassword(req.body.password)
+  
+  connection.execute(
+    "select email from user_information where email=?",
+    [req.body.email],
+    function (err, result) {
+      if (err) {
+        res.json(err.message);
+      }
+      else {
+        console.log(result);
+        //console.log("Result[0] = " + result[0].password);
+        if (result.length<=0) {
+          connection.execute(
+            "Insert into user_information (First_Name,Last_Name,Email,Password) values(?,?,?,?)",
+            [req.body.firstName, req.body.lastName, req.body.email, hashedPassword],
+            function (err, result) {
+              if (err) {
+                res.json(err.message);
+              } else {
+                SendMail(req.body.email,"Registration Verification","Your registration verification code is 1234567");
+                res.json({
+                  status: 200,
+                  message: "Account successfully registered",
+                  data: result,
+                });
+              }
+            } 
+          )
+
+        }
+        else {
+          res.json({
+            message: "Email already in use"
+          });
+        }
+      }
+    }
+  );
+});
+
+
 
 export default user;
