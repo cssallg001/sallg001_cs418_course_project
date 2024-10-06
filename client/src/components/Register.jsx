@@ -31,18 +31,12 @@ export default function Register () {
         e.preventDefault();
         
         try {
-
-
             if (enteredPassword1 !== enteredPassword2)
             {
                 setErrVal(0);
                 throw new Error('Error: Passwords dddo not match');
             } else {
-
-
                 setConfirmedPassword(enteredPassword1);
-                
-                
                 const formBody=JSON.stringify({
                     email:enteredEmail,
                     password:confirmedPassword,
@@ -70,7 +64,7 @@ export default function Register () {
                 // Check if Registration is successful
                 if (data.message === 'Account successfully registered') {
                     // If registration is successful, redirect to the profile page
-                    setUserStateVal(false);
+                    setUserStateVal(0);
                     localStorage.setItem('storedUserData', JSON.stringify(data.user));
                     localStorage.setItem('storedFirstName', enteredFirstName);
                     localStorage.setItem('storedLastName', enteredLastName);
@@ -92,6 +86,10 @@ export default function Register () {
                 setErrorMessage('Error: Email already in use. Please try again.');
             }
         }
+    };
+
+    function handleBackPage() {
+        navigate('/home');
     };
     
     return (
@@ -149,15 +147,17 @@ export default function Register () {
                     />
                 </div>
                 {errorMessage && <p className="text-danger">{errorMessage}</p>}
+            </form>
+            <form onSubmit={handleRegister}>
                 <button type="submit" className="btn btn-primary">
                     Register
                 </button>
             </form>
-            <a href="/home">
-                <button type="createAccount" className="btn btn-createAccount">
+            <form onSubmit={handleBackPage}>
+                <button type="submit" className="btn btn-createAccount">
                     Go back
                 </button>
-            </a>
+            </form>
         </div>
     );
 };

@@ -34,6 +34,25 @@ export default function TwoFactorAuthentication () {
         }
     };
 
+    /*
+        userStateVal:
+            0 = Return to registration page
+            1 = Return to login page OR Resetting password via login page
+            2 = Resetting password via Dashboard
+    */
+
+    function handleBackPage() {
+        if(userStateVal === 0) {
+            navigate('/register');
+        } else if (userStateVal === 1) {
+            navigate('/login');
+        } else if (userStateVal === 2) {
+            navigate('/dashboard')
+        } else {
+            navigate('/home');
+        }
+    };
+
 
     return (
         <div className="container mt-5">
@@ -54,11 +73,13 @@ export default function TwoFactorAuthentication () {
                     Submit
                 </button>
             </form>
-            <a href="/home">
-                <button type="createAccount" className="btn btn-createAccount">
+
+
+            <form onSubmit={handleBackPage}>
+                <button type="submit" className="btn btn-createAccount">
                     Go back
                 </button>
-            </a>
+            </form>
         </div>
     );
 };

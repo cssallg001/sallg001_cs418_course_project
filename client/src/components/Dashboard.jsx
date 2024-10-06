@@ -31,6 +31,9 @@ export default function Dashboard () {
         }
     }, []);
 
+    function handleBackPage() {
+        navigate('/home');
+    };
 
     return (
         <div className = "dashboard-container">
@@ -46,11 +49,11 @@ export default function Dashboard () {
                 <div>
                     {userStateVal ? <p>Welcome back!</p> : <p>{firstName && <p>Hello, {firstName} {lastName}</p>}Welcome to your new dashboard!</p>}
                 </div>
-                <a href="/home">
-                    <div class="button large-wide-btn">
-                        Log out
-                    </div>
-                </a>
+            <form onSubmit={handleBackPage}>
+                <button type="submit" className="btn btn-createAccount">
+                    Go back
+                </button>
+            </form>
             </div>
         </div>
     );

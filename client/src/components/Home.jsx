@@ -4,20 +4,38 @@ import '../index.css';
 
 export default function Home () {
     const navigate = useNavigate();
+
+    function handleLoginPage() {
+        navigate('/login');
+    };
+
+    function handleRegistrationPage() {
+        navigate('/register');
+    };
+
+    function handleAboutPage() {
+        navigate('/about');
+    };
+
     return (
-        <div class = "container">
+        <div className = "container">
             <div className="Title">
                 <h1 className="text-center">Home</h1>
-                <a href="/login">
-                    <div class="button large-btn">
+                <form onSubmit={handleLoginPage}>
+                    <button type="submit" className="btn btn-primary">
                         Login
-                    </div>
-                </a>
-                <a href="/register">
-                    <div class="button large-wide-btn">
-                        Create Account
-                    </div>
-                </a>
+                    </button>
+                </form>
+                <form onSubmit={handleRegistrationPage}>
+                    <button type="submit" className="btn btn-primary">
+                        Register
+                    </button>
+                </form>
+                <form onSubmit={handleAboutPage}>
+                    <button type="submit" className="btn btn-primary">
+                        About
+                    </button>
+                </form>
             </div>
         </div>
     );

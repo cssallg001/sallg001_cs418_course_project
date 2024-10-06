@@ -38,10 +38,10 @@ export default function Login () {
             // Check if login is successful
             if (data.data.length > 0) {
                 // If login is successful, redirect to the profile page
-                setUserStateVal(true);
+                setUserStateVal(1);
                 localStorage.setItem('storedUserData', JSON.stringify(data.user));
-                localStorage.setItem('storedUserStateVal',JSON.stringify(userStateVal));
-                localStorage.setItem('storedEmail',JSON.stringify(enteredEmail));
+                localStorage.setItem('storedUserStateVal', JSON.stringify(userStateVal));
+                localStorage.setItem('storedEmail', JSON.stringify(enteredEmail));
                 console.log("userStateVal = " + userStateVal);
                 navigate('/authentication');
             } else {
@@ -53,6 +53,10 @@ export default function Login () {
             console.error('Error during login:', error);
             setErrorMessage('Invalid Credentials. Please try again.');
         }
+    };
+
+    function handleBackPage() {
+        navigate('/home');
     };
 
     return (
@@ -84,11 +88,11 @@ export default function Login () {
                     Login
                 </button>
             </form>
-            <a href="/home">
-                <button type="createAccount" className="btn btn-createAccount">
+            <form onSubmit={handleBackPage}>
+                <button type="submit" className="btn btn-createAccount">
                     Go back
                 </button>
-            </a>
+            </form>
         </div>
     );
 };
