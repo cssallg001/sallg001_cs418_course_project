@@ -69,6 +69,12 @@ button {
   border: 3px solid green;
 }
 
+.dashboard-container {
+  height: 500px;
+  position: relative;
+  border: 3px solid green;
+}
+
 .vertical-center {
   margin: 0;
   position: absolute;

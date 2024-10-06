@@ -8,13 +8,15 @@ export default function Login () {
     const [enteredPassword, setEnteredPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState(''); // For error messages
     const navigate = useNavigate();
+    const [userStateVal, setUserStateVal] = useState(true);
+    
     
     const handleLogin = async (e) => {
         e.preventDefault();
         
         try {
             const formBody=JSON.stringify({
-                Email:enteredEmail,
+                email:enteredEmail,
                 Password:enteredPassword
             })
     
@@ -36,8 +38,12 @@ export default function Login () {
             // Check if login is successful
             if (data.data.length > 0) {
                 // If login is successful, redirect to the profile page
-                localStorage.setItem('user', JSON.stringify(data.user));
-                navigate('/dashboard');
+                setUserStateVal(true);
+                localStorage.setItem('storedUserData', JSON.stringify(data.user));
+                localStorage.setItem('storedUserStateVal',JSON.stringify(userStateVal));
+                localStorage.setItem('storedEmail',JSON.stringify(enteredEmail));
+                console.log("userStateVal = " + userStateVal);
+                navigate('/authentication');
             } else {
                 // Show error message if login fails
                 console.log('Invalid credentials. Please try again.');
