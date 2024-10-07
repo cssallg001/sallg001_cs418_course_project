@@ -158,7 +158,6 @@ user.post("/register", (req, res) => {
               }
             } 
           )
-
         }
         else {
           res.json({
