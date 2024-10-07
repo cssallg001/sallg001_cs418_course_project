@@ -15,6 +15,7 @@ export default function Register () {
     const [errVal, setErrVal] = useState('');
     
     const [confirmedPassword, setConfirmedPassword] = useState('');
+    const [registrationSuccess, setRegistrationSuccess] = useState(false);
     
     /* 
         if userStateVal == 0, user came from registration screen
@@ -34,18 +35,14 @@ export default function Register () {
             if (enteredPassword1 !== enteredPassword2)
             {
                 setErrVal(0);
-                throw new Error('Error: Passwords dddo not match');
+                throw new Error('Error: Passwords do not match');
             } else {
                 setConfirmedPassword(enteredPassword1);
                 const formBody=JSON.stringify({
-                    email:enteredEmail,
-                    password:confirmedPassword,
-                    firstName:enteredFirstName,
-                    lastName:enteredLastName
+                    email:enteredEmail
                 })
 
-                
-                const response= await fetch('http://localhost:8080/user/register',{
+                const response= await fetch('http://localhost:8080/user/verifyIfEmailExists',{
                     method:"POST",
                     body:formBody,
                     headers:{
@@ -61,16 +58,19 @@ export default function Register () {
                 const data = await response.json();
                 console.log('Fetched user data:', data); // Log the fetched data
                 
-                // Check if Registration is successful
-                if (data.message === 'Account successfully registered') {
+                if (data.message === 'Email is available') {
+                    // Check if Registration is successful
                     // If registration is successful, redirect to the profile page
                     setUserStateVal(0);
                     localStorage.setItem('storedUserData', JSON.stringify(data.user));
-                    localStorage.setItem('storedFirstName', enteredFirstName);
-                    localStorage.setItem('storedLastName', enteredLastName);
-                    localStorage.setItem('storedUserStateVal', userStateVal);
+                    localStorage.setItem('storedEmail', JSON.stringify(enteredEmail));
+                    localStorage.setItem('storedFirstName', JSON.stringify(enteredFirstName));
+                    localStorage.setItem('storedLastName', JSON.stringify(enteredLastName));
+                    localStorage.setItem('storedUserStateVal', JSON.stringify(userStateVal));
+                    localStorage.setItem('storedConfirmedPassword', JSON.stringify(confirmedPassword));
                     console.log("userStateVal = " + userStateVal);
                     navigate('/authentication');
+                    
                 } else {
                     // Show error message if registration fails
                     console.log('Error: Email already in use. Please try again.');

@@ -9,6 +9,12 @@ export default function TwoFactorAuthentication () {
     const [verificationState, setVerficationState] = useState(false);
     const [enteredVerificationVal, setEnteredVerificationVal] = useState('');
     const [errorMessage, setErrorMessage] = useState(''); // For error messages
+    const [registrationSuccess, setRegistrationSuccess] = useState(false);
+
+    const [enteredEmail, setEnteredEmail] = useState(false);
+    const [enteredFirstName, setEnteredFirstName] = useState(false);
+    const [enteredLastName, setEnteredLastName] = useState(false);
+    const [confirmedPassword, setConfirmedPassword] = useState(false);
 
     useEffect(() => {
         const storedUserStateVal = localStorage.getItem('storedUserStateVal');
@@ -18,19 +24,98 @@ export default function TwoFactorAuthentication () {
         }
     }, []);
 
+    useEffect(() => {
+        const storedEmail = localStorage.getItem('storedEmail');
+        if (storedEmail) {
+            const parsedData = storedEmail;
+            setEnteredEmail(parsedData);
+        }
+    }, []);
+
+    useEffect(() => {
+        const storedFirstName = localStorage.getItem('storedFirstName');
+        if (storedFirstName) {
+            const parsedData = storedFirstName;
+            setEnteredFirstName(parsedData);
+        }
+    }, []);
+
+    useEffect(() => {
+        const storedLastName = localStorage.getItem('storedLastName');
+        if (storedLastName) {
+            const parsedData = storedLastName;
+            setEnteredLastName(parsedData);
+        }
+    }, []);
+
+    useEffect(() => {
+        const storedConfirmedPassword = localStorage.getItem('storedConfirmedPassword');
+        if (storedConfirmedPassword) {
+            const parsedData = storedConfirmedPassword;
+            setConfirmedPassword(parsedData);
+        }
+    }, []);
+
+
+
+
+
+
+
     const handleAuthentication = async (e) => {
         e.preventDefault();
         try {
             if (enteredVerificationVal === "1234567") { 
-                navigate('/dashboard');
+                if (userStateVal === 0)
+                {
+                    setRegistrationSuccess(true);
+                    try {
+                        const formBody=JSON.stringify({
+                            email:enteredEmail,
+                            password:confirmedPassword,
+                            firstName:enteredFirstName,
+                            lastName:enteredLastName
+                        })
+        
+                        
+                        const response= await fetch('http://localhost:8080/user/register',{
+                            method:"POST",
+                            body:formBody,
+                            headers:{
+                                'content-type':'application/json'
+                            }
+                        });
+                
+                        if (!response.ok) {
+                            throw new Error('Registration failed'); // Handle HTTP errors
+                        }
+                        
+                        const data = await response.json();
+                        console.log('Fetched user data:', data); // Log the fetched data
+        
+                        // Check if Registration is successful
+                        if (data.message === 'Account successfully registered') {
+                            navigate('/dashboard');
+                            
+                        } else {
+                            // Show error message if registration fails
+                            console.log('Registration Error');
+                            setErrorMessage('Registration Error');
+                        }
+                    } catch (error) {
+                        console.error('Registration Error', error);
+                        setErrorMessage('Registration Error');  
+                    }
+                } else {
+                    navigate('/dashboard');
+                }
             } else {
-                throw new Error ('Verification Failed');
+                throw new Error ('Error: Invalid Verification Code');        
             }
-            console.log('Invalid verification code. Please try again.');
-            setErrorMessage('Invalid verification code. Please try again.');
+
         } catch (error) {
-        console.error('Error during verification: ', error);
-        setErrorMessage('Invalid verification code. Please try again');
+            console.error('Error during verification: ', error);
+            setErrorMessage('Invalid verification code. Please try again');
         }
     };
 
@@ -42,6 +127,8 @@ export default function TwoFactorAuthentication () {
     */
 
     function handleBackPage() {
+        setRegistrationSuccess(false);
+        localStorage.setItem('storedRegistrationSuccess', JSON.stringify(registrationSuccess));
         if(userStateVal === 0) {
             navigate('/register');
         } else if (userStateVal === 1) {

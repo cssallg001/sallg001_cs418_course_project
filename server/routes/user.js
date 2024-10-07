@@ -116,7 +116,7 @@ user.post("/login", (req, res) => {
           res.json({
             status: 200,
             message: "user logged in successfully",
-            data: result,
+            data: result, 
           });
         }
         else {
@@ -128,6 +128,31 @@ user.post("/login", (req, res) => {
   );
 });
 
+
+user.post("/verifyIfEmailExists", (req, res) => {
+  connection.execute(
+    "select email from user_information where email=?",
+    [req.body.email],
+    function (err, result) {
+      if (err) {
+        res.json(err.message);
+      } else {
+        console.log(result);
+        if (result.length<=0) {
+          res.json({
+            status: 200,
+            message: "Email is available",
+            data: result,
+          });
+        } else {
+          res.json("Email already in use");
+        }
+      }
+    }
+  );
+});
+
+
 user.post("/register", (req, res) => {
   const hashedPassword = HashedPassword(req.body.password)
   
@@ -137,8 +162,7 @@ user.post("/register", (req, res) => {
     function (err, result) {
       if (err) {
         res.json(err.message);
-      }
-      else {
+      } else {
         console.log(result);
         //console.log("Result[0] = " + result[0].password);
         if (result.length<=0) {
@@ -158,8 +182,7 @@ user.post("/register", (req, res) => {
               }
             } 
           )
-        }
-        else {
+        } else {
           res.json({
             message: "Email already in use"
           });
