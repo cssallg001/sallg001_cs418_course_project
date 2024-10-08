@@ -211,7 +211,7 @@ user.post("/forgot-password", (req, res) => {
           return res.status(500).json({ message : "Error updated password"});
         }
 
-        SendMail(req.body.email, "Temporary Password", `Your new temporary password is: ${tempPassword}`);
+        SendMail(req.body.email, "Temporary Password", `Your new password is: ${tempPassword}`);
         return res.status(200).json({ message: "A temp password has been sent to your email"});
       });
   })

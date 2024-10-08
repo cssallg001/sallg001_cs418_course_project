@@ -161,7 +161,7 @@ export default function TwoFactorAuthentication () {
                 <div className="mb-3">
                         <label className="form-label">Code: </label>
                         <input
-                            type="text"
+                            type="Password"
                             className="form-control"
                             value={enteredVerificationVal}
                             onChange={(e) => setEnteredVerificationVal(e.target.value)}

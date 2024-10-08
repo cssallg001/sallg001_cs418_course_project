@@ -23,7 +23,7 @@ export default function Dashboard () {
     useEffect(() => {
         const storedUserStateVal = localStorage.getItem('storedUserStateVal');
         if (storedUserStateVal) {
-            const parsedData = JSON.parse(storedUserStateVal);
+            const parsedData = storedUserStateVal;
             setUserStateVal(parsedData);
         }
     }, []);
@@ -53,7 +53,7 @@ export default function Dashboard () {
     useEffect(() => {
         const storedConfirmedPassword = localStorage.getItem('storedConfirmedPassword');
         if (storedConfirmedPassword) {
-            const parsedData = JSON.parse(storedConfirmedPassword);
+            const parsedData = storedConfirmedPassword;
             setConfirmedPassword(parsedData);
         }
     }, []);
