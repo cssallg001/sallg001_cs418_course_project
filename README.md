@@ -24,4 +24,4 @@ CS 418
 * An admin user has a different view from a regular user. (Later admin will approve the submitted advising sheet by student)
 
 ## Unintended Features (aka bugs):
-* When a user tries changing their password while logged in, the new password does not update in the database and the old password also stops working. The user is then forced to use the "forgot password?" link on the login screen to reset their password.
+* When a user tries changing their password while logged in, the old password gets overwritten by *something* and the new password does not update in the database. The user is then forced to use the "forgot password?" link on the login screen to reset their password.
