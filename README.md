@@ -20,4 +20,4 @@
 * Users are identified by email address.
 * An admin user should be created from the backend. (Only 1)
 * The website should have a homepage for each user, where they can view their profiles, change passwords, and update information. Email cannot not be changed.
-* * Users should be able to change their passwords after they login.
+* Users should be able to change their passwords after they login.
