@@ -6,10 +6,10 @@ CS 418
 
 # Features:
 
-# In progress:
+## In progress:
 * Users should be able to change their passwords after they login.
 
-# Completed:
+## Completed:
 * Users should be able to register new accounts using email addresses.
 * Password must be encrypted before storing in the database.
 * Users cannot register duplicate accounts using the same email address.
@@ -22,3 +22,6 @@ CS 418
 * The website should have a homepage for each user, where they can view their profiles, change passwords, and update information. Email cannot not be changed.
 * Users should be able to reset their passwords if they forget it.
 * An admin user has a different view from a regular user. (Later admin will approve the submitted advising sheet by student)
+
+## Unintended Features (aka bugs):
+* When changing password while user is logged in, the new password does not update in the database and the old password also stops working.
