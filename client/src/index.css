@@ -29,6 +29,11 @@ button {
   color: red;
   justify-content: center;
 }
+.text-success {
+  font-size:large;
+  color: green;
+  justify-content: center;
+}
 
 .small-btn {
   width: 50px;
@@ -70,9 +75,18 @@ button {
 }
 
 .dashboard-container {
-  height: 500px;
+  height: 200px;
   position: relative;
   border: 3px solid green;
+}
+
+.change-information-container {
+  height: 500px;
+  border: 3px solid green;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+
 }
 
 .vertical-center {

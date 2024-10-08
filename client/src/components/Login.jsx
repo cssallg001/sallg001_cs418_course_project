@@ -8,7 +8,7 @@ export default function Login () {
     const [enteredPassword, setEnteredPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState(''); // For error messages
     const navigate = useNavigate();
-    const [userStateVal, setUserStateVal] = useState(true);
+    const [userStateVal, setUserStateVal] = useState('');
     
     
     const handleLogin = async (e) => {
@@ -38,10 +38,11 @@ export default function Login () {
             // Check if login is successful
             if (data.data.length > 0) {
                 // If login is successful, redirect to the profile page
-                setUserStateVal(1);
+                setUserStateVal('1');
                 localStorage.setItem('storedUserData', JSON.stringify(data.user));
                 localStorage.setItem('storedUserStateVal', JSON.stringify(userStateVal));
                 localStorage.setItem('storedEmail', JSON.stringify(enteredEmail));
+                localStorage.setItem('storedConfirmedPassword', JSON.stringify(enteredPassword));
                 console.log("userStateVal = " + userStateVal);
                 navigate('/authentication');
             } else {
@@ -57,6 +58,10 @@ export default function Login () {
 
     function handleBackPage() {
         navigate('/home');
+    };
+
+    function handleForgotPassword() {
+        navigate('/forgotPassword');
     };
 
     return (
@@ -86,6 +91,11 @@ export default function Login () {
                 {errorMessage && <p className="text-danger">{errorMessage}</p>}
                 <button type="submit" className="btn btn-primary">
                     Login
+                </button>
+            </form>
+            <form onSubmit={handleForgotPassword}>
+                <button type="submit" className="btn btn-createAccount">
+                    Forgot password?
                 </button>
             </form>
             <form onSubmit={handleBackPage}>

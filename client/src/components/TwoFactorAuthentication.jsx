@@ -5,16 +5,16 @@ import '../index.css';
 export default function TwoFactorAuthentication () {
     const navigate = useNavigate();
 
-    const [userStateVal, setUserStateVal] = useState(null);
+    const [userStateVal, setUserStateVal] = useState('');
     const [verificationState, setVerficationState] = useState(false);
     const [enteredVerificationVal, setEnteredVerificationVal] = useState('');
     const [errorMessage, setErrorMessage] = useState(''); // For error messages
     const [registrationSuccess, setRegistrationSuccess] = useState(false);
 
-    const [enteredEmail, setEnteredEmail] = useState(false);
-    const [enteredFirstName, setEnteredFirstName] = useState(false);
-    const [enteredLastName, setEnteredLastName] = useState(false);
-    const [confirmedPassword, setConfirmedPassword] = useState(false);
+    const [enteredEmail, setEnteredEmail] = useState('');
+    const [enteredFirstName, setEnteredFirstName] = useState('');
+    const [enteredLastName, setEnteredLastName] = useState('');
+    const [confirmedPassword, setConfirmedPassword] = useState('');
 
     useEffect(() => {
         const storedUserStateVal = localStorage.getItem('storedUserStateVal');

@@ -11,7 +11,7 @@ export default function Register () {
     const [enteredLastName, setEnteredLastName] = useState('');
     const [errorMessage, setErrorMessage] = useState(''); // For error messages
     const navigate = useNavigate();
-    const [userStateVal, setUserStateVal] = useState(false);
+    const [userStateVal, setUserStateVal] = useState('');
     const [errVal, setErrVal] = useState('');
     
     const [confirmedPassword, setConfirmedPassword] = useState('');
@@ -61,7 +61,7 @@ export default function Register () {
                 if (data.message === 'Email is available') {
                     // Check if Registration is successful
                     // If registration is successful, redirect to the profile page
-                    setUserStateVal(0);
+                    setUserStateVal('0');
                     localStorage.setItem('storedUserData', JSON.stringify(data.user));
                     localStorage.setItem('storedEmail', JSON.stringify(enteredEmail));
                     localStorage.setItem('storedFirstName', JSON.stringify(enteredFirstName));

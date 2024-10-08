@@ -6,7 +6,8 @@ import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import Register from "./components/Register";
 import TwoFactorAuthentication from "./components/TwoFactorAuthentication";
-import ResetPassword from "./components/ResetPassword";
+import ForgotPassword from "./components/ForgotPassword";
+
 function App() {
 
   return (
@@ -18,7 +19,7 @@ function App() {
     <Route path="/dashboard" element={<Dashboard/>}/>
     <Route path="/register" element={<Register/>}/>
     <Route path="/authentication" element={<TwoFactorAuthentication/>}/>
-    <Route path="/resetPassword" element={<ResetPassword/>}/>
+    <Route path="forgotPassword" element={<ForgotPassword/>}/>
     </Routes>
   );
 }

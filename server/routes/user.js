@@ -4,6 +4,24 @@ import { ComparePasword, HashedPassword } from "../utils/helper.js";
 import { SendMail } from "../utils/SendMail.js";
 const user = Router();
 
+
+
+function generateTempPassword(length = 12) {
+  const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+<>?";
+  let password = "";
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * chars.length);
+    password += chars[randomIndex];
+  }
+  return password;
+}
+
+
+
+
+
+
+
 user.get("/", (req, res) => {
   connection.execute("select * from user_information", function (err, result) {
     if (err) {
@@ -77,21 +95,81 @@ user.delete("/:id", (req, res) => {
 });
 
 
-user.put("/:id", (req, res) => {
+user.post("/forgot-password", (req, res) => {
+
+  connection.execute("SELECT * FROM userdata WHERE email=?", 
+    [req.body.email], 
+    function (err, result) {
+    if (err) {
+      return res.status(500).json({ message: "Error retrieving user" });
+    }
+    if (result.length === 0) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const user = result[0];
+
+    const tempPassword = generateTempPassword(12);
+    const hashedTempPassword = HashedPassword(tempPassword);
+
+    connection.execute(
+      "UPDATE userdata SET Password=? WHERE email=?",
+      [hashedTempPassword, req.body.email],
+      (updateErr) => {
+        if (updateErr) {
+          return res.status(500).json({ message : "Error updated password"});
+        }
+
+        SendMail(req.body.email, "Temporary Password", 'Your new temporary password is: ${tempPassword}');
+        return res.status(200).json({ message: "Password reset link has been sent to your email"});
+      });
+  })
+});
+
+
+
+
+
+
+
+
+
+user.post("/change-password", (req, res) => {
   connection.execute(
-    "update user_information set First_Name=? , Last_Name=? where user_id=?",
-    [req.body.firstName,
-    req.body.lastName,
-    req.params.id],
+    "select * from user_information where email=?",
+    [req.body.email],
     function (err, result) {
       if (err) {
         res.json(err.message);
-      } else {
+      } else if (result.length === 0) {
+        // User not found
         res.json({
-          status: 200,
-          message: "Response from user delete api",
-          data: result,
+          status: 404,
+          message: "User not found",
         });
+      } else {
+        const user = result[0];
+        if (ComparePasword(req.body.currentPassword, user.Password)) {
+          const newHashedPassword = HashedPassword(req.body.newPassword);
+          connection.execute(
+            "update user_information set Password=? where email=?",
+            [newHashedPassword, req.body.email],
+            function (err, result) {
+              if (err) {
+                res.json({
+                  status: 500,
+                  message: "Error: Failed to changed password",
+                });
+              } else {
+                res.json({
+                  status: 200,
+                  message: "Password successfully changed",
+                  data: result,
+                });
+              }
+            }
+          )
+        }
       }
     }
   );
