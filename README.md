@@ -6,7 +6,7 @@
 
 
 # In progress:
-* * Users should be able to reset their passwords if they forget it.
+* Users should be able to reset their passwords if they forget it.
 
 
 # Completed:
