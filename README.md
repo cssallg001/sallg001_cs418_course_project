@@ -4,10 +4,10 @@ Sean Allgaier
 CS 418
 
 
-# Unfinished features:
+# Features:
 
 # In progress:
-
+* Users should be able to change their passwords after they login.
 
 # Completed:
 * Users should be able to register new accounts using email addresses.
@@ -20,6 +20,5 @@ CS 418
 * Users are identified by email address.
 * An admin user should be created from the backend. (Only 1)
 * The website should have a homepage for each user, where they can view their profiles, change passwords, and update information. Email cannot not be changed.
-* Users should be able to change their passwords after they login.
 * Users should be able to reset their passwords if they forget it.
 * An admin user has a different view from a regular user. (Later admin will approve the submitted advising sheet by student)
