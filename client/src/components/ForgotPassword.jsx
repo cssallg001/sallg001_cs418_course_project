@@ -26,18 +26,16 @@ export default function ForgotPassword() {
                 }),
             });
             if (!response.ok) {
+                setPasswordError('Password reset failed');  
                 throw new Error('Password reset failed'); // Handle HTTP errors
             }
             const data = await response.json();
             console.log('Fetched user data:', data); // Log the fetched data
-
-            // Check if Registration is successful
-                setPasswordSuccess('Password successfully reset!');
+            setPasswordSuccess('Password successfully reset! A temporary password has been sent to your email.');
         } catch (error) {
             console.error('Password Reset Error', error);
-            setErrorMessage('Password Reset Error');  
+            setPasswordError('Password Reset Error');  
         }
-        setErrorMessage(passwordError);  
     };
 
     function handleBackPage() {
@@ -59,7 +57,7 @@ export default function ForgotPassword() {
                         required
                     />
                 </div>
-                {errorMessage && <p className="text-danger">{errorMessage}</p>}
+                {passwordError && <p className="text-danger">{passwordError}</p>}
                 {passwordSuccess && <p className="text-success">{passwordSuccess}</p>}
                 <button type="submit" className="btn btn-primary">
                     Submit

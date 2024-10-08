@@ -101,10 +101,8 @@ export default function Dashboard () {
                 navigate('/dashboard');
         } catch (error) {
             console.error('Password Change Error', error);
-            setErrorMessage('Password Change Error');  
+            setPasswordError('Password Change Error');  
         }
-            
-        setErrorMessage(passwordError);  
     };
 
 
@@ -126,7 +124,7 @@ export default function Dashboard () {
             <div className="Title">
                 <h1 className="text-center">Dashboard</h1>
                 <div>
-                    {userStateVal ? <p>Welcome back, {enteredEmail}!</p> : <p>Hello, {enteredEmail}! Welcome to your new dashboard!</p>}
+                    Welcome, {enteredEmail}!
                 </div>
                 <form onSubmit={handleBackPage}>
                     <button type="submit" className="btn btn-createAccount">
@@ -179,7 +177,7 @@ export default function Dashboard () {
                                     required
                                     />
                             </div>
-                            {errorMessage && <p className="text-danger">{errorMessage}</p>}
+                            {passwordError && <p className="text-danger">{passwordErrore}</p>}
                             {passwordSuccess && <p className="text-success">{passwordSuccess}</p>}
                             <button type="submit" className="btn btn-primary">
                                 Submit
