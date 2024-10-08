@@ -31,7 +31,7 @@ export default function ForgotUserPassword() {
             }
             const data = await response.json();
             console.log('Fetched user data:', data); // Log the fetched data
-            setPasswordSuccess('Password successfully reset! A temporary password has been sent to your email.');
+            setPasswordSuccess('Password successfully reset! A new password has been sent to your email.');
         } catch (error) {
             console.error('Password Reset Error', error);
             setPasswordError('Password Reset Error');  

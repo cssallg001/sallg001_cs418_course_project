@@ -45,7 +45,7 @@ export default function Login () {
 
 
             // Check if login is successful
-            if (data.data.length > 0) {
+            if (data.message === "user logged in successfully") {
                 // If login is successful, redirect to the authentication page
                 setUserStateVal(true);
                 localStorage.setItem('storedUserData', JSON.stringify(data.user));
