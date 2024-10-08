@@ -2,8 +2,8 @@ import { Router } from "express";
 import { connection } from "../database/database.js";
 import { ComparePasword, HashedPassword } from "../utils/helper.js";
 import { SendMail } from "../utils/SendMail.js";
+import { compare } from "bcrypt";
 const user = Router();
-
 
 
 function generateTempPassword(length = 12) {
@@ -15,10 +15,6 @@ function generateTempPassword(length = 12) {
   }
   return password;
 }
-
-
-
-
 
 
 
@@ -152,7 +148,6 @@ user.post("/verifyIfEmailExists", (req, res) => {
 
 user.post("/register", (req, res) => {
   const hashedPassword = HashedPassword(req.body.password)
-  
   connection.execute(
     "select email from user_information where email=?",
     [req.body.email],
@@ -221,6 +216,63 @@ user.post("/forgot-password", (req, res) => {
       });
   })
 });
+
+
+
+user.post("/change-password", (req, res) =>{
+  connection.execute(
+    "select * from user_information where email=?",
+    [req.body.email],
+    function(err, result) {
+      if (err) {
+        res.json({
+          status: 500,
+          message: err.message,
+        });
+      } else if (result.length === 0) {
+        res.json({
+          status: 404,
+          message: "User not found",
+        });
+      } else {
+        const user = result [0];
+        if (ComparePasword(req.body.currentPassword, user.Password)) {
+          const newHashedPassword = HashedPassword(req.body.newPassword);
+          connection.execute(
+            "update user_information set Password=? where Email=?",
+            [newHashedPassword, req.body.email],
+            function(updateErr, updateResult) {
+              if (updateErr) {
+                res.json({
+                  status:500,
+                  message: updateErr.message,
+                });
+              } else {
+                res.json({
+                  status:200,
+                  message: "Password changed successfully.",
+                  data: updateResult,
+                });
+              }
+            }
+          );
+        } else {
+          res.json({
+            status:401,
+            message: "Invalid current password",
+          });
+        }
+      }
+    }
+  )
+})
+
+
+
+
+
+
+
 
 
 

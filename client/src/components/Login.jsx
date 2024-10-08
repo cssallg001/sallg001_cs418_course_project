@@ -8,7 +8,8 @@ export default function Login () {
     const [enteredPassword, setEnteredPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState(''); // For error messages
     const navigate = useNavigate();
-    const [userStateVal, setUserStateVal] = useState('');
+    const [userStateVal, setUserStateVal] = useState(true);
+    const [adminStateVal, setAdminStateVal] = useState(false);
     
     
     const handleLogin = async (e) => {
@@ -35,15 +36,25 @@ export default function Login () {
             const data = await response.json();
             console.log('Fetched user data:', data); // Log the fetched data
 
+
+            if (data.message === "isAdmin") {
+                setAdminStateVal('1');
+            }
+
+
+
+
             // Check if login is successful
             if (data.data.length > 0) {
-                // If login is successful, redirect to the profile page
-                setUserStateVal('1');
+                // If login is successful, redirect to the authentication page
+                setUserStateVal(true);
                 localStorage.setItem('storedUserData', JSON.stringify(data.user));
-                localStorage.setItem('storedUserStateVal', JSON.stringify(userStateVal));
-                localStorage.setItem('storedEmail', JSON.stringify(enteredEmail));
-                localStorage.setItem('storedConfirmedPassword', JSON.stringify(enteredPassword));
+                localStorage.setItem('storedUserStateVal', userStateVal);
+                localStorage.setItem('storedEmail', enteredEmail);
+                localStorage.setItem('storedConfirmedPassword', enteredPassword);
+                localStorage.setItem('storedAdminStateVal', JSON.stringify(adminStateVal));
                 console.log("userStateVal = " + userStateVal);
+                console.log("adminStateVal = " + adminStateVal);
                 navigate('/authentication');
             } else {
                 // Show error message if login fails
@@ -61,7 +72,7 @@ export default function Login () {
     };
 
     function handleForgotPassword() {
-        navigate('/forgotPassword');
+        navigate('/forgotUserPassword');
     };
 
     return (

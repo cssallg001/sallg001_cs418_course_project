@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
 
-export default function ForgotPassword() {
+export default function ForgotUserPassword() {
 
     const [inputtedEmail, setInputtedEmail] = useState('');
     const [errorMessage, setErrorMessage] = useState(''); // For error messages

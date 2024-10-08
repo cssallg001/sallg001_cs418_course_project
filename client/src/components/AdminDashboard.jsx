@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
 
-export default function Dashboard () {
+export default function AdminDashboard () {
     const navigate = useNavigate();
 
     const [userStateVal, setUserStateVal] = useState('');
@@ -53,7 +53,7 @@ export default function Dashboard () {
     useEffect(() => {
         const storedConfirmedPassword = localStorage.getItem('storedConfirmedPassword');
         if (storedConfirmedPassword) {
-            const parsedData = JSON.parse(storedConfirmedPassword);
+            const parsedData = storedConfirmedPassword;
             setConfirmedPassword(parsedData);
         }
     }, []);
@@ -66,8 +66,6 @@ export default function Dashboard () {
 
         if (inputtedEmail !== enteredEmail) {
             setPasswordError("Email is not correct");
-            console.log(inputtedEmail);
-            console.log(enteredEmail);
             return;
         } else if (enteredOldPassword !== confirmedPassword) {
             setPasswordError("Current password is incorrect");
@@ -119,7 +117,7 @@ export default function Dashboard () {
     return (
         <div className = "dashboard-container">
             <div className="Title">
-                <h1 className="text-center">Dashboard</h1>
+                <h1 className="text-center">Admin Dashboard</h1>
                 <div>
                     Welcome, {enteredEmail}!
                 </div>

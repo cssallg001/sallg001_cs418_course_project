@@ -4,18 +4,20 @@ import '../index.css';
 
 
 export default function Register () {
+    const navigate = useNavigate();
+
     const [enteredEmail, setEnteredEmail] = useState('');
     const [enteredPassword1, setEnteredPassword1] = useState('');
     const [enteredPassword2, setEnteredPassword2] = useState('');
     const [enteredFirstName, setEnteredFirstName] = useState('');
     const [enteredLastName, setEnteredLastName] = useState('');
     const [errorMessage, setErrorMessage] = useState(''); // For error messages
-    const navigate = useNavigate();
-    const [userStateVal, setUserStateVal] = useState('');
+    const [userStateVal, setUserStateVal] = useState(false);
     const [errVal, setErrVal] = useState('');
     
+    const [adminStateVal, setAdminStateVal] = useState('');
+
     const [confirmedPassword, setConfirmedPassword] = useState('');
-    const [registrationSuccess, setRegistrationSuccess] = useState(false);
     
     /* 
         if userStateVal == 0, user came from registration screen
@@ -60,14 +62,17 @@ export default function Register () {
                 
                 if (data.message === 'Email is available') {
                     // Check if Registration is successful
-                    // If registration is successful, redirect to the profile page
-                    setUserStateVal('0');
+                    // If registration is successful, redirect to the authentication page
+                    //setPasswordError("Current password is incorrect");
+                    setUserStateVal(false);
+                    setAdminStateVal(0);
                     localStorage.setItem('storedUserData', JSON.stringify(data.user));
-                    localStorage.setItem('storedEmail', JSON.stringify(enteredEmail));
-                    localStorage.setItem('storedFirstName', JSON.stringify(enteredFirstName));
-                    localStorage.setItem('storedLastName', JSON.stringify(enteredLastName));
+                    localStorage.setItem('storedEmail', enteredEmail);
+                    localStorage.setItem('storedFirstName', enteredFirstName);
+                    localStorage.setItem('storedLastName', enteredLastName);
                     localStorage.setItem('storedUserStateVal', JSON.stringify(userStateVal));
-                    localStorage.setItem('storedConfirmedPassword', JSON.stringify(confirmedPassword));
+                    localStorage.setItem('storedAdminStateVal', JSON.stringify(adminStateVal));
+                    localStorage.setItem('storedConfirmedPassword', confirmedPassword);
                     console.log("userStateVal = " + userStateVal);
                     navigate('/authentication');
                     

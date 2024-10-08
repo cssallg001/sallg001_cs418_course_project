@@ -5,7 +5,8 @@ import '../index.css';
 export default function TwoFactorAuthentication () {
     const navigate = useNavigate();
 
-    const [userStateVal, setUserStateVal] = useState('');
+    const [userStateVal, setUserStateVal] = useState(false);
+    const [adminStateVal, setAdminStateVal] = useState('');
     const [verificationState, setVerficationState] = useState(false);
     const [enteredVerificationVal, setEnteredVerificationVal] = useState('');
     const [errorMessage, setErrorMessage] = useState(''); // For error messages
@@ -21,6 +22,14 @@ export default function TwoFactorAuthentication () {
         if (storedUserStateVal) {
             const parsedData = JSON.parse(storedUserStateVal);
             setUserStateVal(parsedData);
+        }
+    }, []);
+
+    useEffect(() => {
+        const storedAdminStateVal = localStorage.getItem('storedAdminStateVal');
+        if (storedAdminStateVal) {
+            const parsedData = JSON.parse(storedAdminStateVal);
+            setAdminStateVal(parsedData);
         }
     }, []);
 
@@ -61,14 +70,14 @@ export default function TwoFactorAuthentication () {
 
 
 
-
+    console.log("userStateVal = " + userStateVal);
     const handleAuthentication = async (e) => {
         e.preventDefault();
         try {
             if (enteredVerificationVal === "1234567") { 
-                if (userStateVal === 0)
+                if (userStateVal === false) // Registering account
                 {
-                    setRegistrationSuccess(true);
+                    console.log("Registering account");
                     try {
                         const formBody=JSON.stringify({
                             email:enteredEmail,
@@ -76,7 +85,6 @@ export default function TwoFactorAuthentication () {
                             firstName:enteredFirstName,
                             lastName:enteredLastName
                         })
-        
                         
                         const response= await fetch('http://localhost:8080/user/register',{
                             method:"POST",
@@ -96,7 +104,6 @@ export default function TwoFactorAuthentication () {
                         // Check if Registration is successful
                         if (data.message === 'Account successfully registered') {
                             navigate('/dashboard');
-                            
                         } else {
                             // Show error message if registration fails
                             console.log('Registration Error');
@@ -107,7 +114,13 @@ export default function TwoFactorAuthentication () {
                         setErrorMessage('Registration Error');  
                     }
                 } else {
-                    navigate('/dashboard');
+                    if (enteredEmail === 'sean.g.allgaier.99@gmail.com') {
+                        console.log("Logging in as admin");
+                        navigate('/adminDashboard');     // Logging in as admin user
+                    } else {
+                        console.log("Logging in as regular user");
+                        navigate('/dashboard');     // Logging in as regular user
+                    }
                 }
             } else {
                 throw new Error ('Error: Invalid Verification Code');        
