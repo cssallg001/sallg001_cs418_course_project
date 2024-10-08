@@ -1,5 +1,8 @@
 # sallg001_cs418_course_project
 
+Sean Allgaier
+CS 418
+
 
 # Unfinished features:
 * An admin user has a different view from a regular user. (Later admin will approve the submitted advising sheet by student)
