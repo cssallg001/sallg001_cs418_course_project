@@ -8,12 +8,13 @@ CS 418
 
 ## In progress:
 * Users should be able to change their passwords after they login.
+* The user should receive a verification email upon successful registration. (2FactorAuthentication email does not count) 
 
 ## Completed:
 * Users should be able to register new accounts using email addresses.
 * Password must be encrypted before storing in the database.
 * Users cannot register duplicate accounts using the same email address.
-* The user should receive a verification email upon successful registration.
+
 * Users should be able to log into your website using the accounts they registered.
 * A 2-factor-authentication should be used when a user attempt to login. This can be done by email, phone text, or a DUO push. You can just implement one of them.
 * Users cannot log in to the system until their email has been verified.
