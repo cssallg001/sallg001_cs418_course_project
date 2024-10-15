@@ -220,8 +220,7 @@ user.post("/forgot-password", (req, res) => {
 
 
 user.post("/change-password", (req, res) =>{
-  connection.execute(
-    "select * from user_information where email=?",
+  connection.execute("select * from user_information where email=?",
     [req.body.email],
     function(err, result) {
       if (err) {
@@ -236,22 +235,21 @@ user.post("/change-password", (req, res) =>{
         });
       } else {
         const user = result [0];
-        if (ComparePasword(req.body.currentPassword, user.Password)) {
+        if (ComparePasword(req.body.Password, result[0].Password)) {
           const newHashedPassword = HashedPassword(req.body.newPassword);
-          connection.execute(
-            "update user_information set Password=? where Email=?",
+          connection.execute("UPDATE user_information SET Password=? WHERE email=?",
             [newHashedPassword, req.body.email],
-            function(updateErr, updateResult) {
-              if (updateErr) {
+            function(err, result) {
+              if (err) {
                 res.json({
-                  status:500,
-                  message: updateErr.message,
+                  status:400,
+                  message: "Failed to change password",
                 });
               } else {
                 res.json({
                   status:200,
                   message: "Password changed successfully.",
-                  data: updateResult,
+                  data: result,
                 });
               }
             }
@@ -265,7 +263,7 @@ user.post("/change-password", (req, res) =>{
       }
     }
   )
-})
+});
 
 
 
