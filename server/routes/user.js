@@ -235,7 +235,7 @@ user.post("/change-password", (req, res) =>{
         });
       } else {
         const user = result [0];
-        if (ComparePasword(req.body.Password, result[0].Password)) {
+        if (ComparePasword(req.body.currentPassword, result[0].Password)) {
           const newHashedPassword = HashedPassword(req.body.newPassword);
           connection.execute("UPDATE user_information SET Password=? WHERE email=?",
             [newHashedPassword, req.body.email],

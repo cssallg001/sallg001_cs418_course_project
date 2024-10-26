@@ -72,7 +72,7 @@ export default function Register () {
                     localStorage.setItem('storedLastName', enteredLastName);
                     localStorage.setItem('storedUserStateVal', JSON.stringify(userStateVal));
                     localStorage.setItem('storedAdminStateVal', JSON.stringify(adminStateVal));
-                    localStorage.setItem('storedConfirmedPassword', confirmedPassword);
+                    localStorage.setItem('storedConfirmedPassword', enteredPassword1);
                     console.log("userStateVal = " + userStateVal);
                     navigate('/authentication');
                     

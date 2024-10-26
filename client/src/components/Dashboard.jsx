@@ -92,7 +92,7 @@ export default function Dashboard () {
                 body: JSON.stringify({
                     email:inputtedEmail,
                     currentPassword:enteredOldPassword,
-                    newPassword:newPassword
+                    newPassword:enteredPassword1
                 }),
             });
             
@@ -105,7 +105,8 @@ export default function Dashboard () {
 
             setConfirmedPassword(newPassword);
             // Check if Registration is successful
-            setPasswordSuccess('Password changed successfully!');
+            setPasswordSuccess('Password changed successfully! Logging out...');
+            setTimeout(handleBackPage, 2000);
         } catch (error) {
             console.error('Password Change Error', error);
             setPasswordError('Password Change Error');  

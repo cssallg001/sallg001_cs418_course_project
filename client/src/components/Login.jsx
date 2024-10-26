@@ -35,7 +35,10 @@ export default function Login () {
     
             const data = await response.json();
             console.log('Fetched user data:', data); // Log the fetched data
-
+            
+            console.log("Login Screen:");
+            console.log("    Email: " + enteredEmail);
+            console.log("    Password: " + enteredPassword);
 
             if (data.message === "isAdmin") {
                 setAdminStateVal('1');
