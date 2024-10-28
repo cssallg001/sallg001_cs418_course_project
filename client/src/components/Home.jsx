@@ -17,6 +17,10 @@ export default function Home () {
         navigate('/about');
     };
 
+    function handleMySQLPage() {
+        navigate('/msqlTesting');
+    };
+
     return (
         <div className = "container">
             <div className="Title">
@@ -34,6 +38,11 @@ export default function Home () {
                 <form onSubmit={handleAboutPage}>
                     <button type="submit" className="btn btn-primary">
                         About
+                    </button>
+                </form>
+                <form onSubmit={handleMySQLPage}>
+                    <button type="submit" className="btn btn-primary">
+                        MySQL Testing
                     </button>
                 </form>
             </div>

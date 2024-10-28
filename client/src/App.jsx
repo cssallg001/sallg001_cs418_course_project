@@ -8,6 +8,7 @@ import AdminDashboard from "./components/AdminDashboard";
 import Register from "./components/Register";
 import TwoFactorAuthentication from "./components/TwoFactorAuthentication";
 import ForgotUserPassword from "./components/ForgotUserPassword.jsx";
+import MYSQLTesting from "./components/mysqlTesting.jsx";
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
     <Route path="/register" element={<Register/>}/>
     <Route path="/authentication" element={<TwoFactorAuthentication/>}/>
     <Route path="forgotUserPassword" element={<ForgotUserPassword/>}/>
+    <Route path="/msqlTesting" element={<MYSQLTesting/>}/>
     </Routes>
   );
 }

@@ -1,0 +1,53 @@
+prereq_id,prereq_tag,prereq_name,credit_hours
+1,,,
+2,ENGL 110C,English Composition,3
+3,MATH 211,Calculus I,4
+4,MATH 163,Precalculus II,3
+5,MATH 162M,Precalculus I,3
+6,MATH 102M,College Algebra,3
+7,MATH 103M,College Algebra with Supplemental Instruction,3
+8,MATH 100,The Math Cooperative,1
+9,MATH 166,Precalculus I and II,4
+10,CS 151,Introduction to Programming with Java,4
+11,CS 153,Introduction to Programming with Python,4
+12,ENGL 211C,"Writing, Rhetoric, and Research",3
+13,ENGL 231C,"Writing, Rhetoric, and Research: Special Topics",3
+14,MATH 212,Calculus II,4
+15,CS 170,Introduction to Computer Architecture I,3
+16,CS 150,Introduction to Programming with C++,4
+17,ENGN 150,Computer Programming for Engineering Problem Solving,4
+18,CS 251,Programming with Java,4
+19,CS 252,Introduction to Unix for Programmers,1
+20,IT 205,Introduction to Object-Oriented Programming,3
+21,MATH 316,Introductory Linear Algebra,3
+22,CS 270,Introduction to Computer Architecture II,3
+23,CS 330,Object-Oriented Design and Programming,3
+24,CS 253,Transfer Credit for Programming with Python,4
+25,CS 250,Programming with C++,4
+26,COMM 101R,Public Speaking,3
+27,PHIL 160R,Raising Moral Issues in STEM,3
+28,STAT 330,An Introduction to Probability and Statistics,3
+29,CS 260,C++ for Programmers,1
+30,CS 361,Data Structures and Algorithms,3
+31,CS 261,Java for Programmers,1
+32,CS 121G,Introduction to Information Literacy and Research for Scientists,3
+33,CS 202G,Information Literacy for Cybersecurity,3
+34,CS 315,Computer Science Undergraduate Colloquium,1
+35,CS 355,Principles of Programming Languages,3
+36,CS 381,Introduction to Discrete Structures,3
+37,CS 350,Introduction to Software Engineering,3
+38,CS 390,Introduction to Theoretical Computer Science,3
+39,CS 450,Database Concepts,3
+40,CS 418,Web Programming,3
+41,CS 312,Internet Concepts,3
+42,CS 410,Professional Workforce Development I,3
+43,CS 417,Computational Methods and Software,3
+44,CS 411W,Professional Workforce Development II,3
+45,ENGL 221C,"Introduction to Writing in Business, Education and Social Sciences",3
+46,CS 471,Operating Systems,3
+47,ECE 346,Microcontrollers,3
+48,ECE 241,Fundamentals of Computer Engineering,4
+49,ENGN 122,Computer Programming for Engineering,4
+50,ECE 443,Computer Architecture,3
+51,ECE 342,Field Programmable Gate Arrays Design Laboratory,2
+52,ECE 341,Digital System Design,3

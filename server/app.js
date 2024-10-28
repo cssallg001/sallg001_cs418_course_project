@@ -4,6 +4,10 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
 import user from "./routes/user.js";
+import course from "./routes/course.js";
+import course_prereqs from "./routes/course_prereqs.js";
+import prerequisite_sets from "./routes/prerequisite_sets.js";
+import prerequisites from "./routes/prerequisites.js";
 const app=express();
 const port=8080;
 
@@ -19,6 +23,10 @@ app.use(cors({
     origin:"http://localhost:5173"
 }))
 app.use('/user',user);
+app.use('/course',course);
+app.use('/course_prereqs',course_prereqs);
+app.use('/prerequisite_sets',prerequisite_sets);
+app.use('/prerequisites',prerequisites);
 
 
 

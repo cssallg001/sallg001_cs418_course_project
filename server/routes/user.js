@@ -16,8 +16,6 @@ function generateTempPassword(length = 12) {
   return password;
 }
 
-
-
 user.get("/", (req, res) => {
   connection.execute("select * from user_information", function (err, result) {
     if (err) {
