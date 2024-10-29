@@ -1,8 +1,6 @@
 import { Router } from "express";
 import { connection } from "../database/database.js";
-import prerequisite_sets from "./prerequisite_sets.js";
 const course = Router();
-
 
 course.get("/", (req, res) => {
   connection.execute("select * from course", function (err, result) {
@@ -48,23 +46,6 @@ course.post("/", (req, res) => {
   );
 });
 
-course.delete("/:id", (req, res) => {
-  connection.execute(
-    "delete from course_information where course_id=?",
-    [req.params.id],
-    function (err, result) {
-      if (err) {
-        res.json(err.message);
-      } else {
-        res.json({
-          status: 200,
-          message: "Response from course delete api",
-          data: result,
-        });
-      }
-    }
-  );
-});
 
   
 export default course;
