@@ -84,7 +84,7 @@ export default function Dashboard () {
         
         try {
             
-            const response= await fetch('http://localhost:8080/user/change-password',{
+            const response= await fetch('https://sallg001-cs418-course-project.onrender.com/user/change-password',{
                 method: 'POST',
                 headers:{
                     'content-type':'application/json',

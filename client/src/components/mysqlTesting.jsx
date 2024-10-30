@@ -13,7 +13,7 @@ export default function MYSQLTesting () {
     const [preReqSuccessMessage, setPrereqSuccessMessage] = useState('');
 
 
-    const [allSQLData, setAllSQLData] = useState(null);
+    const [allSQLData, setAllSQLData] = useState([]);
     const [prereqData, setPrereqData] = useState([]);
     const [data, setData] = useState([]);
 
@@ -38,20 +38,20 @@ export default function MYSQLTesting () {
         setAllSQLSuccessMessage('');
         setAllSQLErrorMessage('');
         try {
-            const response = await fetch('http://localhost:8080/course/', {
-                headers: {
-                    'content-type': 'application/json'
-                }
-            });
+            setLoading(true);
+            const response = await fetch('https://sallg001-cs418-course-project.onrender.com/course/');
+
             if (!response.ok) {
                 throw new Error("Error occured");
             }
+            
             const data = await response.json();
-            setAllSQLData(data);
-            document.getElementById("allSQLJSON").textContent = JSON.stringify(data, undefined, 2);
-            console.log(document.getElementById("allSQLJSON").textContent = JSON.stringify(data, undefined, 2));
+            setAllSQLData(data.data);
+            setLoading(false);
+
+            //document.getElementById("allSQLJSON").textContent = JSON.stringify(data, undefined, 2);
+            //console.log(document.getElementById("allSQLJSON").textContent = JSON.stringify(data, undefined, 2));
             console.log("Success!");
-            setPrereqSuccessMessage('Success!');
             setAllSQLSuccessMessage('Success!');
         } catch (error) {
             console.error('Error occurred: ', error);
@@ -71,7 +71,7 @@ export default function MYSQLTesting () {
         setPrereqErrorMessage('');
 
         const id = enteredID;
-        const url = 'http://localhost:8080/course/' + enteredID;
+        const url = 'https://sallg001-cs418-course-project.onrender.com/course/' + enteredID;
 
         try {
             //const response = await fetch(url);
@@ -82,9 +82,12 @@ export default function MYSQLTesting () {
             if (!response.ok) {
                 throw new Error("Error occured");
             }
+
             const data = await response.json();
-            setData(data.data);
+            setPrereqData(data.data);
+
             setLoading(false);
+
             console.log("data: ");
             console.log(data);
             console.log("Success!");
@@ -113,8 +116,6 @@ export default function MYSQLTesting () {
         setAllSQLErrorMessage('');
         setPrereqSuccessMessage('');
         setPrereqErrorMessage('');
-        setAllSQLData('');
-        setPrereqData('');
     };
 
 
@@ -158,7 +159,38 @@ export default function MYSQLTesting () {
                             {allSQLSuccessMessage && <p className="text-success">{allSQLSuccessMessage}</p>}
 
                             <div className = "testResultOutput">
-                            <pre id="allSQLJSON"></pre>
+                                {/* <pre id="allSQLJSON"></pre> */}
+                                <div>
+                                    {loading ? (
+                                        <Fragment>loading...</Fragment>
+                                    ) : (
+                                        allSQLData.map(course => {
+                                            return (
+                                                <Fragment>
+                                                    <div key={course.course_id}></div>
+                                                    <ul>
+                                                        <table className = "centerTable">
+                                                            <thead key = "thead">
+                                                                <td>Course ID:</td>
+                                                                <td>Course Tag</td>
+                                                                <td>Course Name</td>
+                                                                <td>Credit Hours</td>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>{course.course_id}</td>
+                                                                    <td>{course.course_tag}</td>
+                                                                    <td>{course.course_name}</td>
+                                                                    <td>{course.credit_hours}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </ul>
+                                                </Fragment>
+                                            )
+                                        }) 
+                                    )}                         
+                                </div> 
                             </div>
                         </form>
                     </div>
@@ -194,30 +226,30 @@ export default function MYSQLTesting () {
                                     {loading ? (
                                         <Fragment>loading...</Fragment>
                                     ) : (
-                                        data.map(prereq => {
+                                        prereqData.map(prereq => {
                                             return (
                                                 <Fragment>
                                                     <div key={prereq.course_id}></div>
                                                     <ul>
-                                                        <table>
+                                                        <table className = "centerTable">
                                                             <thead>
-                                                                <td>course_id:</td>
-                                                                <td>course_tag</td>
-                                                                <td>credit_hours</td>
-                                                                <td>prereq_set_num</td>
-                                                                <td>prereq_ids</td>
-                                                                <td>prereq_tags</td>
-                                                                <td>prereq_credit_hours</td>
+                                                                <td>Course ID:</td>
+                                                                <td>Course Tag</td>
+                                                                <td>Credit Hours</td>
+                                                                <td>Prereq Set num</td>
+                                                                <td>Prereq IDs</td>
+                                                                <td>Prereq Tags</td>
+                                                                <td>Prereq Credit Hours</td>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
                                                                     <td>{prereq.course_id}</td>
-                                                                    <td>{prereq.course_tag}                     </td>
-                                                                    <td>{prereq.credit_hours}                 </td>
-                                                                    <td>{prereq.prereq_set_num}             </td>
-                                                                    <td>{prereq.prereq_ids}                     </td>
-                                                                    <td>{prereq.prereq_tags}                   </td>
-                                                                    <td>{prereq.prereq_credit_hours}   </td>
+                                                                    <td>{prereq.course_tag}</td>
+                                                                    <td>{prereq.credit_hours}</td>
+                                                                    <td>{prereq.prereq_set_num}</td>
+                                                                    <td>{prereq.prereq_ids}</td>
+                                                                    <td>{prereq.prereq_tags}</td>
+                                                                    <td>{prereq.prereq_credit_hours}</td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -227,10 +259,6 @@ export default function MYSQLTesting () {
                                         }) 
                                     )}                         
                                 </div> 
-
-                                
-
-
                             </div>
                         </form>
                     </div>

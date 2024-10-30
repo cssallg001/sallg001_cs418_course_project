@@ -93,8 +93,10 @@ button {
 
 .mysqltesting-container {
   min-height: 200px;
+  margin:auto;
+  padding:50px;
   position: relative;
-  border: 3px solid #131212;
+  border: 3px solid yellow;
   border-radius: 25px; 
   justify-content: center;
   align-items: center;
@@ -124,27 +126,36 @@ button {
 
 .testResultOutput {
   color: white;
-  text-align: left;
+}
+
+.centerTable {
+
 }
 
 .mysql-allcoursestest {
   min-height: 325px;
-  min-width: 575px;
-  max-width: 575px;
+  min-width: 530px;
+  max-width: 530px;
   border: 3px solid blueviolet;
   border-radius: 25px; 
   justify-content: center;
   align-items: center;
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .mysql-prereqtest {
   min-height: 325px;
-  min-width: 575px;
-  max-width: 575px;
+  min-width: 530px;
+  max-width: 530px;
   border: 3px solid orange;
   border-radius: 25px; 
   justify-content: center;
   align-items: center;
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .table, th, td {
