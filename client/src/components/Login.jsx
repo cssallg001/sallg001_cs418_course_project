@@ -79,44 +79,46 @@ export default function Login () {
     };
 
     return (
-        <div className="container mt-5">
-            <h1 className="Title">Login</h1>
-            <form onSubmit={handleLogin}>
-                <div className="mb-3">
-                    <label className="form-label">Email: </label>
-                    <input
-                        type="email"
-                        className="form-control"
-                        value={enteredEmail}
-                        onChange={(e) => setEnteredEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Password: </label>
-                    <input
-                        type="Password"
-                        className="form-control"
-                        value={enteredPassword}
-                        onChange={(e) => setEnteredPassword(e.target.value)}
-                        required
-                    />
-                </div>
-                {errorMessage && <p className="text-danger">{errorMessage}</p>}
-                <button type="submit" className="btn btn-primary">
-                    Login
-                </button>
-            </form>
-            <form onSubmit={handleForgotPassword}>
-                <button type="submit" className="btn btn-createAccount">
-                    Forgot password?
-                </button>
-            </form>
-            <form onSubmit={handleBackPage}>
-                <button type="submit" className="btn btn-createAccount">
-                    Go back
-                </button>
-            </form>
+        <div className = "mysqltesting-container">
+            <div className="container">
+                <h1 className="Title"><h1 className="text-center">Login</h1></h1>
+                <form onSubmit={handleLogin}>
+                    <div className="mb-3">
+                        <label className="form-label">Email: </label>
+                        <input
+                            type="email"
+                            className="form-control"
+                            value={enteredEmail}
+                            onChange={(e) => setEnteredEmail(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Password: </label>
+                        <input
+                            type="Password"
+                            className="form-control"
+                            value={enteredPassword}
+                            onChange={(e) => setEnteredPassword(e.target.value)}
+                            required
+                        />
+                    </div>
+                    {errorMessage && <p className="text-danger">{errorMessage}</p>}
+                    <button type="submit" className="btn btn-primary">
+                        Login
+                    </button>
+                </form>
+                <form onSubmit={handleForgotPassword}>
+                    <button type="submit" className="btn btn-createAccount">
+                        Forgot password?
+                    </button>
+                </form>
+                <form onSubmit={handleBackPage}>
+                    <button type="submit" className="btn btn-createAccount">
+                        Go back
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };

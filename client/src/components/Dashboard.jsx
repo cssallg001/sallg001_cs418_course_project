@@ -84,7 +84,8 @@ export default function Dashboard () {
         
         try {
             
-            const response= await fetch('https://sallg001-cs418-course-project.onrender.com/user/change-password',{
+            //const response= await fetch('https://sallg001-cs418-course-project.onrender.com/user/change-password',{
+            const response= await fetch('http://localhost:8080/user/change-password',{
                 method: 'POST',
                 headers:{
                     'content-type':'application/json',
@@ -117,70 +118,81 @@ export default function Dashboard () {
         navigate('/home');
     };
 
+    function handleAdvisingPortal() {
+        navigate('/advisingPortal');
+    };
+
     return (
-        <div className = "dashboard-container">
-            <div className="Title">
-                <h1 className="text-center">Dashboard</h1>
-                <div>
-                    Welcome, {enteredEmail}!
-                </div>
-                <form onSubmit={handleBackPage}>
-                    <button type="submit" className="btn btn-createAccount">
-                        Log out
-                    </button>
-                </form>
-            </div>
-            <div>
-            <div className ="change-information-container">
+        <div className = "mysqltesting-container">
+            <div className = "dashboard-container">
                 <div className="Title">
-                    <h2 className="text-center">Update Information</h2>
-                        <form onSubmit={handleChangingInformation}>
-                            <div className="mb-3">
-                                <label className="form-label">Confirm Email: </label>
-                                <input
-                                    type="email"
-                                    className="form-control"
-                                    value={inputtedEmail}
-                                    onChange={(e) => setInputtedEmail(e.target.value)}
-                                    required
-                                />
-                            </div>
-                            <div className="mb-3">
-                                <label className="form-label">Current Password: </label>
-                                <input
-                                    type="Password"
-                                    className="form-control"
-                                    value={enteredOldPassword}
-                                    onChange={(e) => setEnteredOldPassword(e.target.value)}
-                                    required
+                    <h1 className="text-center">Dashboard</h1>
+                    <div>
+                        Welcome, {enteredEmail}!
+                    </div>
+                    <form onSubmit={handleAdvisingPortal}>
+                        <button type="submit" className="btn btn-createAccount">
+                            Advising Portal
+                        </button>
+                    </form>
+                    <form onSubmit={handleBackPage}>
+                        <button type="submit" className="btn btn-createAccount">
+                            Log out
+                        </button>
+                    </form>
+                </div>
+                <div>
+                <div className ="change-information-container">
+                    <div className="Title">
+                        <h2 className="text-center">Update Information</h2>
+                            <form onSubmit={handleChangingInformation}>
+                                <div className="mb-3">
+                                    <label className="form-label">Confirm Email: </label>
+                                    <input
+                                        type="email"
+                                        className="form-control"
+                                        value={inputtedEmail}
+                                        onChange={(e) => setInputtedEmail(e.target.value)}
+                                        required
                                     />
-                            </div>
-                            <div className="mb-3">
-                                <label className="form-label">New Password: </label>
-                                <input
-                                    type="Password"
-                                    className="form-control"
-                                    value={enteredPassword1}
-                                    onChange={(e) => setEnteredPassword1(e.target.value)}
-                                    required
-                                    />
-                            </div>
-                            <div className="mb-3">
-                                <label className="form-label">Confirm New Password: </label>
-                                <input
-                                    type="Password"
-                                    className="form-control"
-                                    value={enteredPassword2}
-                                    onChange={(e) => setEnteredPassword2(e.target.value)}
-                                    required
-                                    />
-                            </div>
-                            {passwordError && <p className="text-danger">{passwordError}</p>}
-                            {passwordSuccess && <p className="text-success">{passwordSuccess}</p>}
-                            <button type="submit" className="btn btn-primary">
-                                Submit
-                            </button>
-                        </form>
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Current Password: </label>
+                                    <input
+                                        type="Password"
+                                        className="form-control"
+                                        value={enteredOldPassword}
+                                        onChange={(e) => setEnteredOldPassword(e.target.value)}
+                                        required
+                                        />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">New Password: </label>
+                                    <input
+                                        type="Password"
+                                        className="form-control"
+                                        value={enteredPassword1}
+                                        onChange={(e) => setEnteredPassword1(e.target.value)}
+                                        required
+                                        />
+                                </div>
+                                <div className="mb-3">
+                                    <label className="form-label">Confirm New Password: </label>
+                                    <input
+                                        type="Password"
+                                        className="form-control"
+                                        value={enteredPassword2}
+                                        onChange={(e) => setEnteredPassword2(e.target.value)}
+                                        required
+                                        />
+                                </div>
+                                {passwordError && <p className="text-danger">{passwordError}</p>}
+                                {passwordSuccess && <p className="text-success">{passwordSuccess}</p>}
+                                <button type="submit" className="btn btn-primary">
+                                    Submit
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

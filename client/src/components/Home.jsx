@@ -22,29 +22,31 @@ export default function Home () {
     };
 
     return (
-        <div className = "container">
-            <div className="Title">
-                <h1 className="text-center">Home</h1>
-                <form onSubmit={handleLoginPage}>
-                    <button type="submit" className="btn btn-primary">
-                        Login
-                    </button>
-                </form>
-                <form onSubmit={handleRegistrationPage}>
-                    <button type="submit" className="btn btn-primary">
-                        Register
-                    </button>
-                </form>
-                <form onSubmit={handleAboutPage}>
-                    <button type="submit" className="btn btn-primary">
-                        About
-                    </button>
-                </form>
-                <form onSubmit={handleMySQLPage}>
-                    <button type="submit" className="btn btn-primary">
-                        MySQL Testing
-                    </button>
-                </form>
+        <div className = "mysqltesting-container">
+            <div className = "container">
+                <div className="Title">
+                    <h1 className="text-center">Home</h1>
+                    <form onSubmit={handleLoginPage}>
+                        <button type="submit" className="btn btn-primary">
+                            Login
+                        </button>
+                    </form>
+                    <form onSubmit={handleRegistrationPage}>
+                        <button type="submit" className="btn btn-primary">
+                            Register
+                        </button>
+                    </form>
+                    <form onSubmit={handleAboutPage}>
+                        <button type="submit" className="btn btn-primary">
+                            About
+                        </button>
+                    </form>
+                    <form onSubmit={handleMySQLPage}>
+                        <button type="submit" className="btn btn-primary">
+                            MySQL Testing
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     );

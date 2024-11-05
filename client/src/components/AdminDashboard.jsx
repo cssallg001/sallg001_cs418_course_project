@@ -62,18 +62,29 @@ export default function AdminDashboard () {
         navigate('/home');
     };
 
+    function handlePrerequisiteForm() {
+        navigate('/prerequisiteForm');
+    };
+
     return (
-        <div className = "dashboard-container">
-            <div className="Title">
-                <h1 className="text-center">Admin Dashboard</h1>
-                <div>
-                    Welcome, {enteredEmail}!
+        <div className = "mysqltesting-container">
+            <div className = "dashboard-container">
+                <div className="Title">
+                    <h1 className="text-center">Admin Dashboard</h1>
+                    <div>
+                        Welcome, {enteredEmail}!
+                    </div>
+                    <form onSubmit={handlePrerequisiteForm}>
+                        <button type="submit" className="btn btn-createAccount">
+                            Prerequisite Form
+                        </button>
+                    </form>
+                    <form onSubmit={handleBackPage}>
+                        <button type="submit" className="btn btn-createAccount">
+                            Log out
+                        </button>
+                    </form>
                 </div>
-                <form onSubmit={handleBackPage}>
-                    <button type="submit" className="btn btn-createAccount">
-                        Log out
-                    </button>
-                </form>
             </div>
         </div>
     );

@@ -44,7 +44,8 @@ export default function Register () {
                     email:enteredEmail
                 })
 
-                const response= await fetch('https://sallg001-cs418-course-project.onrender.com/user/verifyIfEmailExists',{
+                //const response= await fetch('https://sallg001-cs418-course-project.onrender.com/user/verifyIfEmailExists',{
+                const response= await fetch('http://localhost:8080/user/verifyIfEmailExists',{
                     method:"POST",
                     body:formBody,
                     headers:{
@@ -98,71 +99,75 @@ export default function Register () {
     };
     
     return (
-        <div className="container mt-5">
-            <h1 className="Title">Register</h1>
-            <form onSubmit={handleRegister}>
-                <div className="mb-3">
-                    <label className="form-label">First Name:  </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        value={enteredFirstName}
-                        onChange={(e) => setEnteredFirstName(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Last Name: </label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        value={enteredLastName}
-                        onChange={(e) => setEnteredLastName(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Email: </label>
-                    <input
-                        type="email"
-                        className="form-control"
-                        value={enteredEmail}
-                        onChange={(e) => setEnteredEmail(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Password: </label>
-                    <input
-                        type="Password"
-                        className="form-control"
-                        value={enteredPassword1}
-                        onChange={(e) => setEnteredPassword1(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="mb-3">
-                    <label className="form-label">Confirm Password: </label>
-                    <input
-                        type="Password"
-                        className="form-control"
-                        value={enteredPassword2}
-                        onChange={(e) => setEnteredPassword2(e.target.value)}
-                        required
-                    />
-                </div>
-                {errorMessage && <p className="text-danger">{errorMessage}</p>}
-            </form>
-            <form onSubmit={handleRegister}>
-                <button type="submit" className="btn btn-primary">
-                    Register
-                </button>
-            </form>
-            <form onSubmit={handleBackPage}>
-                <button type="submit" className="btn btn-createAccount">
-                    Go back
-                </button>
-            </form>
+        <div className = "mysqltesting-container">
+            <div className="container mt-5">
+                <h1 className="Title">
+                    <h1 className="text-center">Register</h1>
+                </h1>
+                <form onSubmit={handleRegister}>
+                    <div className="mb-3">
+                        <label className="form-label">First Name:  </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={enteredFirstName}
+                            onChange={(e) => setEnteredFirstName(e.target.value)}
+                            required
+                            />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Last Name: </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={enteredLastName}
+                            onChange={(e) => setEnteredLastName(e.target.value)}
+                            required
+                            />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Email: </label>
+                        <input
+                            type="email"
+                            className="form-control"
+                            value={enteredEmail}
+                            onChange={(e) => setEnteredEmail(e.target.value)}
+                            required
+                            />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Password: </label>
+                        <input
+                            type="Password"
+                            className="form-control"
+                            value={enteredPassword1}
+                            onChange={(e) => setEnteredPassword1(e.target.value)}
+                            required
+                            />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Confirm Password: </label>
+                        <input
+                            type="Password"
+                            className="form-control"
+                            value={enteredPassword2}
+                            onChange={(e) => setEnteredPassword2(e.target.value)}
+                            required
+                            />
+                    </div>
+                    {errorMessage && <p className="text-danger">{errorMessage}</p>}
+                </form>
+                <form onSubmit={handleRegister}>
+                    <button type="submit" className="btn btn-primary">
+                        Register
+                    </button>
+                </form>
+                <form onSubmit={handleBackPage}>
+                    <button type="submit" className="btn btn-createAccount">
+                        Go back
+                    </button>
+                </form>
+            </div>
         </div>
     );
 };

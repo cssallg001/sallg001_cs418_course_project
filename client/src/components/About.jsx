@@ -10,22 +10,24 @@ export default function Home () {
     };
 
     return (
-        <div className = "container">
-            <div className="Title">
-                <h1 className="text-center">About</h1>
+        <div className = "mysqltesting-container">
+            <div className = "container">
+                <div className="Title">
+                    <h1 className="text-center">About</h1>
 
-                <p>
-                    CS 418 Course Project
-                </p>
-                <p>
-                    By Sean Allgaier
-                </p>
+                    <p>
+                        CS 418 Course Project
+                    </p>
+                    <p>
+                        By Sean Allgaier
+                    </p>
 
-                <form onSubmit={handleBackPage}>
-                    <button type="submit" className="btn btn-createAccount">
-                        Go back
-                    </button>
-                </form>
+                    <form onSubmit={handleBackPage}>
+                        <button type="submit" className="btn btn-createAccount">
+                            Go back
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     );

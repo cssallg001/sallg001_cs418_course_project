@@ -9,6 +9,8 @@ import Register from "./components/Register";
 import TwoFactorAuthentication from "./components/TwoFactorAuthentication";
 import ForgotUserPassword from "./components/ForgotUserPassword.jsx";
 import MYSQLTesting from "./components/mysqlTesting.jsx";
+import AdvisingPortal from "./components/AdvisingPortal.jsx";
+import PrerequisiteForm from "./components/PrerequisiteForm.jsx";
 
 function App() {
 
@@ -24,6 +26,8 @@ function App() {
     <Route path="/authentication" element={<TwoFactorAuthentication/>}/>
     <Route path="forgotUserPassword" element={<ForgotUserPassword/>}/>
     <Route path="/msqlTesting" element={<MYSQLTesting/>}/>
+    <Route path="/advisingPortal" element={<AdvisingPortal/>}/>
+    <Route path="/prerequisiteForm" element={<PrerequisiteForm/>}/>
     </Routes>
   );
 }
