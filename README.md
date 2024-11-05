@@ -23,8 +23,8 @@ Professor: Dr. Nasreen Arif
 
 # Milestone 2 Specs
 ### Admin Portal
-1. - [ ] Design and create the prerequisite form for admin, displaying courses from levels 100 to 499 with fields: Level, Course, Enable/Disable
-2. - [ ] Update database based on the admin's selection of prerequisites.
+1. - [x] Design and create the prerequisite form for admin, displaying courses from levels 100 to 499 with fields: Level, Course, Enable/Disable
+2. - [x] Update database based on the admin's selection of prerequisites.
 
 ### Student Portal
 3. - [ ] Implement an ***Advising*** menu accessible upon student login.
