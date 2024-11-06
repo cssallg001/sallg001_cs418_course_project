@@ -78,14 +78,14 @@ export default function Dashboard () {
                     <div>
                         Welcome, {enteredEmail}!
                     </div>
-                    <form onSubmit={handleAdvisingPortal}>
-                        <button type="submit" className="btn btn-createAccount">
-                            Advising Portal
-                        </button>
-                    </form>
                     <form onSubmit={handleUpdateInformation}>
                         <button type="submit" className="btn btn-createAccount">
                             Update Information
+                        </button>
+                    </form>
+                    <form onSubmit={handleAdvisingPortal}>
+                        <button type="submit" className="btn btn-createAccount">
+                            Advising Portal
                         </button>
                     </form>
                     <form onSubmit={handleBackPage}>
