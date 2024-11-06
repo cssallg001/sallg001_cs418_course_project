@@ -72,23 +72,39 @@ button {
   height: 300px;
   position: relative;
   border: 3px solid green;
+  border-radius: 25px; 
+  border-style: solid; 
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
 }
 
 .dashboard-container {
-  height: 200px;
-  position: relative;
-  border: 3px solid green;
+  min-height: 325px;
+  min-width: 530px;
+  max-width: 530px;
+  border: 3px solid red;
+  border-radius: 25px; 
+  justify-content: center;
+  align-items: center;
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .mysqltesting-menu-container {
   height: 200px;
   width: 100%;
-  position: relative;
-  border: 3px solid green;
+  border: 5px solid green;
   border-radius: 25px; 
+  border-style: solid; 
   justify-content: center;
   align-items: center;
-  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .mysqltesting-container {
@@ -100,6 +116,8 @@ button {
   border-radius: 25px; 
   justify-content: center;
   align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .change-information-container {
@@ -108,7 +126,6 @@ button {
   justify-content: center;
   align-items: center;
   margin-top: 4rem;
-
 }
 
 .mysql-mysqltests {
@@ -118,10 +135,24 @@ button {
   border-style: solid; 
   justify-content: center;
   align-items: center;
-  margin-top: 4rem;
-  margin-bottom: 4rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
   display: flex;
   flex-direction: row;
+}
+
+.advising-portal-container {
+  min-height: 0px;
+  border: 5px solid red;
+  border-radius: 25px; 
+  border-style: solid; 
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin:auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .testResultOutput {
@@ -141,8 +172,8 @@ button {
   justify-content: center;
   align-items: center;
   display:block;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .mysql-prereqtest {
@@ -156,6 +187,53 @@ button {
   display:block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.advising-user-information {
+  min-height: 325px;
+  min-width: 1000px;
+  min-width: 1000px;
+  border: 3px solid blueviolet;
+  border-radius: 25px; 
+  border-style: flex; 
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.prequisite-choices{
+  min-height: 325px;
+  min-width: 1000px;
+  min-width: 1000px;
+  border: 3px solid orange;
+  border-radius: 25px; 
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.course-plan-information{
+  min-height: 325px;
+  min-width: 1000px;
+  min-width: 1000px;
+  border: 3px solid #66FFFF;
+  border-radius: 25px; 
+  justify-content: center;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .table, th, td, checkbox {

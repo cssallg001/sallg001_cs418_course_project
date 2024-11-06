@@ -11,11 +11,12 @@ import ForgotUserPassword from "./components/ForgotUserPassword.jsx";
 import MYSQLTesting from "./components/mysqlTesting.jsx";
 import AdvisingPortal from "./components/AdvisingPortal.jsx";
 import PrerequisiteForm from "./components/PrerequisiteForm.jsx";
+import ChangeInformation from "./components/ChangeInformation.jsx";
 
 function App() {
 
   return (
-    <Routes>
+    <Routes> 
     <Route path="/" element={<Home/>}/>
     <Route path="/home" element={<Home/>}/>
     <Route path="/about" element={<About/>}/>
@@ -28,6 +29,7 @@ function App() {
     <Route path="/msqlTesting" element={<MYSQLTesting/>}/>
     <Route path="/advisingPortal" element={<AdvisingPortal/>}/>
     <Route path="/prerequisiteForm" element={<PrerequisiteForm/>}/>
+    <Route path="/changeInformation" element={<ChangeInformation/>}/>
     </Routes>
   );
 }

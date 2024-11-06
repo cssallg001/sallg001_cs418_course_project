@@ -14,6 +14,21 @@ course.get("/", (req, res) => {
   });
 });
 
+course.get("/advisingPortalRequest", (req, res) => {
+  connection.execute("SELECT course_id, CONCAT(course_tag,\" - \", course_name) AS courseName FROM course", 
+    function (err, result) {
+    if (err) {
+      res.json(err.message);
+    } else {
+      res.json({
+        status: 200,
+        message: "Response from prerequisites get api",
+        data: result,
+      });
+    } 
+  });
+});
+
 
 // Get course prerequisites based on a given course id
 course.get("/:id", (req, res) => {

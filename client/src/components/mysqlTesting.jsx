@@ -33,6 +33,7 @@ export default function MYSQLTesting () {
 
 
     const handleMySQLAllCoursesTest = async (e) => {
+        e.preventDefault();
         setAllSQLData('');
         setAllSQLSuccessMessage('');
         setAllSQLErrorMessage('');

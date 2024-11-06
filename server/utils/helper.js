@@ -10,3 +10,9 @@ export function ComparePasword(raw,hashedPassword){
     return compareSync(raw,hashedPassword)
 }
 
+
+export function VerificationCode()
+{
+    const salt=genSaltSync();
+    return hashSync(password,salt);
+}

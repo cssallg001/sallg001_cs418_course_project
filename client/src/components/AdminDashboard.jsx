@@ -68,7 +68,7 @@ export default function AdminDashboard () {
 
     return (
         <div className = "mysqltesting-container">
-            <div className = "dashboard-container">
+            <div className = "container">
                 <div className="Title">
                     <h1 className="text-center">Admin Dashboard</h1>
                     <div>
