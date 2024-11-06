@@ -107,11 +107,18 @@ export default function ChangeInformation () {
             setConfirmedPassword(newPassword);
             // Check if Registration is successful
             setPasswordSuccess('Password changed successfully! Logging out...');
-            setTimeout(handleBackPage, 2000);
+            setTimeout(handleLoggingOut, 2000);
         } catch (error) {
             console.error('Password Change Error', error);
             setPasswordError('Password Change Error');  
         }
+    };
+
+
+
+
+    function handleLoggingOut() {
+        navigate('/home');
     };
 
     function handleBackPage() {
