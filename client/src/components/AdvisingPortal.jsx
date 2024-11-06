@@ -39,20 +39,13 @@ export default function AdvisingPortal () {
         setAllSQLData('');
         setAllSQLSuccessMessage('');
         setAllSQLErrorMessage('');
-
-
-
-
-
-
-
     }
 
 
 
 
 
-    const [courseOptions, setCourseOptions] = useState([]);
+    const [prereqOptions, setPrereqOptions] = useState([]);
     var selectedCourseList = [];
 
 
@@ -63,16 +56,16 @@ export default function AdvisingPortal () {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch('http://localhost:8080/course/advisingPortalRequest');
+            const response = await fetch('http://localhost:8080/prerequisites/advisingPortalRequest');
             const data = await response.json();
 
             // Assuming your API response is an array of objects like [{ id: 1, name: 'Option 1' }, ...]
-            const formattedOptions = data.data.map((courseData) => ({
-                value: courseData.course_id,
-                label: courseData.courseName,
+            const formattedOptions = data.data.map((prereqData) => ({
+                value: prereqData.prereq_id,
+                label: prereqData.prereqName,
             }));
 
-            setCourseOptions(formattedOptions);
+            setPrereqOptions(formattedOptions);
         };
     
         fetchData();
@@ -150,9 +143,9 @@ export default function AdvisingPortal () {
                                     <select>
 
                                     
-                                        {courseOptions.map((courseOptions) => (
-                                            <option key={courseOptions.value} value={courseOptions.value}>
-                                                {courseOptions.label}
+                                        {prereqOptions.map((prereqOptions) => (
+                                            <option key={prereqOptions.value} value={prereqOptions.value}>
+                                                {prereqOptions.label}
                                             </option>
                                             ))}
 

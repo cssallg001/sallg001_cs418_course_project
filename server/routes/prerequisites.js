@@ -20,7 +20,7 @@ prerequisites.get("/", (req, res) => {
 
 
 prerequisites.get("/advisingPortalRequest", (req, res) => {
-  connection.execute("SELECT CONCAT(prereq_tag,\" - \", prereq_name) AS prereq FROM prerequisites WHERE prereq_id <> 1 AND enable_disable = '1'", 
+  connection.execute("SELECT CONCAT(prereq_tag,\" - \", prereq_name) AS prereqName FROM prerequisites WHERE prereq_id <> 1 AND enable_disable = '1'", 
     function (err, result) {
     if (err) {
       res.json(err.message);

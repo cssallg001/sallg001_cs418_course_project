@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
+import '../index.css';
 
 function DynamicButtonTable() {
   const [rows, setRows] = React.useState([
@@ -28,19 +29,62 @@ function DynamicButtonTable() {
     console.log(rows);
   };
 
+
+
+  const [courseOptions, setCourseOptions] = useState([]);
+  var selectedCourseList = [];
+
+
+  function AlreadySelectedCourses() {
+      $('option')
+  }
+
+
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+        const response = await fetch('http://localhost:8080/course/advisingPortalRequest');
+        const data = await response.json();
+
+        // Assuming your API response is an array of objects like [{ id: 1, name: 'Option 1' }, ...]
+        const formattedOptions = data.data.map((courseData) => ({
+            value: courseData.course_id,
+            label: courseData.courseName,
+        }));
+
+        setCourseOptions(formattedOptions);
+    };
+
+    fetchData();
+  }, []);
+
+
+
+
+
+
+
+
   return (
     <div>
-      {rows.map((row, index) => (
+    {rows.map((row, index) => (
         <div key={index}>
-          <input
-            type="text"
-            name="input1"
-            value={row.input1}
-            onChange={(e) => handleInputChange(e, index)}
-          />
 
+            <select>
+
+            
+                {courseOptions.map((courseOptions) => (
+                    <option key={courseOptions.value} value={courseOptions.value}>
+                        {courseOptions.label}
+                    </option>
+                    ))}
+
+            </select>                           
+
+            
         </div>
-      ))}
+        ))}
       <button onClick={handleAddRow}>Add Course</button>
     </div>
   );
