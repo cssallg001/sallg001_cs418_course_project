@@ -14,8 +14,8 @@ course.get("/", (req, res) => {
   });
 });
 
-course.get("/advisingPortalRequest", (req, res) => {
-  connection.execute("SELECT course_id, CONCAT(course_tag,\" - \", course_name) AS courseName FROM course", 
+course.get("/courseAdvisingPortalRequest", (req, res) => {
+  connection.execute("SELECT CONCAT(course_tag,\" - \", course_name) AS courseName FROM course", 
     function (err, result) {
     if (err) {
       res.json(err.message);

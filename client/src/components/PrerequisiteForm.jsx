@@ -58,7 +58,6 @@ export default function PrerequisiteForm () {
             }
             const data = await response.json();
             setPrereqData(data.data);
-            setPrereqDataCopy(data.data);
             setLoading(false);
             console.log("Success!");
 

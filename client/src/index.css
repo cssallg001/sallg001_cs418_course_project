@@ -236,6 +236,10 @@ button {
   flex-direction: column;
 }
 
+.option[disabled] {
+  color: red;
+}
+
 .table, th, td, checkbox {
   border: 1px solid;
   text-align: center;

@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "@syncfusion/ej2-react-grids": "^27.1.57",
+    "bootstrap": "^5.3.3",
     "firebase-tools": "^13.23.1",
     "g": "^2.0.1",
     "react": "^18.3.1",
+    "react-bootstrap": "^2.10.5",
     "react-dom": "^18.3.1",
     "react-helmet": "^6.1.0",
     "react-resizable": "^3.0.5",
