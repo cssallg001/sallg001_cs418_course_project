@@ -38,9 +38,9 @@ export default function MYSQLTesting () {
         setAllSQLErrorMessage('');
         try {
             setLoading(true);
-            const response = await fetch(import.meta.env.VITE_API_KEY + '/course');
+            //const response = await fetch(import.meta.env.VITE_API_KEY + '/course');
             //const response = await fetch('http://localhost:8080/course');
-            //const response = await fetch('https://sallg001-cs418-course-project.onrender.com/course');
+            const response = await fetch('https://sallg001-cs418-course-project.onrender.com/course');
 
             if (!response.ok) {
                 throw new Error("Error occured");
@@ -72,9 +72,9 @@ export default function MYSQLTesting () {
         setPrereqErrorMessage('');
 
         const id = enteredID;
-        const url = import.meta.env.VITE_API_KEY + '/course/' + enteredID;
+        //const url = import.meta.env.VITE_API_KEY + '/course/' + enteredID;
         //const url = 'http://localhost:8080/course/' + enteredID;
-        //const url = 'https://sallg001-cs418-course-project.onrender.com/course/' + enteredID;
+        const url = 'https://sallg001-cs418-course-project.onrender.com/course/' + enteredID;
 
         try {
             //const response = await fetch(url);

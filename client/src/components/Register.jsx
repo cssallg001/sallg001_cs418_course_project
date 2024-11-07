@@ -44,9 +44,9 @@ export default function Register () {
                     email:enteredEmail
                 })
 
-                const response= await fetch(import.meta.env.VITE_API_KEY + '/user/verifyIfEmailExists',{
+                //const response= await fetch(import.meta.env.VITE_API_KEY + '/user/verifyIfEmailExists',{
                 //const response= await fetch('http://localhost:8080/user/verifyIfEmailExists',{
-                //const response= await fetch('https://sallg001-cs418-course-project.onrender.com/user/verifyIfEmailExists',{
+                const response= await fetch('https://sallg001-cs418-course-project.onrender.com/user/verifyIfEmailExists',{
                     method:"POST",
                     body:formBody,
                     headers:{

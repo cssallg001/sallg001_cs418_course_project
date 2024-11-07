@@ -50,8 +50,8 @@ function DynamicPrereqButtonTable() {
     const fetchData = async () => {
       const response = await fetch(
         //"http://localhost:8080/prerequisites/advisingPortalRequest"
-        import.meta.env.VITE_API_KEY + "prerequisites/advisingPortalRequest"
-        //"https://sallg001-cs418-course-project.onrender.com/prerequisites/advisingPortalRequest"
+        //import.meta.env.VITE_API_KEY + "prerequisites/advisingPortalRequest"
+        "https://sallg001-cs418-course-project.onrender.com/prerequisites/advisingPortalRequest"
       );
       const data = await response.json();
 
