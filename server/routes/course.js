@@ -15,7 +15,7 @@ course.get("/", (req, res) => {
 });
 
 course.get("/courseAdvisingPortalRequest", (req, res) => {
-  connection.execute("SELECT CONCAT(course_tag,\" - \", course_name) AS courseName FROM course", 
+  connection.execute("SELECT course_id, CONCAT(course_tag,\" - \", course_name) AS courseName FROM course", 
     function (err, result) {
     if (err) {
       res.json(err.message);
@@ -28,7 +28,6 @@ course.get("/courseAdvisingPortalRequest", (req, res) => {
     } 
   });
 });
-
 
 // Get course prerequisites based on a given course id
 course.get("/:id", (req, res) => {

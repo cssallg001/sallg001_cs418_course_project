@@ -49,7 +49,8 @@ function DynamicPrereqButtonTable() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        "http://localhost:8080/prerequisites/advisingPortalRequest"
+        //"http://localhost:8080/prerequisites/advisingPortalRequest"
+        "https://sallg001-cs418-course-project.onrender.com/prerequisites/advisingPortalRequest"
       );
       const data = await response.json();
 

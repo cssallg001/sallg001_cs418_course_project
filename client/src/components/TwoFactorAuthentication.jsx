@@ -86,8 +86,8 @@ export default function TwoFactorAuthentication () {
                             lastName:enteredLastName
                         })
                         
-                        //const response= await fetch('https://sallg001-cs418-course-project.onrender.com/user/register',{
-                        const response= await fetch('http://localhost:8080/user/register',{
+                        const response= await fetch('https://sallg001-cs418-course-project.onrender.com/user/register',{
+                        //const response= await fetch('http://localhost:8080/user/register',{
                             method:"POST",
                             body:formBody,
                             headers:{

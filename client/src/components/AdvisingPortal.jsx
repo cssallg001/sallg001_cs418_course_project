@@ -5,19 +5,40 @@ import "../index.css";
 export default function AdvisingPortal() {
   const navigate = useNavigate();
 
+  const[lastTerm, setLastTerm] = useState('');
+  const[currentTerm, setCurrentTerm] = useState('');
+  const[lastGPA, setLastGPA] = useState('');
+
+  const[courseArray, setCourseArray] = useState([]);
+  const[prereqArray, setPrereqArray] = useState([]);
+  
+  const[successMessage, setSuccessMessage] = useState('');
+  const[errorMessage, setErrorMessage] = useState('');
+
+  function hasDuplicates(array) {
+    return new Set(array).size !== array.length;
+  }
+
+  function hasMatchingValues(arr1, arr2) {
+    return arr1.some(value => arr2.includes(value));
+  }
+
   // Section that sets prereq information
   const [prereqOptions, setPrereqOptions] = useState([]);
   const [prereqRows, setPrereqRows] = React.useState([
     {
       prereqDropdown: "",
+      prereqValues: "",
+      prereqLabels: ""
     },
   ]);
 
-  const handlePrereqInputChange = (e, index) => {
+  const handlePrereqInputChange = (e, index) => { 
     const values = [...prereqRows];
 
     if (e.target.id === "prereqDropdown") {
-      values[index].prereqDropdown = e.target.value;
+      values[index].prereqValues = (parseInt(e.target.value)-1).toString();
+      values[index].prereqLabels = e.target.label;
     }
     setPrereqRows(values);
     console.log(prereqRows);
@@ -28,6 +49,8 @@ export default function AdvisingPortal() {
       ...prereqRows,
       {
         prereqDropdown: "",
+        prereqValues: "",
+        prereqLabels: ""
       },
     ]);
   };
@@ -35,7 +58,8 @@ export default function AdvisingPortal() {
   useEffect(() => {
     const fetchPrereqData = async () => {
       const response = await fetch(
-        "http://localhost:8080/prerequisites/prereqAdvisingPortalRequest"
+        //"http://localhost:8080/prerequisites/prereqAdvisingPortalRequest"
+        "https://sallg001-cs418-course-project.onrender.com/prerequisites/prereqAdvisingPortalRequest"
       );
       const data = await response.json();
 
@@ -54,7 +78,7 @@ export default function AdvisingPortal() {
   const [courseOptions, setCourseOptions] = useState([]);
   const [courseRows, setCourseRows] = React.useState([
     {
-      courseDropdown: "",
+        courseDropdown: ""
     },
   ]);
 
@@ -65,6 +89,7 @@ export default function AdvisingPortal() {
       values[index].courseDropdown = e.target.value;
     }
     setCourseRows(values);
+    setCourseArray(JSON.stringify(courseRows.courseDropdown))
     console.log(courseRows);
   };
 
@@ -72,7 +97,7 @@ export default function AdvisingPortal() {
     setCourseRows([
       ...courseRows,
       {
-        courseDropdown: "",
+        courseDropdown: ""
       },
     ]);
   };
@@ -80,7 +105,8 @@ export default function AdvisingPortal() {
   useEffect(() => {
     const fetchCourseData = async () => {
       const response = await fetch(
-        "http://localhost:8080/course/courseAdvisingPortalRequest"
+        //"http://localhost:8080/course/courseAdvisingPortalRequest"
+        "https://sallg001-cs418-course-project.onrender.com/course/courseAdvisingPortalRequest"
       );
       const data = await response.json();
 
@@ -95,15 +121,10 @@ export default function AdvisingPortal() {
     fetchCourseData();
   }, []);
 
-  const handleCourseSubmit = () => {
-    setShowCourseTable(true);
-    console.log("courseRows: " + courseRows);
-  };
-
   function handleBackPage() {
     navigate("/dashboard");
   }
-
+ 
   const handleAdvisingEntryInformation = async (e) => {
     e.preventDefault();
     setAllSQLSuccessMessage("");
@@ -111,6 +132,213 @@ export default function AdvisingPortal() {
   };
 
   const [selectedPrereqOptions, setSelectedPrereqOptions] = useState([]);
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLastTerm('');
+    setCurrentTerm('');
+    setLastGPA('');
+    setCourseArray([]);
+    setPrereqArray([]);
+
+
+
+    try {
+        // console.log("courseRows = " + <JSON className="stringify">  </JSON>(courseRows.courseDropdown));
+        //setCourseArray(courseRows);
+        console.log("courseArray = " + courseArray);
+
+
+        if (prereqRows) {
+            setPrereqArray(JSON.parse(prereqRows));
+            console.log(prereqArray);
+        }
+
+
+        // if (hasMatchingValues())
+        // {
+
+        // }
+
+
+ 
+
+
+
+
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        const formBody=JSON.stringify({
+            email:enteredEmail,
+            Password:enteredPassword
+        })
+
+        const response= await fetch('',{
+            method:"POST",
+            body:formBody,
+            headers:{
+                'content-type':'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Error saving advising information');
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+        const data = await response.json();
+
+
+
+
+
+
+
+
+
+
+
+        if (data.message === "isAdmin") {
+            setAdminStateVal('1');
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+         else {
+            // Show error message if login fails
+            console.log('Error. Please try again.');
+            setErrorMessage('Error. Please try again.');
+        }
+
+
+
+
+
+
+
+
+
+
+
+    } catch (error) {
+        console.error('Error during login:', error);
+        setErrorMessage('Invalid Credentials. Please try again.');
+        setCourseArray([]);
+        setPrereqArray([]);
+    }
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
     <div className="mysqltesting-container">
@@ -175,7 +403,6 @@ export default function AdvisingPortal() {
                 </h1>
                 <div className="testResultOutput">
                   {/* <DynamicPrereqButtonTable />   */}
-
                   <div>
                     <div>
                       {prereqRows.map((prereqRow, index) => (
@@ -186,21 +413,20 @@ export default function AdvisingPortal() {
                             defaultValue={"-- select an option --"}
                           >
                             <option disabled selected value>
-                              {" "}
+                              {"-- select an option --"}
                             </option>
                             {prereqOptions.map((prereqOptions) => (
                               <option
                                 key={prereqOptions.value}
                                 value={prereqOptions.value}
+                                label={prereqOptions.label}
                               >
-                                {prereqOptions.label}
                               </option>
                             ))}
                           </select>
                         </div>
-                      ))}
+                      ))} 
                     </div>
-
                     <button onClick={handlePrereqAddRow}>
                       Add Prerequisite
                     </button>
@@ -225,14 +451,14 @@ export default function AdvisingPortal() {
                             defaultValue={"-- select an option --"}
                           >
                             <option disabled selected value>
-                              {" "}
+                              {"-- select an option --"}
                             </option>
                             {courseOptions.map((courseOptions) => (
                               <option
                                 key={courseOptions.value}
                                 value={courseOptions.value}
+                                label={courseOptions.label}
                               >
-                                {courseOptions.label}
                               </option>
                             ))}
                           </select>
@@ -246,6 +472,169 @@ export default function AdvisingPortal() {
             </div>
           </div>
         </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <form onSubmit={handleSubmit}>
+            <button type="submit" className="large-btn">
+                Submit
+            </button>
+        </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       </div>
     </div>
   );
