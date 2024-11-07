@@ -84,7 +84,7 @@ export default function ChangeInformation () {
         
         try {
             
-            const response= await fetch('https://sallg001-cs418-course-project.onrender.com/user/change-password',{
+            const response= await fetch(import.meta.env.VITE_API_KEY + '/user/change-password',{
             //const response= await fetch('http://localhost:8080/user/change-password',{
                 method: 'POST',
                 headers:{

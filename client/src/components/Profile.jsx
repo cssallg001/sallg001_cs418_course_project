@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 const Profile = () => {
     const [user, setUser] = useState(null);
@@ -21,7 +21,7 @@ const Profile = () => {
             try {
                 // Fetch user data from the '/api/users' endpoint using POST method
                 //const response = await fetch('http://localhost:8080/user', {
-                const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user', {
+                const response = await fetch(import.meta.env.VITE_API_KEY + '/user', {
                     method: 'POST', // Use POST method to authenticate
                     headers: {
                         'Content-Type': 'application/json',
