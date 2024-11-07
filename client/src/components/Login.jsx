@@ -22,7 +22,8 @@ export default function Login () {
             })
     
             //const response= await fetch('http://localhost:8080/user/login',{
-            const response= await fetch(import.meta.env.VITE_API_KEY + '/user/login',{
+            const response= await fetch('https://sallg001-cs418-course-project.onrender.com/user/login',{
+            //const response= await fetch(import.meta.env.VITE_API_KEY + '/user/login',{
                 method:"POST",
                 body:formBody,
                 headers:{

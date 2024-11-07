@@ -16,8 +16,9 @@ export default function ForgotUserPassword() {
         setPasswordSuccess('');
 
         try {
-            const response= await fetch(import.meta.env.VITE_API_KEY + '/user/forgot-password',{
+            //const response= await fetch(import.meta.env.VITE_API_KEY + '/user/forgot-password',{
             //const response= await fetch('http://localhost:8080/user/forgot-password',{
+            const response= await fetch('https://sallg001-cs418-course-project.onrender.com/user/forgot-password',{
                 method: 'POST',
                 headers:{
                     'content-type':'application/json',

@@ -51,8 +51,9 @@ export default function PrerequisiteForm () {
         setDisplayPrereqSuccessMessage('');
         try {
             setLoading(true);
-            const response = await fetch(import.meta.env.VITE_API_KEY + '/course/');
+            //const response = await fetch(import.meta.env.VITE_API_KEY + '/course/');
             //const response = await fetch('http://localhost:8080/prerequisites/');
+            const response = await fetch('https://sallg001-cs418-course-project.onrender.com/prerequisites/');
             if (!response.ok) {
                 throw new Error("Error occured");
             }
@@ -280,7 +281,8 @@ export default function PrerequisiteForm () {
             })
     
             //const response= await fetch('http://localhost:8080/prerequisites/togglePrerequisites', {
-            const response= await fetch(import.meta.env.VITE_API_KEY + '/prerequisites/togglePrerequisites', {
+            const response= await fetch('https://sallg001-cs418-course-project.onrender.com/prerequisites/togglePrerequisites', {
+            //const response= await fetch(import.meta.env.VITE_API_KEY + '/prerequisites/togglePrerequisites', {
                 method:"POST",
                 body:formBody,
                 headers:{
