@@ -58,8 +58,8 @@ export default function AdvisingPortal() {
   useEffect(() => {
     const fetchPrereqData = async () => {
       const response = await fetch(
-        "http://localhost:8080/prerequisites/prereqAdvisingPortalRequest"
-        //"https://advising-portal-85e3a.web.app/register/prerequisites/prereqAdvisingPortalRequest"
+        //"http://localhost:8080/prerequisites/prereqAdvisingPortalRequest"
+        "https://sallg001-cs418-course-project.onrender.com/register/prerequisites/prereqAdvisingPortalRequest"
         //import.meta.env.VITE_API_KEY + '/prerequisites/prereqAdvisingPortalRequest'
       );
       const data = await response.json();
