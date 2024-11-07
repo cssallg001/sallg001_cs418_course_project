@@ -44,8 +44,8 @@ function DynamicButtonTable() {
 
   useEffect(() => {
     const fetchData = async () => {
-        const response = await fetch('http://localhost:8080/course/advisingPortalRequest');
-        //const response = await fetch(import.meta.env.VITE_API_KEY + '/course/advisingPortalRequest');
+        //const response = await fetch('http://localhost:8080/course/advisingPortalRequest');
+        const response = await fetch(import.meta.env.VITE_API_KEY + '/course/advisingPortalRequest');
         const data = await response.json();
 
         // Assuming your API response is an array of objects like [{ id: 1, name: 'Option 1' }, ...]
