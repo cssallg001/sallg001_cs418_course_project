@@ -58,8 +58,8 @@ export default function AdvisingPortal() {
   useEffect(() => {
     const fetchPrereqData = async () => {
       const response = await fetch(
-        //"http://localhost:8080/prerequisites/prereqAdvisingPortalRequest"
-        "https://sallg001-cs418-course-project.onrender.com/register/prerequisites/prereqAdvisingPortalRequest"
+        //http://localhost:8080/prerequisites/prereqAdvisingPortalRequest"
+        'https://sallg001-cs418-course-project.onrender.com/prerequisites/prereqAdvisingPortalRequest'
         //import.meta.env.VITE_API_KEY + '/prerequisites/prereqAdvisingPortalRequest'
       );
       const data = await response.json();
@@ -107,7 +107,8 @@ export default function AdvisingPortal() {
     const fetchCourseData = async () => {
       const response = await fetch(
         //import.meta.env.VITE_API_KEY + '/course/courseAdvisingPortalRequest'
-        "https://sallg001-cs418-course-project.onrender.com/course/courseAdvisingPortalRequest"
+        //'http://localhost:8080/prerequisites/course/courseAdvisingPortalRequest'
+        'https://sallg001-cs418-course-project.onrender.com/course/courseAdvisingPortalRequest'
       );
       const data = await response.json();
 
