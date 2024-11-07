@@ -44,8 +44,8 @@ export default function Register () {
                     email:enteredEmail
                 })
 
-                //const response= await fetch('https://sallg001-cs418-course-project.onrender.com/user/verifyIfEmailExists',{
-                const response= await fetch('http://localhost:8080/user/verifyIfEmailExists',{
+                const response= await fetch('https://sallg001-cs418-course-project.onrender.com/user/verifyIfEmailExists',{
+                //const response= await fetch('http://localhost:8080/user/verifyIfEmailExists',{
                     method:"POST",
                     body:formBody,
                     headers:{
