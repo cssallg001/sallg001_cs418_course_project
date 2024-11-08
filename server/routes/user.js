@@ -31,7 +31,7 @@ user.get("/", (req, res) => {
 });
 
 user.get("/grabIDviaEmail", (req, res) => {
-  connection.execute("SELECT user_id AS ID FROM user_information WHEN Email=?", 
+  connection.execute("SELECT user_id AS ID FROM user_information WHERE Email=?", 
     [req.body.userEmail],
     function (err, result) {
     if (err) {
