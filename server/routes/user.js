@@ -30,9 +30,9 @@ user.get("/", (req, res) => {
   });
 });
 
-user.post("/grabIDviaEmail", (req, res) => {
+user.get("/:email", (req, res) => {
   connection.execute("SELECT user_id AS ID FROM user_information WHERE Email=?", 
-    [req.body.userEmail],
+    [req.params.email],
     function (err, result) {
     if (err) {
       res.json(err.message);
