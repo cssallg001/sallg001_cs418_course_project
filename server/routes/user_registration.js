@@ -4,7 +4,7 @@ const user_registration = Router();
 
 
 user_registration.get("/yoink_advising_id", (req, res) => {
-  connection.execute("SELECT * FROM records", function (err, result) {
+  connection.execute("SELECT MAX(advising_id) FROM records", function (err, result) {
     if (err) {
       res.json(err.message);
     } else {
