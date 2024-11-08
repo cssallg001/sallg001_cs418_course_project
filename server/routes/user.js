@@ -30,6 +30,22 @@ user.get("/", (req, res) => {
   });
 });
 
+user.get("/grabIDviaEmail", (req, res) => {
+  connection.execute("SELECT user_id AS ID FROM user_information WHEN Email=?", 
+    [req.body.userEmail],
+    function (err, result) {
+    if (err) {
+      res.json(err.message);
+    } else {
+      res.json({
+        status: 200,
+        message: "grabIDviaEmail === success",
+        data: result,
+      });
+    }
+  });
+});
+
 user.get("/:id", (req, res) => {
   connection.execute(
     "select * from user_information where user_id=?",
