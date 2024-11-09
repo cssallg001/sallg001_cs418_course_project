@@ -107,8 +107,8 @@ user_registration.get("/:email", (req, res) => {
             WHERE \
               a.Email=?\
               AND a.user_id = b.user_id\
-              AND c.advising_id = c.advising_id\
-              AND d.advising_id = d.advising_id\
+              AND c.advising_id = b.advising_id\
+              AND d.advising_id = b.advising_id\
             GROUP BY \
               b.advising_id\
             ",
