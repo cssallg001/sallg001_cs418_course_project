@@ -101,9 +101,9 @@ user_registration.get("/:email", (req, res) => {
               GROUP_CONCAT(d.prereq_id) AS prereq_ids\
             FROM \
               user_information AS a\
-              CROSS JOIN records AS b ON a.user_id\
-              CROSS JOIN course_mapping AS c ON b.advising_id\
-              CROSS JOIN prereq_mapping AS d ON b.advising_id\
+              INNER JOIN records AS b ON a.user_id\
+              INNER JOIN course_mapping AS c ON b.advising_id\
+              INNER JOIN prereq_mapping AS d ON b.advising_id\
             WHERE \
               a.Email=?\
               AND a.user_id = b.user_id\
