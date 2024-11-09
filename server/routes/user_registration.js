@@ -24,7 +24,7 @@ user_registration.get("/yoink_advising_id", (req, res) => {
 
 
 // Get registration information prerequisites based on a given user's email
-course.get("/:email", (req, res) => {
+user_registration.get("/:email", (req, res) => {
   connection.execute (
     "\
       SELECT \
