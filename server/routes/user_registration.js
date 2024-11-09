@@ -24,49 +24,133 @@ user_registration.get("/yoink_advising_id", (req, res) => {
 
 
 // Get registration information prerequisites based on a given user's email
+// Currently not working as intended
+// TODO: Fix this shit
+// user_registration.get("/:email", (req, res) => {
+//   connection.execute (
+//     "\
+//       SELECT \
+//         a.user_id,\
+//         b.advising_id,\
+//         b.last_term,\
+//         b.last_gpa,\
+//         b.current_term,\
+//         b.status,\
+//         b.date_submitted,\
+//         GROUP_CONCAT(d.course_id) AS course_ids,\
+//         GROUP_CONCAT(d.course_name,\" - \", d.course_tag) AS courses,\
+//         GROUP_CONCAT(f.prereq_id) AS prereq_ids,\
+//         GROUP_CONCAT(f.prereq_tag,\" - \",f.prereq_name)\
+//       FROM \
+//         user_information AS a\
+//         INNER JOIN records AS b ON a.user_id\
+//         INNER JOIN course_mapping AS c ON b.advising_id\
+//         INNER JOIN course AS d ON c.course_id\
+//         INNER JOIN prereq_mapping AS e ON b.advising_id\
+//         INNER JOIN prerequisites AS f ON e.prereq_id\
+//       WHERE \
+//         a.Email=?\
+//         AND a.user_id = b.user_id\
+//         AND c.advising_id = b.advising_id\
+//         AND d.course_id = c.course_id\
+//         AND e.advising_id = b.advising_id\
+//         AND f.prereq_id = e.prereq_id\
+//       GROUP BY \
+//         b.advising_id",
+//     [req.params.email],
+//     function (err, result) {
+//       if (err) { 
+//         res.json(err.message);
+//       } else {
+//         res.json({
+//           data: result,
+//         }); 
+//       }
+//     } 
+//   );
+// });
+
+
+
+
+
+
+
+
+
 user_registration.get("/:email", (req, res) => {
-  connection.execute (
-    "\
-      SELECT \
-        a.user_id,\
-        b.advising_id,\
-        b.last_term,\
-        b.last_gpa,\
-        b.current_term,\
-        b.status,\
-        b.date_submitted,\
-        GROUP_CONCAT(d.course_id) AS course_ids,\
-        GROUP_CONCAT(d.course_name,\" - \", d.course_tag) AS courses,\
-        GROUP_CONCAT(f.prereq_id) AS prereq_ids,\
-        GROUP_CONCAT(f.prereq_tag,\" - \",f.prereq_name)\
-      FROM \
-        user_information AS a\
-        INNER JOIN records AS b ON a.user_id\
-        INNER JOIN course_mapping AS c ON b.advising_id\
-        INNER JOIN course AS d ON c.course_id\
-        INNER JOIN prereq_mapping AS e ON b.advising_id\
-        INNER JOIN prerequisites AS f ON e.prereq_id\
-      WHERE \
-        a.Email=?\
-        AND a.user_id = b.user_id\
-        AND c.advising_id = b.advising_id\
-        AND d.course_id = c.course_id\
-        AND e.advising_id = b.advising_id\
-        AND f.prereq_id = e.prereq_id\
-      GROUP BY \
-      b.advising_id",
+  connection.execute(
+    "select email from user_information where email=?",
     [req.params.email],
     function (err, result) {
-      if (err) { 
+      if (err) {
         res.json(err.message);
       } else {
-        res.json({
-          data: result,
-        }); 
+        if (result.length<=0) {
+          connection.execute(
+          "\
+            SELECT \
+              a.user_id,\
+              b.advising_id,\
+              b.last_term,\
+              b.last_gpa,\
+              b.current_term,\
+              b.status,\
+              b.date_submitted,\
+              GROUP_CONCAT(c.course_id) AS course_ids,\
+              GROUP_CONCAT(d.prereq_id) AS prereq_ids\
+            FROM \
+              user_information AS a\
+              CROSS JOIN records AS b ON a.user_id\
+              CROSS JOIN course_mapping AS c ON b.advising_id\
+              CROSS JOIN prereq_mapping AS d ON b.advising_id\
+            WHERE \
+              a.Email=?\
+              AND a.user_id = b.user_id\
+              AND c.advising_id = c.advising_id\
+              AND d.advising_id = d.advising_id\
+            GROUP BY \
+              b.advising_id\
+            ",
+          [req.params.email],
+          function (err, result) {
+            if (err) { 
+              res.json(err.message);
+            } else {
+              res.json({
+                data: result,
+              }); 
+            }
+          } 
+        );
       }
-    } 
-  );
+    }
+  })
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
