@@ -79,53 +79,44 @@ user_registration.get("/yoink_advising_id", (req, res) => {
 
 
 user_registration.get("/:email", (req, res) => {
-  connection.execute(
-    "select email from user_information where email=?",
+
+  
+  connection.execute (
+    "\
+    SELECT \
+      a.user_id,\
+      b.advising_id,\
+      b.last_term,\
+      b.last_gpa,\
+      b.current_term,\
+      b.status,\
+      b.date_submitted,\
+      GROUP_CONCAT(c.course_id) AS course_ids,\
+      GROUP_CONCAT(d.prereq_id) AS prereq_ids\
+    FROM \
+      user_information AS a\
+      INNER JOIN records AS b ON a.user_id\
+      INNER JOIN course_mapping AS c ON b.advising_id\
+      INNER JOIN prereq_mapping AS d ON b.advising_id\
+    WHERE \
+      a.Email=?\
+      AND a.user_id = b.user_id\
+      AND c.advising_id = b.advising_id\
+      AND d.advising_id = b.advising_id\
+    GROUP BY \
+      b.advising_id\
+    ",
     [req.params.email],
     function (err, result) {
-      if (err) {
+      if (err) { 
         res.json(err.message);
       } else {
-        if (result.length<=0) {
-          connection.execute(
-          "\
-            SELECT \
-              a.user_id,\
-              b.advising_id,\
-              b.last_term,\
-              b.last_gpa,\
-              b.current_term,\
-              b.status,\
-              b.date_submitted,\
-              GROUP_CONCAT(c.course_id) AS course_ids,\
-              GROUP_CONCAT(d.prereq_id) AS prereq_ids\
-            FROM \
-              user_information AS a\
-              INNER JOIN records AS b ON a.user_id\
-              INNER JOIN course_mapping AS c ON b.advising_id\
-              INNER JOIN prereq_mapping AS d ON b.advising_id\
-            WHERE \
-              a.Email=?\
-              AND a.user_id = b.user_id\
-              AND c.advising_id = b.advising_id\
-              AND d.advising_id = b.advising_id\
-            GROUP BY \
-              b.advising_id\
-            ",
-          [req.params.email],
-          function (err, result) {
-            if (err) { 
-              res.json(err.message);
-            } else {
-              res.json({
-                data: result,
-              }); 
-            }
-          } 
-        );
+        res.json({
+          data: result,
+        }); 
       }
-    }
-  })
+    } 
+  );
 });
 
 
