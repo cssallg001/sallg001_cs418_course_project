@@ -40,7 +40,7 @@ Professor: Dr. Nasreen Arif
 
 </center>
 
-5. - [ ] Develop a form for creating new “***Course Advising***” form with three sections: History, prerequisites, and course plan.
+5. - [x] Develop a form for creating new “***Course Advising***” form with three sections: History, prerequisites, and course plan.
 6. - [x] Implement the History section with fields: Last Term, Last GPA, Advising Term.
 7. - [x] Enable dynamic addition of rows for prerequisites section with fields: Level, Course Name. (both fields will be dropdown)
 8. - [x] Enable dynamic addition of rows for the course section with fields: Level, Course Name. (both fields will be dropdown)
