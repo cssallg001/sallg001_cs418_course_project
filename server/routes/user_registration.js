@@ -137,6 +137,25 @@ user_registration.post("/updateCourseMapping", (req, res) => {
   );
 });
 
+user_registration.post("/updatePrereqMapping", (req, res) => {
+  connection.execute (
+   "Insert into prereq_mapping (advising_id, prereq_id) values(?,?)",
+    [
+      req.body.advising_id,
+      req.body.prereq_id
+    ],
+    function (err, result) {
+      if (err) { 
+        res.json(err.message);
+      } else {
+        res.json({
+          data: result,
+        }); 
+      }
+    } 
+  );
+});
+
 
 
 user_registration.get("/yoink_advising_id", (req, res) => {

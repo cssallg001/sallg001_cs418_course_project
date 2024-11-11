@@ -501,16 +501,16 @@ export default function AdvisingPortal() {
         date_submitted: concatDate
       })
   
-      const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updateRecords',{
-          method:"POST",
-          body:formBody,
-          headers:{
-              'content-type':'application/json'
-          }
-      });
-      if (!response.ok) {
-        throw new Error("Error occured while adding user information to advising records. Please try again.");
-      }
+      // const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updateRecords',{
+      //     method:"POST",
+      //     body:formBody,
+      //     headers:{
+      //         'content-type':'application/json'
+      //     }
+      // });
+      // if (!response.ok) {
+      //   throw new Error("Error occured while adding user information to advising records. Please try again.");
+      // }
 
       // api POST request to fill in the "course_mapping" table
       try {
@@ -518,27 +518,43 @@ export default function AdvisingPortal() {
 
         for (var i = 0; i < outputCourses.length; i++)
         {
-          const formBody = JSON.stringify({
-            advising_id: nextAdvisingID,
-            course_id: outputCourses[i]
-          })
-          const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updateCourseMapping',{
-              method:"POST",
-              body:formBody,
-              headers:{
-                  'content-type':'application/json'
-              }
-          });
-          if (!response.ok) {
-            throw new Error("Error occured while adding courses to advising records. Please try again.");
-          }
+          // const formBody = JSON.stringify({
+          //   advising_id: nextAdvisingID,
+          //   course_id: outputCourses[i]
+          // })
+          // const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updateCourseMapping',{
+          //     method:"POST",
+          //     body:formBody,
+          //     headers:{
+          //         'content-type':'application/json'
+          //     }
+          // });
+          // if (!response.ok) {
+          //   throw new Error("Error occured while adding courses to advising records. Please try again.");
+          // }
         }
 
         // // api POST request to fill in the "prereq_mapping" table
         // try {
 
 
-
+        for (var j = 0; j < outputPrereqs.length; j++)
+          {
+            const formBody = JSON.stringify({
+              advising_id: nextAdvisingID,
+              prereq_id: outputPrereqs[j]
+            })
+            const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updatePrereqMapping',{
+                method:"POST",
+                body:formBody,
+                headers:{
+                    'content-type':'application/json'
+                }
+            });
+            if (!response.ok) {
+              throw new Error("Error occured while adding courses to advising records. Please try again.");
+            }
+          }
 
 
 
