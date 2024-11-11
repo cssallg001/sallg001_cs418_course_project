@@ -96,7 +96,7 @@ user_registration.delete("/:id", (req, res) => {
 
 user_registration.post("/updateRecords", (req, res) => {
   connection.execute (
-   "Insert into records (user_id, last_term, last_gpa, curren_term, status, date_submitted) values(?,?,?,?)",
+   "Insert into records (user_id, last_term, last_gpa, current_term, status, date_submitted) values(?,?,?,?)",
     [
       req.body.userID,
       req.body.last_term,
