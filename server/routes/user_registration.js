@@ -78,32 +78,18 @@ user_registration.get("/yoink_advising_id", (req, res) => {
 
 
 
-user_registration.get("/:email", (req, res) => {
+user_registration.post("/updateRecords", (req, res) => {
   connection.execute (
-    "\
-      SELECT \
-        a.user_id,\
-        b.advising_id,\
-        b.last_term,\
-        b.last_gpa,\
-        b.current_term,\
-        b.status,\
-        b.date_submitted,\
-        GROUP_CONCAT(c.course_id) AS course_ids,\
-        GROUP_CONCAT(d.prereq_id) AS prereq_ids\
-      FROM \
-        user_information AS a\
-        CROSS JOIN records AS b ON a.user_id\
-        CROSS JOIN course_mapping AS c ON b.advising_id\
-        CROSS JOIN prereq_mapping AS d ON b.advising_id\
-      WHERE a.Email=?\
-        AND a.user_id = b.user_id\
-        AND c.advising_id = b.advising_id\
-        AND d.advising_id = c.advising_id\
-      GROUP BY \
-        b.advising_id\
-        ",
-    [req.params.email],
+   "Insert into records (advising_id, user_id, last_term, last_gpa, curren_term, status, date_submitted) values(?,?,?,?)",
+    [
+      req.body.advisingID,
+      req.body.userID,
+      req.body.last_term,
+      req.body.last_gpa,
+      req.body.currentTerm,
+      req.body.status,
+      req.body.date_submitted
+    ],
     function (err, result) {
       if (err) { 
         res.json(err.message);
@@ -121,6 +107,19 @@ user_registration.get("/:email", (req, res) => {
 
 
 
+user_registration.get("/yoink_advising_id", (req, res) => {
+  connection.execute("SELECT MAX(advising_id) AS advisingID FROM records", function (err, result) {
+    if (err) {
+      res.json(err.message);
+    } else {
+      res.json({
+        status: 200,
+        message: "Response from yoink_advising_id get api",
+        data: result,
+      });
+    }
+  });
+});
 
 
 

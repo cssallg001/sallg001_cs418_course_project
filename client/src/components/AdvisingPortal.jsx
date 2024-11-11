@@ -25,7 +25,7 @@ export default function AdvisingPortal() {
 
   const [isLoading, setIsLoading] = useState(true);
 
-
+  const [status, setStatus] = useState('');
 
  
   const [nextAdvisingID, setNextAdvisingID] = useState(0);
@@ -270,6 +270,21 @@ export default function AdvisingPortal() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //var i = 0;
 
     try {
@@ -305,6 +320,19 @@ export default function AdvisingPortal() {
     let outputCourses = [];
     let outputPrereqs = [];
 
+    const currentDate = new Date();
+
+
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth() + 1;
+    const day = currentDate.getDate();
+
+
+
+
+    const concatDate = year + "-" + month + "-" + day;
+
+    console.log("concatDate = " + concatDate);
 
 
     setUserID('');
@@ -392,24 +420,7 @@ export default function AdvisingPortal() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    setStatus('Pending');
 
 
 
@@ -483,8 +494,13 @@ export default function AdvisingPortal() {
     for (var i = 0; i < outputCourses.length; i++) {
       try {
         const formBody = JSON.stringify({
-            userID:userID,
-            advisingID:nextAdvisingID
+          advisingID: nextAdvisingID,
+          userID: userID,
+          last_term: lastTerm,
+          last_gpa: lastGPA,
+          currentTerm: currentTerm,
+          status: status,
+          date_submitted: concatDate
         })
     
         const response = await fetch('',{
@@ -495,6 +511,29 @@ export default function AdvisingPortal() {
             }
         });
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         if (!response.ok) {
             throw new Error('Error saving course information to database');
         }
