@@ -75,7 +75,23 @@ user_registration.get("/yoink_advising_id", (req, res) => {
 
 
 
-
+user_registration.delete("/:id", (req, res) => {
+  connection.execute(
+    "delete from records where advising_id=?",
+    [req.params.id],
+    function (err, result) {
+      if (err) {
+        res.json(err.message);
+      } else {
+        res.json({
+          status: 200,
+          message: "Response from user delete api",
+          data: result,
+        });
+      }
+    }
+  );
+});
 
 
 user_registration.post("/updateRecords", (req, res) => {

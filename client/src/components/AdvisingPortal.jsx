@@ -503,7 +503,7 @@ export default function AdvisingPortal() {
           date_submitted: concatDate
         })
     
-        const response = await fetch('',{
+        const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updateRecords',{
             method:"POST",
             body:formBody,
             headers:{
