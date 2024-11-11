@@ -118,7 +118,24 @@ user_registration.post("/updateRecords", (req, res) => {
 });
 
 
-
+user_registration.post("/updateCourseMapping", (req, res) => {
+  connection.execute (
+   "Insert into course_mapping (advising_id, course_id) values(?,?)",
+    [
+      req.body.advising_id,
+      req.body.course_id
+    ],
+    function (err, result) {
+      if (err) { 
+        res.json(err.message);
+      } else {
+        res.json({
+          data: result,
+        }); 
+      }
+    } 
+  );
+});
 
 
 

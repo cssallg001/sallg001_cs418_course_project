@@ -288,7 +288,7 @@ export default function AdvisingPortal() {
     //var i = 0;
 
     try {
-      if (numClicks <= 0) {
+      if (numClicks < 1) {
         const url = 'https://sallg001-cs418-course-project.onrender.com/user/' + enteredEmail;
         //const url = 'http://localhost:8080/user/' + enteredEmail; 
         //const url = import.meta.env.VITE_API_KEY + '/user/' + enteredEmail;
@@ -490,54 +490,73 @@ export default function AdvisingPortal() {
 
 
     
-    // api POST request to fill in the "course_mapping" table
-    for (var i = 0; i < outputCourses.length; i++) {
+    // api POST request to fill in the "records" table
+    try {
+      const formBody = JSON.stringify({
+        userID: userID,
+        last_term: lastTerm,
+        last_gpa: lastGPA,
+        currentTerm: currentTerm,
+        status: status,
+        date_submitted: concatDate
+      })
+  
+      const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updateRecords',{
+          method:"POST",
+          body:formBody,
+          headers:{
+              'content-type':'application/json'
+          }
+      });
+      if (!response.ok) {
+        throw new Error("Error occured while adding user information to advising records. Please try again.");
+      }
+
+      // api POST request to fill in the "course_mapping" table
       try {
-        const formBody = JSON.stringify({
-          advisingID: nextAdvisingID,
-          userID: userID,
-          last_term: lastTerm,
-          last_gpa: lastGPA,
-          currentTerm: currentTerm,
-          status: status,
-          date_submitted: concatDate
-        })
-    
-        const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updateRecords',{
-            method:"POST",
-            body:formBody,
-            headers:{
-                'content-type':'application/json'
-            }
-        });
-    
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        if (!response.ok) {
-            throw new Error('Error saving course information to database');
+        for (var i = 0; i < outputCourses.length; i++)
+        {
+          const formBody = JSON.stringify({
+            advising_id: nextAdvisingID,
+            course_id: outputCourses[i]
+          })
+          const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updateCourseMapping',{
+              method:"POST",
+              body:formBody,
+              headers:{
+                  'content-type':'application/json'
+              }
+          });
+          if (!response.ok) {
+            throw new Error("Error occured while adding courses to advising records. Please try again.");
+          }
         }
-          const data = await response.json();
+
+        // // api POST request to fill in the "prereq_mapping" table
+        // try {
+
+
+
+
+
+
+
+
+
+
+        //   if (!response.ok) {
+        //     throw new Error("Error occured while adding prerequisites to advising records. Please try again.");
+        //   }
+        // } catch (error) {
+        //   console.error('', error);
+        //   setErrorMessage("" + error);
+        // }
+
+
+
+
       } catch (error) {
         console.error('', error);
         setErrorMessage("" + error);
@@ -546,193 +565,179 @@ export default function AdvisingPortal() {
 
 
 
-    
-
-
-
-
-
-    // api POST request to fill in the "prereq_mapping" table
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     } catch (error) {
       console.error('', error);
       setErrorMessage("" + error);
     }
+
+
+
+
+  
+
+
+
+
+
+  // api POST request to fill in the "prereq_mapping" table
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  } catch (error) {
+    console.error('', error);
+    setErrorMessage("" + error);
+  }
 };
   return (
     <div className="mysqltesting-container">
