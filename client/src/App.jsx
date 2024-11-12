@@ -9,9 +9,11 @@ import Register from "./components/Register";
 import TwoFactorAuthentication from "./components/TwoFactorAuthentication";
 import ForgotUserPassword from "./components/ForgotUserPassword.jsx";
 import MYSQLTesting from "./components/mysqlTesting.jsx";
-import AdvisingPortal from "./components/AdvisingPortal.jsx";
+import AdvisingRequest from "./components/AdvisingRequest.jsx";
 import PrerequisiteForm from "./components/PrerequisiteForm.jsx";
 import ChangeInformation from "./components/ChangeInformation.jsx";
+import AdvisingHistory from "./components/AdvisingHistory.jsx";
+import AdvisingPortal from "./components/AdvisingPortal.jsx";
 
 function App() {
 
@@ -27,9 +29,11 @@ function App() {
     <Route path="/authentication" element={<TwoFactorAuthentication/>}/>
     <Route path="forgotUserPassword" element={<ForgotUserPassword/>}/>
     <Route path="/msqlTesting" element={<MYSQLTesting/>}/>
-    <Route path="/advisingPortal" element={<AdvisingPortal/>}/>
+    <Route path="/advisingRequest" element={<AdvisingRequest/>}/>
     <Route path="/prerequisiteForm" element={<PrerequisiteForm/>}/>
     <Route path="/changeInformation" element={<ChangeInformation/>}/>
+    <Route path="/advisingHistory" element={<AdvisingHistory/>}/>
+    <Route path="/advisingPortal" element={<AdvisingPortal/>}/>
     </Routes>
   );
 }
