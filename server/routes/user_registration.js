@@ -58,8 +58,8 @@ user_registration.get("/advisingHistory/courses/:advising_id", (req, res) => {
         GROUP_CONCAT(a.course_id) AS course_id \
         CONCAT(b.course_tag,\" - \", b.course_name) AS course_name\
       FROM \
-        course_mapping as a, \
-        INNER JOIN course AS b on a.course_id \
+        course_mapping as a \
+        INNER JOIN course AS b ON a.course_id \
       WHERE \
         a.advising_id=?\
       GROUP BY \
@@ -79,21 +79,18 @@ user_registration.get("/advisingHistory/courses/:advising_id", (req, res) => {
 
 user_registration.get("/advisingHistory/prereqs/:advising_id", (req, res) => {
   connection.execute (
-    "\
-      SELECT \
-        b.user_id,\
-        b.advising_id,\
-        b.last_term,\
-        b.last_gpa,\
-        b.current_term,\
-        b.status,\
-        b.date_submitted\
-      FROM \
-        records AS b\
-      WHERE \
-        b.user_id=?\
-      GROUP BY \
-        b.advising_id",
+  "\
+    SELECT \
+      a.advising_id AS advising_id, \
+      GROUP_CONCAT(a.prereq_id) AS prereq_id \
+      CONCAT(b.prereq_tag,\" - \", b.prereq_name) AS prereq_name\
+    FROM \
+      prereq_mapping as a \
+     INNER JOIN prerequisites AS b ON a.prereq_id \
+    WHERE \
+      a.advising_id=?\
+    GROUP BY \
+      a.advising_id",
     [req.params.user_id],
     function (err, result) {
       if (err) { 
