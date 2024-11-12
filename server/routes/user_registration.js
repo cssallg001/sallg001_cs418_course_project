@@ -33,6 +33,7 @@ user_registration.get("/advisingHistory/:user_id", (req, res) => {
         b.current_term,\
         b.status,\
         b.date_submitted\
+        b.isToggled\
       FROM \
         records AS b\
       WHERE \
