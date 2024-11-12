@@ -43,7 +43,7 @@ user_registration.get("/advisingHistory", (req, res) => {
         b.user_id=?\
       GROUP BY \
         b.advising_id",
-    [req.body.user_ID],
+    [req.body.user_id],
     function (err, result) {
       if (err) { 
         res.json(err.message);
