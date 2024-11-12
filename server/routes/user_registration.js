@@ -54,18 +54,17 @@ user_registration.get("/advisingHistory/:user_id", (req, res) => {
 
 user_registration.get("/advisingHistory/courses/:advising_id", (req, res) => {
   connection.execute(
-    "\
+    '\
     SELECT \
         a.advising_id AS advising_id, \
         a.course_id AS course_id,\
-        CONCAT(b.course_tag," -
-      ", b.course_name) AS courseName\
+        CONCAT(b.course_tag," - ", b.course_name) AS courseName\
       FROM \
         course_mapping as a \
         INNER JOIN course AS b on a.course_id \
       WHERE \
         a.advising_id=? \
-        AND a.course_id = b.course_id",
+        AND a.course_id = b.course_id',
     [req.params.advising_id],
     function (err, result) {
       if (err) {
@@ -81,18 +80,17 @@ user_registration.get("/advisingHistory/courses/:advising_id", (req, res) => {
 
 user_registration.get("/advisingHistory/prereqs/:advising_id", (req, res) => {
   connection.execute(
-    "\
+    '\
   SELECT \
       a.advising_id AS advising_id, \
       a.prereq_id AS prereq_id,\
-      CONCAT(b.prereq_tag," -
-      ", b.prereq_name) AS prereqName\
+      CONCAT(b.prereq_tag," - ", b.prereq_name) AS prereqName\
     FROM \
       prereq_mapping as a \
       INNER JOIN prerequisites AS b on a.prereq_id \
     WHERE \
       a.advising_id=? \
-      AND a.prereq_id = b.prereq_id",
+      AND a.prereq_id = b.prereq_id',
     [req.params.user_id],
     function (err, result) {
       if (err) {

@@ -131,6 +131,66 @@ export default function AdvisingHistory() {
           setLoading(false);
           console.log("Success!");
           setSuccessMessage("Success!");
+
+
+          try {
+            setLoading(true);
+            // const id = advisingIDList[i];
+  
+  
+            //console.log("advising_id [" + i + "] = " + advisingIDList[i]);
+  
+            const id = advisingIDList[index];
+            console.log("id = " + id);
+            const url =
+            "https://sallg001-cs418-course-project.onrender.com/user_registration/advisingHistory/prereqs" + id;
+            const response = await fetch(url);
+            if (!response.ok) {
+              throw new Error("Error occured");
+            }
+            const data = await response.json();
+            setAdvisingPrereqData(data.data);
+            setLoading(false);
+            console.log("Success!");
+            setSuccessMessage("Success!");
+
+
+
+
+
+            try {
+              setLoading(true);
+              // const id = advisingIDList[i];
+    
+    
+              //console.log("advising_id [" + i + "] = " + advisingIDList[i]);
+    
+              const id = advisingIDList[index];
+              console.log("id = " + id);
+              const url =
+              "https://sallg001-cs418-course-project.onrender.com/user_registration/advisingHistory/prereqs" + id;
+              const response = await fetch(url);
+              if (!response.ok) {
+                throw new Error("Error occured");
+              }
+              const data = await response.json();
+              setAdvisingPrereqData(data.data);
+              setLoading(false);
+              console.log("Success!");
+              setSuccessMessage("Success!");
+            } catch (error) {
+              setErrorMessage("Prereq Error occurred: Please try again");
+            }
+
+
+
+
+
+          } catch (error) {
+            setErrorMessage("Prereq Error occurred: Please try again");
+          }
+
+
         } catch (error) {
           setErrorMessage("Course Error occurred: Please try again");
         }
@@ -184,9 +244,9 @@ export default function AdvisingHistory() {
 
 
   function outputHistory (e, index, id, advisingData) {
-    e.preventDefault();
-    outputAdvisingHistoryCourses(index);
-    outputAdvisingHistoryPrereqs(index);
+    // e.preventDefault();
+    // outputAdvisingHistoryCourses(index);
+    // outputAdvisingHistoryPrereqs(index);
   }
 
 

@@ -20,6 +20,7 @@ export default function MYSQLTesting() {
   const [loading, setLoading] = useState(false);
 
   const handleMySQLAllCoursesTest = async (e) => {
+    e.preventDefault();
     setAllSQLData("");
     setAllSQLSuccessMessage("");
     setAllSQLErrorMessage("");
