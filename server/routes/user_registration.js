@@ -91,7 +91,7 @@ user_registration.get("/advisingHistory/prereqs/:advising_id", (req, res) => {
     WHERE \
       a.advising_id=? \
       AND a.prereq_id = b.prereq_id',
-    [req.params.user_id],
+    [req.params.advising_id],
     function (err, result) {
       if (err) {
         res.json(err.message);
