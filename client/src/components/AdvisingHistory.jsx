@@ -19,6 +19,9 @@ export default function AdvisingHistory() {
   const [advisingCourseData, setAdvisingCourseData] = useState([]);
 
 
+  const [advisingIDList, setAdvisingIDList] = useState([]);
+
+
   //const [isToggled, setIsToggled] = useState(false);
 
   useEffect(() => {
@@ -72,14 +75,24 @@ export default function AdvisingHistory() {
       if (!response.ok) {
         throw new Error("Error occured");
       }
-      const data = await response.json();
-
-  
+      const data = await response.json();  
 
       data.data.forEach((item) => {
         const formattedDate = formatDate(item.date_submitted);
         item.date_submitted = formattedDate;
         console.log(formattedDate);
+
+
+        advisingIDList.push(JSON.stringify(item.advising_id));
+        console.log("advising_id = " + item.advising_id);
+
+
+
+
+
+
+
+
       });
  
       setAdvisingData(data.data);
@@ -89,40 +102,58 @@ export default function AdvisingHistory() {
     } catch (error) {
       setErrorMessage("Error occurred: Please try again");
     }
+
+
+
+
+
+
   };
 
-  const outputAdvisingHistoryCourses = async (e) => {
-    e.preventDefault();
+  const outputAdvisingHistoryCourses = async (e, index) => {
+    //e.preventDefault();
     setSuccessMessage("");
     setErrorMessage("");
-    try {
-      setLoading(true);
 
-      const url =
-        "https://sallg001-cs418-course-project.onrender.com/user_registration/advisingHistory/courses" +
-        id;
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error("Error occured");
-      }
-      const data = await response.json();
-      setAdvisingCourseData(data.data);
-      setLoading(false);
-      console.log("Success!");
-      setSuccessMessage("Success!");
-    } catch (error) {
-      setErrorMessage("Error occurred: Please try again");
-    }
+
+      try {
+        setLoading(true);
+    
+          const id = advisingIDList[index];
+          const url =
+          "https://sallg001-cs418-course-project.onrender.com/user_registration/advisingHistory/courses" + id;
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error("Error occured");
+          }
+          const data = await response.json();
+          setAdvisingCourseData(data.data);
+          setLoading(false);
+          console.log("Success!");
+          setSuccessMessage("Success!");
+        } catch (error) {
+          setErrorMessage("Course Error occurred: Please try again");
+        }
+      
   };
  
-  const outputAdvisingHistoryPrereqs = async (e) => {
-    e.preventDefault();
+  const outputAdvisingHistoryPrereqs = async (e, index) => {
+    //e.preventDefault();
 
     setSuccessMessage("");
     setErrorMessage("");
+
+    // for (var i = 0; i < advisingIDList.length; i++)
+    //   {
         try {
           setLoading(true);
-          
+          // const id = advisingIDList[i];
+
+
+          //console.log("advising_id [" + i + "] = " + advisingIDList[i]);
+
+          const id = advisingIDList[index];
+          console.log("id = " + id);
           const url =
           "https://sallg001-cs418-course-project.onrender.com/user_registration/advisingHistory/prereqs" + id;
           const response = await fetch(url);
@@ -135,12 +166,28 @@ export default function AdvisingHistory() {
           console.log("Success!");
           setSuccessMessage("Success!");
         } catch (error) {
-          setErrorMessage("Error occurred: Please try again");
+          setErrorMessage("Prereq Error occurred: Please try again");
         }
+      // }
   };
 
 
+  // useEffect(() => {
+  //   outputAdvisingHistoryCourses();
+  // }, []);
 
+
+
+  // useEffect(() => {
+  //   outputAdvisingHistoryPrereqs();
+  // }, []);
+
+
+  function outputHistory (e, index, id, advisingData) {
+    e.preventDefault();
+    outputAdvisingHistoryCourses(index);
+    outputAdvisingHistoryPrereqs(index);
+  }
 
 
 
@@ -160,7 +207,6 @@ export default function AdvisingHistory() {
                     Reveal history
                   </button>
           </form>
-
         </div>
       </div>
 
@@ -169,11 +215,13 @@ export default function AdvisingHistory() {
           <div className="Title">
             <div className="Title">
               <div className="advisingHistoryTable">
-                
                   {errorMessage && (
                     <p className="text-danger">{errorMessage}</p>
                   )}
                   <div className="testResultOutput">
+                    <h1 className="text-center">
+                      <p>History</p>
+                    </h1>
                     <div>
                       {loading ? (
                         <Fragment>loading...</Fragment>
@@ -186,7 +234,6 @@ export default function AdvisingHistory() {
                           <th>Current Term</th>
                           <th>Status </th>
                           <th>Date </th>
-                          <th>View </th>
                           {advisingData.map((advisingData, index) => {
                             return (
                               <Fragment> 
@@ -198,6 +245,11 @@ export default function AdvisingHistory() {
                                     <td>{advisingData.current_term}</td> 
                                     <td>{advisingData.status}</td>
                                     <td>{advisingData.date_submitted}</td>
+                                    <td>
+                                      <button type = "submit" className="py-4 px-4 font-bold" onClick={(e) => outputHistory(e, index, advisingData.advising_id, advisingData)}>
+                                        O
+                                      </button>
+                                    </td>
                                   </tr>
                                 </tbody>
                               </Fragment>
@@ -211,7 +263,7 @@ export default function AdvisingHistory() {
             </div>
           </div>
         </div>
-
+ 
 
 
 
@@ -234,7 +286,7 @@ export default function AdvisingHistory() {
                       <th>Advising ID </th>
                       <th>Prereq ID </th>
                       <th>Prerequisite Name </th>
-                      {advisingData.map((advisingPrereqData) => {
+                      {advisingData.map((advisingPrereqData, index) => {
                         return (
                           <Fragment>
                             <tbody>

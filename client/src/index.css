@@ -228,7 +228,8 @@ button {
   border-radius: 25px; 
   justify-content: center;
   align-items: center;
-  display:block;
+  display:flex;
+  flex-direction: column;
   margin-top: 2rem;
   margin-bottom: 2rem;
   margin-left: auto;
