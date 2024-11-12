@@ -54,13 +54,9 @@ user_registration.get("/advisingHistory/courses/:advising_id", (req, res) => {
   connection.execute (
     "\
       SELECT \
-        a.advising_id,\
-        a.course_id\
-      FROM course AS a \
-        INNER JOIN course_prereqs AS b ON a.course_id \
-        INNER JOIN prerequisite_sets AS c ON b.prereq_set_num \
-        INNER JOIN prerequisites AS d ON c.prereq_id \
-      WHERE a.course_id=? \
+        a.advising_id AS advising_id, \
+        GROUP_CONCAT(a.course_id) AS course_id \
+        CONCAT(b.course_tag,\" - \", b.course_name) AS course_name\
       FROM \
         course_mapping as a, \
         INNER JOIN course AS b on a.course_id \
