@@ -305,7 +305,7 @@ export default function AdvisingPortal() {
     console.log("concatDate = " + concatDate);
 
 
-    setUserID('');
+    //setUserID('');
 
     //console.log("URL = " + url);
 
@@ -460,37 +460,37 @@ export default function AdvisingPortal() {
 
 
     
-    // api POST request to fill in the "records" table
+
+
+    //api POST request to fill in the "course_mapping" table
     try {
-      const formBody = JSON.stringify({
-        userID: userID,
-        last_term: lastTerm,
-        last_gpa: lastGPA,
-        currentTerm: currentTerm,
-        status: status,
-        date_submitted: concatDate
-      })
-  
-      const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updateRecords',{
-          method:"POST",
-          body:formBody,
-          headers:{
-              'content-type':'application/json'
-          }
-      });
-      if (!response.ok) {
-        throw new Error("Error occured while adding user information to advising records. Please try again.");
+      for (var i = 0; i < outputCourses.length; i++)
+      {
+        const formBody = JSON.stringify({
+          advising_id: nextAdvisingID,
+          course_id: outputCourses[i]
+        })
+        const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updateCourseMapping',{
+            method:"POST",
+            body:formBody,
+            headers:{
+                'content-type':'application/json'
+            }
+        });
+        if (!response.ok) {
+          throw new Error("Error occured while adding courses to advising records. Please try again.");
+        }
       }
 
-      //api POST request to fill in the "course_mapping" table
+      // api POST request to fill in the "prereq_mapping" table
       try {
-        for (var i = 0; i < outputCourses.length; i++)
+        for (var j = 0; j < outputPrereqs.length; j++)
         {
           const formBody = JSON.stringify({
             advising_id: nextAdvisingID,
-            course_id: outputCourses[i]
+            prereq_id: outputPrereqs[j]
           })
-          const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updateCourseMapping',{
+          const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updatePrereqMapping',{
               method:"POST",
               body:formBody,
               headers:{
@@ -501,16 +501,18 @@ export default function AdvisingPortal() {
             throw new Error("Error occured while adding courses to advising records. Please try again.");
           }
         }
-
-        // api POST request to fill in the "prereq_mapping" table
-        try {
-          for (var j = 0; j < outputPrereqs.length; j++)
-          {
+          // api POST request to fill in the "records" table
+          try {
             const formBody = JSON.stringify({
-              advising_id: nextAdvisingID,
-              prereq_id: outputPrereqs[j]
+              userID: userID,
+              last_term: lastTerm,
+              last_gpa: lastGPA,
+              currentTerm: currentTerm,
+              status: status,
+              date_submitted: concatDate
             })
-            const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updatePrereqMapping',{
+        
+            const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updateRecords',{
                 method:"POST",
                 body:formBody,
                 headers:{
@@ -518,10 +520,8 @@ export default function AdvisingPortal() {
                 }
             });
             if (!response.ok) {
-              throw new Error("Error occured while adding courses to advising records. Please try again.");
+              throw new Error("Error occured while adding user information to advising records. Please try again.");
             }
-          }
-
         } catch (error) {
           console.error('', error);
           setErrorMessage("" + error);

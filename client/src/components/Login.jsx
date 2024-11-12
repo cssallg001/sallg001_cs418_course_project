@@ -60,7 +60,7 @@ export default function Login () {
 
                 setUserStateVal(true);
                 localStorage.setItem('storedUserData', JSON.stringify(data.user));
-                localStorage.setItem('storedUserID', JSON.stringify(data.data[0].user_id));
+                localStorage.setItem('storedUserID', JSON.stringify(parseInt((data.data[0].user_id))));
                 localStorage.setItem('storedUserData', JSON.stringify(data.user));
                 localStorage.setItem('storedUserStateVal', userStateVal);
                 localStorage.setItem('storedEmail', enteredEmail);
