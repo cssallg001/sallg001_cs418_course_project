@@ -220,6 +220,21 @@ button {
   flex-direction: column;
 }
 
+.advisingHistoryTable {
+  min-height: 325px;
+  min-width: 530px;
+  max-width: 775px;
+  border: 3px solid blueviolet;
+  border-radius: 25px; 
+  justify-content: center;
+  align-items: center;
+  display:block;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+
+
 .prequisite-choices{
   min-height: 325px;
   min-width: 1000px;

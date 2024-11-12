@@ -17,12 +17,6 @@ user_registration.get("/yoink_advising_id", (req, res) => {
   });
 });
 
-  
-
-
-
-
-
 // Get registration information prerequisites based on a given user's email
 // Currently not working as intended
 // TODO: Fix this shit
@@ -56,10 +50,66 @@ user_registration.get("/advisingHistory/:user_id", (req, res) => {
   );
 });
 
+user_registration.get("/advisingHistory/courses/:advising_id", (req, res) => {
+  connection.execute (
+    "\
+      SELECT \
+        a.advising_id,\
+        a.course_id\
+      FROM course AS a \
+        INNER JOIN course_prereqs AS b ON a.course_id \
+        INNER JOIN prerequisite_sets AS c ON b.prereq_set_num \
+        INNER JOIN prerequisites AS d ON c.prereq_id \
+      WHERE a.course_id=? \
+      FROM \
+        course_mapping as a, \
+        INNER JOIN course AS b on a.course_id \
+      WHERE \
+        a.advising_id=?\
+      GROUP BY \
+        a.advising_id"
+    [req.params.advising_id],
+    function (err, result) {
+      if (err) { 
+        res.json(err.message);
+      } else {
+        res.json({
+          data: result,
+        }); 
+      }
+    } 
+  );
+});
 
-
-
-
+user_registration.get("/advisingHistory/prereqs/:advising_id", (req, res) => {
+  connection.execute (
+    "\
+      SELECT \
+        b.user_id,\
+        b.advising_id,\
+        b.last_term,\
+        b.last_gpa,\
+        b.current_term,\
+        b.status,\
+        b.date_submitted\
+      FROM \
+        records AS b\
+      WHERE \
+        b.user_id=?\
+      GROUP BY \
+        b.advising_id",
+    [req.params.user_id],
+    function (err, result) {
+      if (err) { 
+        res.json(err.message);
+      } else {
+        res.json({
+          data: result,
+        }); 
+      }
+    } 
+  );
+});
 
 user_registration.delete("/:id", (req, res) => {
   connection.execute(
