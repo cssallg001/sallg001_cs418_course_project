@@ -36,23 +36,11 @@ user_registration.get("/advisingHistory", (req, res) => {
         b.last_gpa,\
         b.current_term,\
         b.status,\
-        b.date_submitted,\
-        GROUP_CONCAT(d.course_id) AS course_ids,\
-        GROUP_CONCAT(d.course_name,\" - \", d.course_tag) AS courses,\
-        GROUP_CONCAT(f.prereq_id) AS prereq_ids,\
-        GROUP_CONCAT(f.prereq_tag,\" - \",f.prereq_name)\
+        b.date_submitted\
       FROM \
         records AS b\
-        INNER JOIN course_mapping AS c ON b.advising_id\
-        INNER JOIN course AS d ON c.course_id\
-        INNER JOIN prereq_mapping AS e ON b.advising_id\
-        INNER JOIN prerequisites AS f ON e.prereq_id\
       WHERE \
         b.user_id=?\
-        AND c.advising_id = b.advising_id\
-        AND d.course_id = c.course_id\
-        AND e.advising_id = b.advising_id\
-        AND f.prereq_id = e.prereq_id\
       GROUP BY \
         b.advising_id",
     [req.body.user_ID],
