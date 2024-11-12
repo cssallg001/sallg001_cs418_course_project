@@ -26,7 +26,7 @@ user_registration.get("/yoink_advising_id", (req, res) => {
 // Get registration information prerequisites based on a given user's email
 // Currently not working as intended
 // TODO: Fix this shit
-user_registration.get("/advisingHistory", (req, res) => {
+user_registration.get("/advisingHistory/:user_id", (req, res) => {
   connection.execute (
     "\
       SELECT \
@@ -43,7 +43,7 @@ user_registration.get("/advisingHistory", (req, res) => {
         b.user_id=?\
       GROUP BY \
         b.advising_id",
-    [req.body.user_id],
+    [req.params.user_id],
     function (err, result) {
       if (err) { 
         res.json(err.message);
@@ -157,6 +157,15 @@ user_registration.get("/yoink_advising_id", (req, res) => {
     }
   });
 });
+
+
+
+
+
+
+
+
+
 
 
 

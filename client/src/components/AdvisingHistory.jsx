@@ -50,19 +50,10 @@ export default function AdvisingHistory () {
         setErrorMessage('');
         try {
             setLoading(true);
-            const formBody = JSON.stringify({ 
-                user_id: userID
-              });
-            const response = await fetch(
-                "https://sallg001-cs418-course-project.onrender.com/user_registration/advisingHistory",
-                {
-                    method: "POST",
-                    body: formBody,
-                    headers: {
-                        "content-type": "application/json",
-                    },
-                }
-            );
+            
+            
+            const url = "https://sallg001-cs418-course-project.onrender.com/user_registration/advisingHistory" + userID;
+            const response = await fetch(url);
             if (!response.ok) {
                 throw new Error("Error occured");
             }
@@ -133,9 +124,9 @@ export default function AdvisingHistory () {
                 <div className="mysqltesting-menu-container">
                     <h1 className="text-center">Advising History</h1>
                     <form onSubmit={handleBackPage}>
-                    <button type="submit" className="btn btn-createAccount">
-                        Go back
-                    </button>
+                        <button type="submit" className="btn btn-createAccount">
+                            Go back
+                        </button>
                     </form>
                 </div>
             </div>
@@ -143,10 +134,45 @@ export default function AdvisingHistory () {
             <div className="advising-portal-container">
                 <div className="Title">
                     <div className="Title">
-                        <div className="advising-user-information">
-                            <form onSubmit={outputAdvisingHistory}>
+                        <div className="mysql-mysqltests">
+                            <div className="Title">
+                                <div className = "mysql-allcoursestest">
+                                    <h1 className="text-center"><p>History</p></h1>
+                                    <form onSubmit={outputAdvisingHistory}>
+                                        {errorMessage && <p className="text-danger">{errorMessage}</p>}
+                                        {successMessage && <p className="text-success">{successMessage}</p>}
+                                        <div className = "testResultOutput">
+                                        <table>
+                                            {/* <th>USER ID</th> */}
+                                            <th>ADVISING ID</th>
+                                            <th>CURRENT TERM</th>
+                                            <th>LAST TERM</th>
+                                            <th>LAST GPA</th>
+                                            <th>STATUS</th>
+                                            <th>DATE SUBMITTED</th>
+                                            {
+                                                advisingData.map((advisingData, index) => {
+                                                    return (
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>{advisingData.advising_id}</td>
+                                                                <td>{advisingData.last_term}</td>
+                                                                <td>{advisingData.last_gpa}</td>
+                                                                <td>{advisingData.current_term}</td>
+                                                                <td>{advisingData.status}</td>
+                                                                <td>{advisingData.date_submitted}</td>
 
-                            </form>
+                                                                <td><input type="checkbox" checked={advisingData.enable_disable} onChange={(e)=>handlePrereqClick(e, index, advisingData.advising_id, advisingData)}/></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    )
+                                                })
+                                            }
+                                        </table>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

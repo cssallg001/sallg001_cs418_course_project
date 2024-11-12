@@ -24,7 +24,7 @@ export default function AdvisingRequest() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState("Pending");
 
   const [nextAdvisingID, setNextAdvisingID] = useState(0);
 
