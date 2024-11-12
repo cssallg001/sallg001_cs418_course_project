@@ -64,85 +64,27 @@ export default function AdvisingPortal() {
     fetchLargestAdvisingID();
   }, []);
 
- 
 
 
   useEffect(() => {
-    const handleEmailFetch = async () => {
-      const storedEmail = localStorage.getItem('storedEmail'); 
-      if (storedEmail) {
-          const parsedData = storedEmail;
-          setEnteredEmail(parsedData);
-      }
-
-
-
-
-
-
-      
-    }; 
-
-
-    const handleIDFetch = async () => {
-      const storedID = localStorage.getItem('storedUserID'); 
-      if (storedID) {
-          const parsedData = storedID;
-          setUserID(parsedData);
-      }
-    };
-
-
-
-
-
-        // const formBody = JSON.stringify({
-        //     userEmail: enteredEmail
-        // })
-
-
-      // //const url = 'http://localhost:8080/user/' + enteredEmail; 
-      // const url = 'https://sallg001-cs418-course-project.onrender.com/user/' + enteredEmail;
-      // //const url = import.meta.env.VITE_API_KEY + '/user/' + enteredEmail;
-
-      // fetch(url)
-      //   .then(response => response.json())
-      //   .then(data => {
-      //     setUserID(data.data[0].ID);
-      //     setIsLoading(false);
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //     setIsLoading(false);
-      //   })
-
-  
-
-
-
-
-
-      // const data = await response.json();
-      // //setMaxAdvisingID(data.data[0].ID);
-      // setUserID(parseInt(data.data[0].ID));
-      // setNewUserID(parseInt(data.data[0].ID));
-
-
-
-    handleEmailFetch();
-    handleIDFetch();
-
-
+    const storedEmail = localStorage.getItem('storedEmail'); 
+    if (storedEmail) {
+        const parsedData = storedEmail;
+        setEnteredEmail(parsedData);
+    }
   }, []);
- 
-
-
 
   
 
 
 
-
+  useEffect(() => {
+    const storedID = localStorage.getItem('storedUserID'); 
+    if (storedID) {
+        const parsedData = storedID;
+        setUserID(parsedData);
+    }
+  }, []);
 
 
 
