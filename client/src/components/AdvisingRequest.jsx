@@ -46,6 +46,17 @@ export default function AdvisingRequest() {
       const data = await response.json();
       setMaxAdvisingID(data.data[0].advisingID);
       setNextAdvisingID(parseInt(data.data[0].advisingID) + 1);
+
+      const currentDate = new Date();
+
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth() + 1;
+      const day = currentDate.getDate();
+
+      const concatDate = year + "-" + month + "-" + day;
+
+      console.log("concatDate = " + concatDate);
+
     };
     fetchLargestAdvisingID();
   }, []);

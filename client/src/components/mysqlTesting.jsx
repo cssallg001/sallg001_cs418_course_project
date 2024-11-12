@@ -214,15 +214,15 @@ export default function MYSQLTesting() {
                         <Fragment>
                           <div key={prereq.course_id}></div>
                           <ul>
-                            <table className="centerTable">
-                              <thead>
-                                <td>Course ID:</td>
-                                <td>Course Tag</td>
-                                <td>Credit Hours</td>
-                                <td>Prereq Set num</td>
-                                <td>Prereq IDs</td>
-                                <td>Prereq Tags</td>
-                                <td>Prereq Credit Hours</td>
+                            <table className="orangeTable th">
+                              <thead> 
+                                <th>Course ID:          </th>
+                                <th>Course Tag          </th>
+                                <th>Credit Hours        </th>
+                                <th>Prereq Set num      </th>
+                                <th>Prereq IDs          </th>
+                                <th>Prereq Tags         </th>
+                                <th>Prereq Credit Hours </th>
                               </thead>
                               <tbody>
                                 <tr>

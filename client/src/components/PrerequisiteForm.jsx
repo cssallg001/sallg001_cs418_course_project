@@ -368,9 +368,9 @@ export default function PrerequisiteForm() {
                                                 2
                                             )}
                                         </code>
-                                    </pre> */}
+                                    </pre> */} 
 
-                  <table>
+                  <table className="redTable th">
                     {/* <th>COURSE ID</th> */}
                     <th>COURSE LEVEL</th>
                     <th>COURSE CODE</th>

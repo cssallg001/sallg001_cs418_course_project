@@ -231,9 +231,43 @@ button {
   display:block;
   margin-top: 2rem;
   margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 15px;
 }
 
 
+.advisingHistoryTableEntries {
+  min-height: 325px;
+  min-width: 530px;
+  max-width: 775px;
+  border: 3px solid orange;
+  border-radius: 25px; 
+  justify-content: center;
+  align-items: center;
+  display:flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 15px;
+}
+
+.purpleTable th{
+  background-color: blueviolet;
+  color: white;
+}
+
+.orangeTable th{
+  background-color: orange;
+  color: white;
+}
+
+.redTable th{
+  background-color: red;
+  color: white;
+}
 
 .prequisite-choices{
   min-height: 325px;
