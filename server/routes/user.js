@@ -5,9 +5,9 @@ import { SendMail } from "../utils/SendMail.js";
 import { compare } from "bcrypt";
 const user = Router();
 
-
 function generateTempPassword(length = 12) {
-  const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+<>?";
+  const chars =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+<>?";
   let password = "";
   for (let i = 0; i < length; i++) {
     const randomIndex = Math.floor(Math.random() * chars.length);
@@ -31,19 +31,21 @@ user.get("/", (req, res) => {
 });
 
 user.get("/:email", (req, res) => {
-  connection.execute("SELECT user_id AS ID FROM user_information WHERE Email=?", 
+  connection.execute(
+    "SELECT user_id AS ID FROM user_information WHERE Email=?",
     [req.params.email],
     function (err, result) {
-    if (err) {
-      res.json(err.message);
-    } else {
-      res.json({
-        status: 200,
-        message: "grabIDviaEmail === success",
-        data: result,
-      });
+      if (err) {
+        res.json(err.message);
+      } else {
+        res.json({
+          status: 200,
+          message: "grabIDviaEmail === success",
+          data: result,
+        });
+      }
     }
-  });
+  );
 });
 
 user.get("/:id", (req, res) => {
@@ -65,8 +67,7 @@ user.get("/:id", (req, res) => {
 });
 
 user.post("/", (req, res) => {
-
-  const hashedPassword = HashedPassword(req.body.password)
+  const hashedPassword = HashedPassword(req.body.password);
 
   connection.execute(
     "Insert into user_information (First_Name,Last_Name,Email,Password) values(?,?,?,?)",
@@ -84,7 +85,6 @@ user.post("/", (req, res) => {
     }
   );
 });
- 
 
 user.delete("/:id", (req, res) => {
   connection.execute(
@@ -104,7 +104,6 @@ user.delete("/:id", (req, res) => {
   );
 });
 
-
 user.post("/login", (req, res) => {
   connection.execute(
     "select * from user_information where email=?",
@@ -113,28 +112,28 @@ user.post("/login", (req, res) => {
       if (err) {
         res.json(err.message);
       } else if (result.length === 0) {
-        res.json("Invalid Password"); 
+        res.json("Invalid Password");
       } else {
         console.log(result[0].Password);
         if (ComparePasword(req.body.Password, result[0].Password)) {
-
-          SendMail(req.body.email,"Login Verification","Your login verification code is 1234567")
+          SendMail(
+            req.body.email,
+            "Login Verification",
+            "Your login verification code is 1234567"
+          );
 
           res.json({
             status: 200,
             message: "user logged in successfully",
-            data: result, 
+            data: result,
           });
-        }
-        else {
+        } else {
           res.json("Invalid Password");
         }
-
       }
     }
   );
 });
-
 
 user.post("/verifyIfEmailExists", (req, res) => {
   connection.execute(
@@ -145,7 +144,7 @@ user.post("/verifyIfEmailExists", (req, res) => {
         res.json(err.message);
       } else {
         console.log(result);
-        if (result.length<=0) {
+        if (result.length <= 0) {
           res.json({
             status: 200,
             message: "Email is available",
@@ -159,9 +158,8 @@ user.post("/verifyIfEmailExists", (req, res) => {
   );
 });
 
-
 user.post("/register", (req, res) => {
-  const hashedPassword = HashedPassword(req.body.password)
+  const hashedPassword = HashedPassword(req.body.password);
   connection.execute(
     "select email from user_information where email=?",
     [req.body.email],
@@ -171,26 +169,35 @@ user.post("/register", (req, res) => {
       } else {
         console.log(result);
         //console.log("Result[0] = " + result[0].password);
-        if (result.length<=0) {
+        if (result.length <= 0) {
           connection.execute(
             "Insert into user_information (First_Name,Last_Name,Email,Password) values(?,?,?,?)",
-            [req.body.firstName, req.body.lastName, req.body.email, hashedPassword],
+            [
+              req.body.firstName,
+              req.body.lastName,
+              req.body.email,
+              hashedPassword,
+            ],
             function (err, result) {
               if (err) {
                 res.json(err.message);
               } else {
-                SendMail(req.body.email,"Registration Verification","Your registration verification code is 1234567");
+                SendMail(
+                  req.body.email,
+                  "Registration Verification",
+                  "Your registration verification code is 1234567"
+                );
                 res.json({
                   status: 200,
                   message: "Account successfully registered",
                   data: result,
                 });
               }
-            } 
-          )
+            }
+          );
         } else {
           res.json({
-            message: "Email already in use"
+            message: "Email already in use",
           });
         }
       }
@@ -198,45 +205,50 @@ user.post("/register", (req, res) => {
   );
 });
 
-
-
 user.post("/forgot-password", (req, res) => {
-
-  connection.execute("SELECT * FROM user_information WHERE email=?", 
-    [req.body.email], 
+  connection.execute(
+    "SELECT * FROM user_information WHERE email=?",
+    [req.body.email],
     function (err, result) {
-    if (err) {
-      return res.status(500).json({ message: "Error retrieving user" });
-    }
-    if (result.length === 0) {
-      return res.status(404).json({ message: "User not found" });
-    }
+      if (err) {
+        return res.status(500).json({ message: "Error retrieving user" });
+      }
+      if (result.length === 0) {
+        return res.status(404).json({ message: "User not found" });
+      }
 
-    const user = result[0];
+      const user = result[0];
 
-    const tempPassword = generateTempPassword(12);
-    const hashedTempPassword = HashedPassword(tempPassword);
+      const tempPassword = generateTempPassword(12);
+      const hashedTempPassword = HashedPassword(tempPassword);
 
-    connection.execute(
-      "UPDATE user_information SET Password=? WHERE email=?",
-      [hashedTempPassword, req.body.email],
-      (updateErr) => {
-        if (updateErr) {
-          return res.status(500).json({ message : "Error updated password"});
+      connection.execute(
+        "UPDATE user_information SET Password=? WHERE email=?",
+        [hashedTempPassword, req.body.email],
+        (updateErr) => {
+          if (updateErr) {
+            return res.status(500).json({ message: "Error updated password" });
+          }
+
+          SendMail(
+            req.body.email,
+            "Temporary Password",
+            `Your new password is: ${tempPassword}`
+          );
+          return res
+            .status(200)
+            .json({ message: "A temp password has been sent to your email" });
         }
-
-        SendMail(req.body.email, "Temporary Password", `Your new password is: ${tempPassword}`);
-        return res.status(200).json({ message: "A temp password has been sent to your email"});
-      });
-  })
+      );
+    }
+  );
 });
 
-
-
-user.post("/change-password", (req, res) =>{
-  connection.execute("select * from user_information where email=?",
+user.post("/change-password", (req, res) => {
+  connection.execute(
+    "select * from user_information where email=?",
     [req.body.email],
-    function(err, result) {
+    function (err, result) {
       if (err) {
         res.json({
           status: 500,
@@ -248,20 +260,21 @@ user.post("/change-password", (req, res) =>{
           message: "User not found",
         });
       } else {
-        const user = result [0];
+        const user = result[0];
         if (ComparePasword(req.body.currentPassword, result[0].Password)) {
           const newHashedPassword = HashedPassword(req.body.newPassword);
-          connection.execute("UPDATE user_information SET Password=? WHERE email=?",
+          connection.execute(
+            "UPDATE user_information SET Password=? WHERE email=?",
             [newHashedPassword, req.body.email],
-            function(err, result) {
+            function (err, result) {
               if (err) {
                 res.json({
-                  status:400,
+                  status: 400,
                   message: "Failed to change password",
                 });
               } else {
                 res.json({
-                  status:200,
+                  status: 200,
                   message: "Password changed successfully.",
                   data: result,
                 });
@@ -270,24 +283,13 @@ user.post("/change-password", (req, res) =>{
           );
         } else {
           res.json({
-            status:401,
+            status: 401,
             message: "Invalid current password",
           });
         }
       }
     }
-  )
+  );
 });
-
-
-
-
-
-
-
-
-
-
-
 
 export default user;

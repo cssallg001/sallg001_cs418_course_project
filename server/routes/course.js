@@ -3,7 +3,7 @@ import { connection } from "../database/database.js";
 const course = Router();
 
 course.get("/", (req, res) => {
-  connection.execute ("select * from course", function (err, result) {
+  connection.execute("select * from course", function (err, result) {
     if (err) {
       res.json(err.message);
     } else {
@@ -15,23 +15,25 @@ course.get("/", (req, res) => {
 });
 
 course.get("/courseAdvisingPortalRequest", (req, res) => {
-  connection.execute("SELECT course_id, CONCAT(course_tag,\" - \", course_name) AS courseName FROM course", 
+  connection.execute(
+    'SELECT course_id, CONCAT(course_tag," - ", course_name) AS courseName FROM course',
     function (err, result) {
-    if (err) {
-      res.json(err.message);
-    } else {
-      res.json({
-        status: 200,
-        message: "Response from prerequisites get api",
-        data: result,
-      });
-    } 
-  });
+      if (err) {
+        res.json(err.message);
+      } else {
+        res.json({
+          status: 200,
+          message: "Response from prerequisites get api",
+          data: result,
+        });
+      }
+    }
+  );
 });
 
 // Get course prerequisites based on a given course id
 course.get("/:id", (req, res) => {
-  connection.execute (
+  connection.execute(
     "\
       SELECT \
         a.course_id, \
@@ -52,33 +54,39 @@ course.get("/:id", (req, res) => {
       GROUP BY c.prereq_set_num",
     [req.params.id],
     function (err, result) {
-      if (err) { 
-        res.json(err.message);
-      } else {
-        res.json({
-          data: result,
-        }); 
-      }
-    } 
-  );
-});
-
-course.post("/", (req, res) => {
-  connection.execute (
-    "Insert into course (course_tag,course_name,credit_hours,prereq1,prereq2,prereq3,prereq4) values(?,?,?,?,?,?,?)",
-    [req.body.course_tag, req.body.course_name, req.body.credit_hours, req.body.prereq1, req.body.prereq2, req.body.prereq3, req.body.prereq4],
-    function (err, result) {
       if (err) {
         res.json(err.message);
       } else {
         res.json({
-        data: result,
+          data: result,
         });
       }
     }
   );
 });
 
+course.post("/", (req, res) => {
+  connection.execute(
+    "Insert into course (course_tag,course_name,credit_hours,prereq1,prereq2,prereq3,prereq4) values(?,?,?,?,?,?,?)",
+    [
+      req.body.course_tag,
+      req.body.course_name,
+      req.body.credit_hours,
+      req.body.prereq1,
+      req.body.prereq2,
+      req.body.prereq3,
+      req.body.prereq4,
+    ],
+    function (err, result) {
+      if (err) {
+        res.json(err.message);
+      } else {
+        res.json({
+          data: result,
+        });
+      }
+    }
+  );
+});
 
-  
 export default course;

@@ -1,11 +1,13 @@
-export default function PropComponent(props){
-    return (<>
-    <div>
+export default function PropComponent(props) {
+  return (
+    <>
+      <div>
         <h6>{props.title}</h6>
         <p>{props.description}</p>
         {props.children}
-    </div>
-    </>)
+      </div>
+    </>
+  );
 }
 
 ///defining props with attribut

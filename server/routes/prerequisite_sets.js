@@ -2,7 +2,6 @@ import { Router } from "express";
 import { connection } from "../database/database.js";
 const prerequisite_sets = Router();
 
-
 prerequisite_sets.get("/", (req, res) => {
   connection.execute("select * from prerequisite_sets", function (err, result) {
     if (err) {
@@ -17,5 +16,4 @@ prerequisite_sets.get("/", (req, res) => {
   });
 });
 
-  
 export default prerequisite_sets;

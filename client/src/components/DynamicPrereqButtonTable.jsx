@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import "../index.css";
 
 function DynamicPrereqButtonTable() {
@@ -19,7 +19,7 @@ function DynamicPrereqButtonTable() {
   const handleInputChange = (e, index) => {
     const prereqDropdownID = e.target.id;
     const selectedPrereqValue = e.target.value;
-    const values = [...prereqRows]; 
+    const values = [...prereqRows];
 
     if (e.target.id === "prereqDropdown") {
       values[index].prereqDropdown = e.target.value;
@@ -31,7 +31,7 @@ function DynamicPrereqButtonTable() {
   const [prereqStrignArray, setPrereqStrignArray] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem('prereqStringArray', JSON.stringify(prereqRows));
+    localStorage.setItem("prereqStringArray", JSON.stringify(prereqRows));
   }, [prereqRows]);
 
   const handleAddRow = () => {
@@ -43,8 +43,7 @@ function DynamicPrereqButtonTable() {
     ]);
   };
 
-  useEffect(() => {
-  }, [prereqRows]);
+  useEffect(() => {}, [prereqRows]);
 
   useEffect(() => {
     const fetchData = async () => {

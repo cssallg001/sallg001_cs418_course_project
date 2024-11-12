@@ -2,7 +2,6 @@ import { Router } from "express";
 import { connection } from "../database/database.js";
 const course_prereqs = Router();
 
-
 course_prereqs.get("/", (req, res) => {
   connection.execute("select * from course_prereqs", function (err, result) {
     if (err) {
@@ -17,5 +16,4 @@ course_prereqs.get("/", (req, res) => {
   });
 });
 
-  
 export default course_prereqs;
