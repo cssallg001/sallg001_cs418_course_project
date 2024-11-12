@@ -18,7 +18,6 @@ export default function AdvisingPortal() {
 
   const [enteredEmail, setEnteredEmail] = useState('');
   const [userID, setUserID] = useState('');
-  const [newUserID, setNewUserID] = useState('');
 
   const[invalidOutputPrereq, setInvalidOutputPrereq] = useState(false);
   const[invalidOutputCourses, setInvalidOutputCourses] = useState(false);
@@ -29,6 +28,10 @@ export default function AdvisingPortal() {
 
  
   const [nextAdvisingID, setNextAdvisingID] = useState(0);
+
+
+
+  //const [emailData, setEmailData] = useState()
 
 
 
@@ -65,18 +68,37 @@ export default function AdvisingPortal() {
 
 
   useEffect(() => {
- 
-    
-
-    const handleEmailAndIDFetch = async () => {
+    const handleEmailFetch = async () => {
       const storedEmail = localStorage.getItem('storedEmail'); 
       if (storedEmail) {
           const parsedData = storedEmail;
           setEnteredEmail(parsedData);
       }
-        const formBody = JSON.stringify({
-            userEmail: enteredEmail
-        })
+
+
+
+
+
+
+      
+    }; 
+
+
+    const handleIDFetch = async () => {
+      const storedID = localStorage.getItem('storedUserID'); 
+      if (storedID) {
+          const parsedData = storedID;
+          setUserID(parsedData);
+      }
+    };
+
+
+
+
+
+        // const formBody = JSON.stringify({
+        //     userEmail: enteredEmail
+        // })
 
 
       // //const url = 'http://localhost:8080/user/' + enteredEmail; 
@@ -104,10 +126,11 @@ export default function AdvisingPortal() {
       // //setMaxAdvisingID(data.data[0].ID);
       // setUserID(parseInt(data.data[0].ID));
       // setNewUserID(parseInt(data.data[0].ID));
-    }; 
 
 
-    handleEmailAndIDFetch();
+
+    handleEmailFetch();
+    handleIDFetch();
 
 
   }, []);
@@ -288,35 +311,40 @@ export default function AdvisingPortal() {
     //var i = 0;
 
     try {
-      if (numClicks < 1) {
-        const url = 'https://sallg001-cs418-course-project.onrender.com/user/' + enteredEmail;
-        //const url = 'http://localhost:8080/user/' + enteredEmail; 
-        //const url = import.meta.env.VITE_API_KEY + '/user/' + enteredEmail;
-        
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error("Error occured");
-        }
-        const emailData = await response.json();
-        setUserID(parseInt(emailData.data[0].ID));
-        setUserID(parseInt(emailData.data[0].ID));
-        setNumClicks(numClicks+1);
-        throw new Error     ("Please try again");
-      }
+
 
     
-      const url = 'https://sallg001-cs418-course-project.onrender.com/user/' + enteredEmail;
-      //const url = 'http://localhost:8080/user/' + enteredEmail; 
-      //const url = import.meta.env.VITE_API_KEY + '/user/' + enteredEmail;
+      // if (numClicks <= 0) {
+      //   const url = 'https://sallg001-cs418-course-project.onrender.com/user/' + enteredEmail;
+      //   //const url = 'http://localhost:8080/user/' + enteredEmail; 
+      //   //const url = import.meta.env.VITE_API_KEY + '/user/' + enteredEmail;
+      //   1
+      //   const response = await fetch(url);
+      //   if (!response.ok) {
+      //     throw new Error("Error occured");
+      //   }
+      //   const emailData = await response.json();
+      //   setUserID(parseInt(emailData.data[0].ID));
+      //   setUserID(parseInt(emailData.data[0].ID));
+      //   setNumClicks(numClicks+1);
+      //   throw new Error     ("Please try again");
+      // }
+    
+      // const url = 'https://sallg001-cs418-course-project.onrender.com/user/' + enteredEmail;
+      // //const url = 'http://localhost:8080/user/' + enteredEmail; 
+      // //const url = import.meta.env.VITE_API_KEY + '/user/' + enteredEmail;
       
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error("Error occured");
-      }
-      const emailData = await response.json();
-      setUserID(parseInt(emailData.data[0].ID));
-      setUserID(parseInt(emailData.data[0].ID));
-      
+      // const response = await fetch(url);
+      // if (!response.ok) {
+      //   throw new Error("Error occured");
+      // }
+      // const emailData = await response.json();
+      // setUserID(parseInt(emailData.data[0].ID));
+      // setUserID(parseInt(emailData.data[0].ID));
+
+
+
+
     let outputCourses = [];
     let outputPrereqs = [];
 
@@ -337,7 +365,7 @@ export default function AdvisingPortal() {
 
     setUserID('');
 
-    console.log("URL = " + url);
+    //console.log("URL = " + url);
 
     console.log("userID = " + userID);
     console.log("enteredEmail = " + enteredEmail); 
@@ -501,44 +529,40 @@ export default function AdvisingPortal() {
         date_submitted: concatDate
       })
   
-      // const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updateRecords',{
-      //     method:"POST",
-      //     body:formBody,
-      //     headers:{
-      //         'content-type':'application/json'
-      //     }
-      // });
-      // if (!response.ok) {
-      //   throw new Error("Error occured while adding user information to advising records. Please try again.");
-      // }
+      const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updateRecords',{
+          method:"POST",
+          body:formBody,
+          headers:{
+              'content-type':'application/json'
+          }
+      });
+      if (!response.ok) {
+        throw new Error("Error occured while adding user information to advising records. Please try again.");
+      }
 
-      // api POST request to fill in the "course_mapping" table
+      //api POST request to fill in the "course_mapping" table
       try {
-
-
         for (var i = 0; i < outputCourses.length; i++)
         {
-          // const formBody = JSON.stringify({
-          //   advising_id: nextAdvisingID,
-          //   course_id: outputCourses[i]
-          // })
-          // const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updateCourseMapping',{
-          //     method:"POST",
-          //     body:formBody,
-          //     headers:{
-          //         'content-type':'application/json'
-          //     }
-          // });
-          // if (!response.ok) {
-          //   throw new Error("Error occured while adding courses to advising records. Please try again.");
-          // }
+          const formBody = JSON.stringify({
+            advising_id: nextAdvisingID,
+            course_id: outputCourses[i]
+          })
+          const response = await fetch('https://sallg001-cs418-course-project.onrender.com/user_registration/updateCourseMapping',{
+              method:"POST",
+              body:formBody,
+              headers:{
+                  'content-type':'application/json'
+              }
+          });
+          if (!response.ok) {
+            throw new Error("Error occured while adding courses to advising records. Please try again.");
+          }
         }
 
-        // // api POST request to fill in the "prereq_mapping" table
-        // try {
-
-
-        for (var j = 0; j < outputPrereqs.length; j++)
+        // api POST request to fill in the "prereq_mapping" table
+        try {
+          for (var j = 0; j < outputPrereqs.length; j++)
           {
             const formBody = JSON.stringify({
               advising_id: nextAdvisingID,
@@ -556,30 +580,15 @@ export default function AdvisingPortal() {
             }
           }
 
-
-
-
-
-
-
-        //   if (!response.ok) {
-        //     throw new Error("Error occured while adding prerequisites to advising records. Please try again.");
-        //   }
-        // } catch (error) {
-        //   console.error('', error);
-        //   setErrorMessage("" + error);
-        // }
-
-
-
+        } catch (error) {
+          console.error('', error);
+          setErrorMessage("" + error);
+        }
 
       } catch (error) {
         console.error('', error);
         setErrorMessage("" + error);
       }
-
-
-
 
     } catch (error) {
       console.error('', error);

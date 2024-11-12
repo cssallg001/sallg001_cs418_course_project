@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
 
@@ -10,8 +10,9 @@ export default function Login () {
     const navigate = useNavigate();
     const [userStateVal, setUserStateVal] = useState(true);
     const [adminStateVal, setAdminStateVal] = useState(false);
-    
-    
+    const [loading, setLoading] = useState(false);
+    const [userID, setUserID] = useState('');
+
     const handleLogin = async (e) => {
         e.preventDefault();
         
@@ -52,7 +53,14 @@ export default function Login () {
             // Check if login is successful
             if (data.message === "user logged in successfully") {
                 // If login is successful, redirect to the authentication page
+                        
+                console.log("    UserID: " + data.data[0].user_id);
+                console.log("    UserID: " + JSON.stringify(data.data[0].user_id));
+                console.log("    UserID: " + parseInt((data.data[0].user_id)));
+
                 setUserStateVal(true);
+                localStorage.setItem('storedUserData', JSON.stringify(data.user));
+                localStorage.setItem('storedUserID', JSON.stringify(data.data[0].user_id));
                 localStorage.setItem('storedUserData', JSON.stringify(data.user));
                 localStorage.setItem('storedUserStateVal', userStateVal);
                 localStorage.setItem('storedEmail', enteredEmail);

@@ -105,7 +105,7 @@ export default function TwoFactorAuthentication () {
         
                         // Check if Registration is successful
                         if (data.message === 'Account successfully registered') {
-                            navigate('/dashboard');
+                            navigate('/login');
                         } else {
                             // Show error message if registration fails
                             console.log('Registration Error');
