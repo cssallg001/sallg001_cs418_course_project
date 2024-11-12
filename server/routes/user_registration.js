@@ -55,8 +55,8 @@ user_registration.get("/advisingHistory/courses/:advising_id", (req, res) => {
     "\
       SELECT \
         a.advising_id AS advising_id, \
-        GROUP_CONCAT(a.course_id) AS course_id \
-        CONCAT(b.course_tag,\" - \", b.course_name) AS course_name\
+        GROUP_CONCAT(a.course_id) AS course_id, \
+        CONCAT(b.course_tag,\" - \", b.course_name) AS courseName\
       FROM \
         course_mapping as a \
         INNER JOIN course AS b ON a.course_id \
@@ -82,8 +82,8 @@ user_registration.get("/advisingHistory/prereqs/:advising_id", (req, res) => {
   "\
     SELECT \
       a.advising_id AS advising_id, \
-      GROUP_CONCAT(a.prereq_id) AS prereq_id \
-      CONCAT(b.prereq_tag,\" - \", b.prereq_name) AS prereq_name\
+      GROUP_CONCAT(a.prereq_id) AS prereq_id, \
+      CONCAT(b.prereq_tag,\" - \", b.prereq_name) AS prereqName\
     FROM \
       prereq_mapping as a \
      INNER JOIN prerequisites AS b ON a.prereq_id \
