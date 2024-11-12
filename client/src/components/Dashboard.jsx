@@ -19,6 +19,9 @@ export default function Dashboard () {
     const [newPassword, setNewPassword] = useState('');
     const [enteredOldPassword, setEnteredOldPassword] = useState('');
     const [inputtedEmail, setInputtedEmail] = useState('');
+
+    const [userID, setUserID] = useState("");
+
     
     useEffect(() => {
         const storedUserStateVal = localStorage.getItem('storedUserStateVal');
@@ -63,13 +66,28 @@ export default function Dashboard () {
     };
 
     function handleAdvisingPortal() {
+        localStorage.setItem('storedUserID', JSON.stringify(parseInt((data.data[0].user_id))));
         navigate('/advisingPortal');
     };
 
     function handleUpdateInformation() {
+        localStorage.setItem('storedUserID', JSON.stringify(parseInt((data.data[0].user_id))));
         navigate('/changeInformation');
     };
  
+
+
+    useEffect(() => {
+        const storedID = localStorage.getItem("storedUserID");
+        if (storedID) {
+          const parsedData = storedID;
+          setUserID(parsedData);
+        }
+    }, []);
+
+    localStorage.setItem('storedUserID', JSON.stringify(parseInt((data.data[0].user_id))));
+
+
     return (
         <div className = "mysqltesting-container">
             <div className = "container">

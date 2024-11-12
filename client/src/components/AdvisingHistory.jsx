@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../index.css';
 
@@ -26,23 +26,44 @@ export default function AdvisingHistory () {
     const [advisingPrereqs, setAdvisingPrereqs] = useState([]);
     const [advisingCourses, setAdvisingCourses] = useState([]);
 
-
-
     useEffect(() => {
         const storedID = localStorage.getItem("storedUserID");
         if (storedID) {
           const parsedData = storedID;
           setUserID(parsedData);
         }
-    }, []);
+      }, []);
+
+
+
+ 
+
+ 
+ 
+ 
+
+
+
+
 
     useEffect(() => {
-        outputAdvisingHistory();
+        const storedID = localStorage.getItem("storedUserID");
+        if (storedID) {
+            const parsedData = storedID;
+            setUserID(parsedData);
+            //outputAdvisingHistory();
+        }
     }, []);
 
     const outputAdvisingHistory = async (e) => {
+        e.preventDefault();
         setSuccessMessage('');
         setErrorMessage('');
+        const storedID = localStorage.getItem("storedUserID");
+        if (storedID) {
+          const parsedData = storedID;
+          setUserID(parsedData);
+        }
         try {
             setLoading(true);
             
@@ -62,11 +83,12 @@ export default function AdvisingHistory () {
         }
     };
 
+ 
 
 
+ 
 
-
-
+ 
 
 
     const outputAdvisingHistoryCourses = async (e) => {
@@ -151,13 +173,13 @@ export default function AdvisingHistory () {
 
 
 
+      
 
 
+  
+  
 
-
-
-
-    return (
+    return ( 
         <div className="mysqltesting-container">
             <div className="Title">
                 <div className="mysqltesting-menu-container">
@@ -176,8 +198,17 @@ export default function AdvisingHistory () {
                         <div className="Title">
                             <div className = "advisingHistoryTable">
                                 <form onSubmit={outputAdvisingHistory}>
+                                    <button type="submit" className="py-4 px-4 font-bold">
+                                        Reveal history
+                                    </button>
                                     {errorMessage && <p className="text-danger">{errorMessage}</p>}
                                     <div className = "testResultOutput">
+
+                                    <div>
+                                    {loading ? (
+                                        <Fragment>loading...</Fragment>
+                                    ) : (
+ 
                                     <table>
                                         {/* <th>USER ID</th> */}
                                         <th>ADVISING ID</th>
@@ -188,8 +219,10 @@ export default function AdvisingHistory () {
                                         <th>DATE</th>
                                         {/* <th>VIEW</th> */}
                                         {
-                                            advisingData.map((advisingData, index) => {
+                                            advisingData.map((advisingData) => {
                                                 return (
+                                                <Fragment>
+ 
                                                     <tbody>
                                                         <tr>
                                                             <td>{advisingData.advising_id}</td>
@@ -198,14 +231,16 @@ export default function AdvisingHistory () {
                                                             <td>{advisingData.current_term}</td>
                                                             <td>{advisingData.status}</td>
                                                             <td>{advisingData.date_submitted}</td>
-
-                                                            <td><input type="checkbox" checked={advisingData.enable_disable} onChange={(e)=>handlePrereqClick(e, index, advisingData.advising_id, advisingData)}/></td>
                                                         </tr>
                                                     </tbody>
+                                                </Fragment>
+
                                                 )
                                             })
                                         }
                                     </table>
+                                    )}
+                                    </div>
                                     </div>
                                 </form>
                             </div>
