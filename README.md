@@ -48,3 +48,38 @@ Professor: Dr. Nasreen Arif
 10. - [x] Implement functionality to save new entries so that newly created records are displayed in the 'Course Advising History' form with a Pending status.
 11. - [ ] When a user clicks on any record displayed in ***point 4***, they should be redirected to the Course Advising form with the selected record pre-populated. Additionally, if the status of the record is 'approved' or 'rejected,' the record should be frozen and not editable. If the status is 'pending,' the user can make changes and save the record.
 12. - [ ] Deploy your Frontend, Backend and Database on server and your demo should be demonstrate from live server. (For milestone 2 and milestone 3).
+
+# Milestone 3 Specs
+## Functionality for Admin Portal
+1. - [ ] Develop a screen to display advising sheets submitted by CS department students.
+  
+<center>
+
+| Student Name | UIN | Term | Status
+| :---: | :---: | :---: | :---: |
+| Adam | 01986654 | Fall 2024 | Pending |
+| John | 01986655 | Fall 2024 | Approved |
+| Alex | 01986651 | Fall 2024 | Rejected |
+| Kim | 01986652 | Fall 2024 | Pending |
+ 
+</center>
+
+2. - [ ] Clicking on a student's name will redirect to a page displaying the student-submitted record. On
+this page, there will be options to approve or reject the record. When the admin submits their
+decision, they must also provide a text message with their feedback on the advising sheet. After
+clicking the submit button, the system will redirect to the advising sheet form (as described in
+point 1), and the new status of the student’s record will be updated accordingly.
+3. - [ ] Implement status update of student records upon submission of approval or rejection.
+4. - [ ] Upon submission, student will receive an email where they can see the status and message
+provided by admin.
+5. - [ ] Now student will be able to see the updated status of their advising sheet on Course Advising
+History form.
+6. - [ ] Add reCAPTCHA to the login page. Verify the reCAPTCHA before login. Once the reCAPTCHA is
+verified then user can logged in into the system.
+7. - [ ] Prevent your application from clickjacking attack. Implement the prevention of click jacking.
+Show the clickjacking prevention by using <iframe> in .html form.
+8. - [ ] Add a favicon to the website.
+9. - [ ] Add a password rule requiring a mix of capital letters, lowercase letters, special characters, and
+numbers (implement regex for all password fields in the application). The password length
+should be at least 8 characters.
+10. - [ ] Create test cases and execute in your BE application (Create at least 3 test cases).
