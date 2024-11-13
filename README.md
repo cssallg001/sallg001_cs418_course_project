@@ -47,6 +47,7 @@ Professor: Dr. Nasreen Arif
 9. - [ ] Implement ***rules*** for course selection, preventing the addition of courses previously taken in the previous terms.
 10. - [x] Implement functionality to save new entries so that newly created records are displayed in the 'Course Advising History' form with a Pending status.
 11. - [ ] When a user clicks on any record displayed in ***point 4***, they should be redirected to the Course Advising form with the selected record pre-populated. Additionally, if the status of the record is 'approved' or 'rejected,' the record should be frozen and not editable. If the status is 'pending,' the user can make changes and save the record.
+      - [ ] The display portion is currently working, however, it is currently missing the ability to make changes. 
 12. - [x] Deploy your Frontend, Backend and Database on server and your demo should be demonstrate from live server. (For milestone 2 and milestone 3).
 
 # Milestone 3 Specs
