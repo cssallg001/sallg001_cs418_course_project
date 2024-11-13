@@ -45,7 +45,6 @@ Professor: Dr. Nasreen Arif
 7. - [x] Enable dynamic addition of rows for prerequisites section with fields: Level, Course Name. (both fields will be dropdown)
 8. - [x] Enable dynamic addition of rows for the course section with fields: Level, Course Name. (both fields will be dropdown)
 9. - [ ] Implement ***rules*** for course selection, preventing the addition of courses previously taken in the previous terms.
-     - [ ] This was implemented and working, but at some point the feature stopped working so I need to figure out what's going on.
 10. - [x] Implement functionality to save new entries so that newly created records are displayed in the 'Course Advising History' form with a Pending status.
 11. - [ ] When a user clicks on any record displayed in ***point 4***, they should be redirected to the Course Advising form with the selected record pre-populated. Additionally, if the status of the record is 'approved' or 'rejected,' the record should be frozen and not editable. If the status is 'pending,' the user can make changes and save the record.
       - [ ] The display portion is currently working, however, it is currently missing the ability to make changes. 
