@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+
+import ReCaptcha from "react-google-recaptcha";
+
 import { useNavigate } from "react-router-dom";
 import "../index.css";
 
@@ -8,39 +11,47 @@ export default function ForgotUserPassword() {
   const [passwordError, setPasswordError] = useState("");
   const [passwordSuccess, setPasswordSuccess] = useState("");
   const navigate = useNavigate();
+  const refRecaptcha = useRef(null);
 
   const handleResettingPassword = async (e) => {
     e.preventDefault();
-    setPasswordError("");
-    setPasswordSuccess("");
 
-    try {
-      //const response= await fetch(import.meta.env.VITE_API_KEY + '/user/forgot-password',{
-      //const response= await fetch('http://localhost:8080/user/forgot-password',{
-      const response = await fetch(
-        "https://sallg001-cs418-course-project.onrender.com/user/forgot-password",
-        {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify({
-            email: inputtedEmail,
-          }),
+    const currentValue = refRecaptcha.current.getValue();
+
+    if (!currentValue) {
+      alert("Please verify you are human!");
+    } else {
+      setPasswordError("");
+      setPasswordSuccess("");
+
+      try {
+        //const response= await fetch(import.meta.env.VITE_API_KEY + '/user/forgot-password',{
+        //const response= await fetch('http://localhost:8080/user/forgot-password',{
+        const response = await fetch(
+          "https://sallg001-cs418-course-project.onrender.com/user/forgot-password",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify({
+              email: inputtedEmail,
+            }),
+          }
+        );
+        if (!response.ok) {
+          setPasswordError("Password reset failed");
+          throw new Error("Password reset failed"); // Handle HTTP errors
         }
-      );
-      if (!response.ok) {
-        setPasswordError("Password reset failed");
-        throw new Error("Password reset failed"); // Handle HTTP errors
+        const data = await response.json();
+        console.log("Fetched user data:", data); // Log the fetched data
+        setPasswordSuccess(
+          "Password successfully reset! A new password has been sent to your email."
+        );
+      } catch (error) {
+        console.error("Password Reset Error", error);
+        setPasswordError("Password Reset Error");
       }
-      const data = await response.json();
-      console.log("Fetched user data:", data); // Log the fetched data
-      setPasswordSuccess(
-        "Password successfully reset! A new password has been sent to your email."
-      );
-    } catch (error) {
-      console.error("Password Reset Error", error);
-      setPasswordError("Password Reset Error");
     }
   };
 
@@ -68,6 +79,14 @@ export default function ForgotUserPassword() {
             {passwordSuccess && (
               <p className="text-success">{passwordSuccess}</p>
             )}
+
+            <div className="form_group_recaptcha">
+              <ReCaptcha
+                required
+                sitekey={import.meta.env.VITE_SITE_KEY}
+                ref={refRecaptcha}
+              ></ReCaptcha>
+            </div>
             <button type="submit" className="btn btn-primary">
               Submit
             </button>

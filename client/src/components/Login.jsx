@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useRef, useState } from "react";
+import ReCaptcha from "react-google-recaptcha";
 import { useNavigate } from "react-router-dom";
 import "../index.css";
-import ReCaptcha from "react-google-recaptcha";
 
 export default function Login() {
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -12,20 +12,16 @@ export default function Login() {
   const [adminStateVal, setAdminStateVal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [userID, setUserID] = useState("");
-  const refRecaptcha=useRef(null);
-
-  
+  const refRecaptcha = useRef(null);
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const currentValue=refRecaptcha.current.getValue();
+    const currentValue = refRecaptcha.current.getValue();
 
     if (!currentValue) {
-      alert("Please verify you are human!")
-    }
-
-    else {
+      alert("Please verify you are human!");
+    } else {
       try {
         const formBody = JSON.stringify({
           email: enteredEmail,
@@ -134,18 +130,13 @@ export default function Login() {
           </div>
           {errorMessage && <p className="text-danger">{errorMessage}</p>}
 
-
-
-
-        <ReCaptcha required sitekey={import.meta.env.VITE_SITE_KEY} ref={refRecaptcha}>
-
-        </ReCaptcha>
-
-
-
-
-
-
+          <div className="form_group_recaptcha">
+            <ReCaptcha
+              required
+              sitekey={import.meta.env.VITE_SITE_KEY}
+              ref={refRecaptcha}
+            ></ReCaptcha>
+          </div>
 
           <button type="submit" className="btn btn-primary">
             Login
