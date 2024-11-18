@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../index.css";
+import ReCaptcha from "react-google-recaptcha";
 
 export default function Login() {
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -11,77 +12,88 @@ export default function Login() {
   const [adminStateVal, setAdminStateVal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [userID, setUserID] = useState("");
+  const refRecaptcha=useRef(null);
+
+  
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    try {
-      const formBody = JSON.stringify({
-        email: enteredEmail,
-        Password: enteredPassword,
-      });
+    const currentValue=refRecaptcha.current.getValue();
 
-      //const response= await fetch('http://localhost:8080/user/login',{
-      const response = await fetch(
-        "https://sallg001-cs418-course-project.onrender.com/user/login",
-        {
-          //const response= await fetch(import.meta.env.VITE_API_KEY + '/user/login',{
-          method: "POST",
-          body: formBody,
-          headers: {
-            "content-type": "application/json",
-          },
+    if (!currentValue) {
+      alert("Please verify you are human!")
+    }
+
+    else {
+      try {
+        const formBody = JSON.stringify({
+          email: enteredEmail,
+          Password: enteredPassword,
+        });
+
+        //const response= await fetch('http://localhost:8080/user/login',{
+        const response = await fetch(
+          "https://sallg001-cs418-course-project.onrender.com/user/login",
+          {
+            //const response= await fetch(import.meta.env.VITE_API_KEY + '/user/login',{
+            method: "POST",
+            body: formBody,
+            headers: {
+              "content-type": "application/json",
+            },
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Login failed"); // Handle HTTP errors
         }
-      );
 
-      if (!response.ok) {
-        throw new Error("Login failed"); // Handle HTTP errors
+        const data = await response.json();
+        console.log("Fetched user data:", data); // Log the fetched data
+
+        console.log("Login Screen:");
+        console.log("    Email: " + enteredEmail);
+        console.log("    Password: " + enteredPassword);
+
+        if (data.message === "isAdmin") {
+          setAdminStateVal("1");
+        }
+
+        // Check if login is successful
+        if (data.message === "user logged in successfully") {
+          // If login is successful, redirect to the authentication page
+
+          console.log("    UserID: " + data.data[0].user_id);
+          console.log("    UserID: " + JSON.stringify(data.data[0].user_id));
+          console.log("    UserID: " + parseInt(data.data[0].user_id));
+
+          setUserStateVal(true);
+          localStorage.setItem("storedUserData", JSON.stringify(data.user));
+          localStorage.setItem(
+            "storedUserID",
+            JSON.stringify(parseInt(data.data[0].user_id))
+          );
+          localStorage.setItem("storedUserData", JSON.stringify(data.user));
+          localStorage.setItem("storedUserStateVal", userStateVal);
+          localStorage.setItem("storedEmail", enteredEmail);
+          localStorage.setItem("storedConfirmedPassword", enteredPassword);
+          localStorage.setItem(
+            "storedAdminStateVal",
+            JSON.stringify(adminStateVal)
+          );
+          console.log("userStateVal = " + userStateVal);
+          console.log("adminStateVal = " + adminStateVal);
+          navigate("/authentication");
+        } else {
+          // Show error message if login fails
+          console.log("Invalid credentials. Please try again.");
+          setErrorMessage("Invalid credentials. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error during login:", error);
+        setErrorMessage("Invalid Credentials. Please try again.");
       }
-
-      const data = await response.json();
-      console.log("Fetched user data:", data); // Log the fetched data
-
-      console.log("Login Screen:");
-      console.log("    Email: " + enteredEmail);
-      console.log("    Password: " + enteredPassword);
-
-      if (data.message === "isAdmin") {
-        setAdminStateVal("1");
-      }
-
-      // Check if login is successful
-      if (data.message === "user logged in successfully") {
-        // If login is successful, redirect to the authentication page
-
-        console.log("    UserID: " + data.data[0].user_id);
-        console.log("    UserID: " + JSON.stringify(data.data[0].user_id));
-        console.log("    UserID: " + parseInt(data.data[0].user_id));
-
-        setUserStateVal(true);
-        localStorage.setItem("storedUserData", JSON.stringify(data.user));
-        localStorage.setItem(
-          "storedUserID",
-          JSON.stringify(parseInt(data.data[0].user_id))
-        );
-        localStorage.setItem("storedUserData", JSON.stringify(data.user));
-        localStorage.setItem("storedUserStateVal", userStateVal);
-        localStorage.setItem("storedEmail", enteredEmail);
-        localStorage.setItem("storedConfirmedPassword", enteredPassword);
-        localStorage.setItem(
-          "storedAdminStateVal",
-          JSON.stringify(adminStateVal)
-        );
-        console.log("userStateVal = " + userStateVal);
-        console.log("adminStateVal = " + adminStateVal);
-        navigate("/authentication");
-      } else {
-        // Show error message if login fails
-        console.log("Invalid credentials. Please try again.");
-        setErrorMessage("Invalid credentials. Please try again.");
-      }
-    } catch (error) {
-      console.error("Error during login:", error);
-      setErrorMessage("Invalid Credentials. Please try again.");
     }
   };
 
@@ -121,6 +133,20 @@ export default function Login() {
             />
           </div>
           {errorMessage && <p className="text-danger">{errorMessage}</p>}
+
+
+
+
+        <ReCaptcha required sitekey={import.meta.env.VITE_SITE_KEY} ref={refRecaptcha}>
+
+        </ReCaptcha>
+
+
+
+
+
+
+
           <button type="submit" className="btn btn-primary">
             Login
           </button>

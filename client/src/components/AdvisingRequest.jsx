@@ -56,7 +56,6 @@ export default function AdvisingRequest() {
       const concatDate = year + "-" + month + "-" + day;
 
       console.log("concatDate = " + concatDate);
-
     };
     fetchLargestAdvisingID();
   }, []);
@@ -592,15 +591,15 @@ export default function AdvisingRequest() {
           {errorMessage && <p className="text-danger">{errorMessage}</p>}
           {successMessage && <p className="text-success">{successMessage}</p>}
 
-          {clickStatus ? (
+          {/* {clickStatus ? (
             <button type="submit" className="large-btn" disabled>
               Submit
             </button>
-          ) : (
-            <button type="submit" className="large-btn">
-              Submit
-            </button>
-          )}
+          ) : ( */}
+          <button type="submit" className="large-btn">
+            Submit
+          </button>
+          {/* )} */}
         </form>
       </div>
     </div>

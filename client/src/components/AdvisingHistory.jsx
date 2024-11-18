@@ -83,16 +83,8 @@ export default function AdvisingHistory() {
         console.log(formattedDate);
 
 
-        advisingIDList.push(JSON.stringify(item.advising_id));
+        advisingIDList.push(item.advising_id);
         console.log("advising_id = " + item.advising_id);
-
-
-
-
-
-
-
-
       });
  
       setAdvisingData(data.data);
@@ -110,7 +102,7 @@ export default function AdvisingHistory() {
 
   };
 
-  const outputAdvisingHistoryCourses = async (e, index) => {
+  const outputAdvisingHistoryCourses = async (e, id) => {
     //e.preventDefault();
     setSuccessMessage("");
     setErrorMessage("");
@@ -119,9 +111,9 @@ export default function AdvisingHistory() {
       try {
         setLoading(true);
     
-          const id = advisingIDList[index];
+          //const id = advisingIDList[index];
           const url =
-          "https://sallg001-cs418-course-project.onrender.com/user_registration/advisingHistory/courses" + id;
+          "https://sallg001-cs418-course-project.onrender.com/user_registration/advisingHistory/courses" + JSON.stringify(id);
           const response = await fetch(url);
           if (!response.ok) {
             throw new Error("Error occured");
@@ -169,7 +161,10 @@ export default function AdvisingHistory() {
               console.log("id = " + id);
               const url =
               "https://sallg001-cs418-course-project.onrender.com/user_registration/advisingHistory/prereqs" + id;
+              console.log("course url = " + url);
+
               const response = await fetch(url);
+
               if (!response.ok) {
                 throw new Error("Error occured");
               }
@@ -197,7 +192,7 @@ export default function AdvisingHistory() {
       
   };
  
-  const outputAdvisingHistoryPrereqs = async (e, index) => {
+  const outputAdvisingHistoryPrereqs = async (e, id) => {
     //e.preventDefault();
 
     setSuccessMessage("");
@@ -217,6 +212,9 @@ export default function AdvisingHistory() {
           const url =
           "https://sallg001-cs418-course-project.onrender.com/user_registration/advisingHistory/prereqs" + id;
           const response = await fetch(url);
+
+          console.log("prereq url = " + url);
+
           if (!response.ok) {
             throw new Error("Error occured");
           }
@@ -245,8 +243,8 @@ export default function AdvisingHistory() {
 
   function outputHistory (e, index, id, advisingData) {
     // e.preventDefault();
-    // outputAdvisingHistoryCourses(index);
-    // outputAdvisingHistoryPrereqs(index);
+    outputAdvisingHistoryPrereqs(id);
+    outputAdvisingHistoryCourses(id);
   }
 
 
