@@ -15,7 +15,7 @@ prerequisites.get("/", (req, res) => {
           data: result,
         });
       }
-    }
+    },
   );
 });
 
@@ -32,7 +32,7 @@ prerequisites.get("/prereqAdvisingPortalRequest", (req, res) => {
           data: result,
         });
       }
-    }
+    },
   );
 });
 
@@ -54,7 +54,7 @@ prerequisites.post("/togglePrerequisites", (req, res) => {
             data: result,
           });
         }
-      }
+      },
     );
   } else if (req.body.toggleVal === false) {
     connection.execute(
@@ -73,7 +73,7 @@ prerequisites.post("/togglePrerequisites", (req, res) => {
             data: result,
           });
         }
-      }
+      },
     );
   }
 });

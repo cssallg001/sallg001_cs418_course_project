@@ -27,7 +27,7 @@ course.get("/courseAdvisingPortalRequest", (req, res) => {
           data: result,
         });
       }
-    }
+    },
   );
 });
 
@@ -61,7 +61,7 @@ course.get("/:id", (req, res) => {
           data: result,
         });
       }
-    }
+    },
   );
 });
 
@@ -85,7 +85,7 @@ course.post("/", (req, res) => {
           data: result,
         });
       }
-    }
+    },
   );
 });
 

@@ -15,7 +15,7 @@ user_registration.get("/yoink_advising_id", (req, res) => {
           data: result,
         });
       }
-    }
+    },
   );
 });
 
@@ -48,7 +48,7 @@ user_registration.get("/advisingHistory/:user_id", (req, res) => {
           data: result,
         });
       }
-    }
+    },
   );
 });
 
@@ -74,7 +74,7 @@ user_registration.get("/advisingHistory/courses/:advising_id", (req, res) => {
           data: result,
         });
       }
-    }
+    },
   );
 });
 
@@ -100,7 +100,7 @@ user_registration.get("/advisingHistory/prereqs/:advising_id", (req, res) => {
           data: result,
         });
       }
-    }
+    },
   );
 });
 
@@ -118,7 +118,7 @@ user_registration.delete("/:id", (req, res) => {
           data: result,
         });
       }
-    }
+    },
   );
 });
 
@@ -141,7 +141,7 @@ user_registration.post("/updateRecords", (req, res) => {
           data: result,
         });
       }
-    }
+    },
   );
 });
 
@@ -157,7 +157,7 @@ user_registration.post("/updateCourseMapping", (req, res) => {
           data: result,
         });
       }
-    }
+    },
   );
 });
 
@@ -173,7 +173,7 @@ user_registration.post("/updatePrereqMapping", (req, res) => {
           data: result,
         });
       }
-    }
+    },
   );
 });
 
@@ -190,7 +190,7 @@ user_registration.get("/yoink_advising_id", (req, res) => {
           data: result,
         });
       }
-    }
+    },
   );
 });
 

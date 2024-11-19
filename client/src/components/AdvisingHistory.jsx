@@ -132,7 +132,7 @@ export default function AdvisingHistory() {
   
             //console.log("advising_id [" + i + "] = " + advisingIDList[i]);
   
-            const id = advisingIDList[index];
+            //const id = advisingIDList[index];
             console.log("id = " + id);
             const url =
             "https://sallg001-cs418-course-project.onrender.com/user_registration/advisingHistory/prereqs" + id;
@@ -157,7 +157,7 @@ export default function AdvisingHistory() {
     
               //console.log("advising_id [" + i + "] = " + advisingIDList[i]);
     
-              const id = advisingIDList[index];
+              //const id = advisingIDList[index];
               console.log("id = " + id);
               const url =
               "https://sallg001-cs418-course-project.onrender.com/user_registration/advisingHistory/prereqs" + id;
@@ -207,7 +207,7 @@ export default function AdvisingHistory() {
 
           //console.log("advising_id [" + i + "] = " + advisingIDList[i]);
 
-          const id = advisingIDList[index];
+          //const id = advisingIDList[index];
           console.log("id = " + id);
           const url =
           "https://sallg001-cs418-course-project.onrender.com/user_registration/advisingHistory/prereqs" + id;
@@ -294,7 +294,7 @@ export default function AdvisingHistory() {
                           <th>Date </th>
                           {advisingData.map((advisingData, index) => {
                             return (
-                              <Fragment> 
+                              <Fragment key = {"advisingKey"}> 
                                 <tbody>
                                   <tr>
                                     <td>{advisingData.advising_id}</td>
@@ -346,7 +346,7 @@ export default function AdvisingHistory() {
                       <th>Prerequisite Name </th>
                       {advisingData.map((advisingPrereqData, index) => {
                         return (
-                          <Fragment>
+                          <Fragment key = {"prereqKey"}>
                             <tbody>
                               <tr>
                                 <td>{advisingPrereqData.advising_id}</td>

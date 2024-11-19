@@ -266,34 +266,34 @@ export default function AdvisingRequest() {
 
       //console.log("Test of all tests #1: " + prereqRows[0].dropdown);
 
-      for (var i = 0; i < prereqRows.length; i++) {
-        outputPrereqs.push(prereqRows[i].dropdown + 1);
+      for (var h = 0; h < prereqRows.length; h++) {
+        outputPrereqs.push(prereqRows[h].dropdown + 1);
       }
-      for (var i = 0; i < courseRows.length; i++) {
-        outputCourses.push(courseRows[i].dropdown);
+      for (var j = 0; j < courseRows.length; j++) {
+        outputCourses.push(courseRows[j].dropdown);
       }
       console.log("outputPrereqs: " + outputPrereqs);
       console.log("outputCourses: " + outputCourses);
 
-      for (var i = 0; i < outputPrereqs.length; i++) {
-        if (outputPrereqs[i] === "" || outputPrereqs[i] === "NaN") {
-          console.log("outputPrereqs[" + i + "] === invalid input");
+      for (var k = 0; k < outputPrereqs.length; k++) {
+        if (outputPrereqs[k] === "" || outputPrereqs[k] === "NaN") {
+          console.log("outputPrereqs[" + k + "] === invalid input");
           setInvalidOutputPrereq(true);
           break;
         } else {
-          console.log("outputPrereqs[" + i + "] === valid input");
+          console.log("outputPrereqs[" + k + "] === valid input");
           setInvalidOutputPrereq(false);
         }
         console.log("invalidOutputPrereq = " + invalidOutputPrereq);
       }
 
-      for (var i = 0; i < outputCourses.length; i++) {
-        if (outputCourses[i] === "" || outputCourses[i] === "NaN") {
-          console.log("outputCourses[" + i + "] === invalid input");
+      for (var l = 0; l < outputCourses.length; l++) {
+        if (outputCourses[l] === "" || outputCourses[l] === "NaN") {
+          console.log("outputCourses[" + l + "] === invalid input");
           setInvalidOutputCourses(true);
           break;
         } else {
-          console.log("outputCourses[" + i + "] === valid input");
+          console.log("outputCourses[" + l + "] === valid input");
           setInvalidOutputCourses(false);
         }
         console.log("invalidOutputCourses = " + invalidOutputCourses);
@@ -384,10 +384,10 @@ export default function AdvisingRequest() {
 
         // api POST request to fill in the "prereq_mapping" table
         try {
-          for (var j = 0; j < outputPrereqs.length; j++) {
+          for (var a = 0; a < outputPrereqs.length; a++) {
             const formBody = JSON.stringify({
               advising_id: nextAdvisingID,
-              prereq_id: outputPrereqs[j],
+              prereq_id: outputPrereqs[a],
             });
             const response = await fetch(
               "https://sallg001-cs418-course-project.onrender.com/user_registration/updatePrereqMapping",
@@ -526,7 +526,7 @@ export default function AdvisingRequest() {
                       <div key={index}>
                         <select
                           required
-                          showSearch={true}
+                          //showSearch={true}
                           id="dropdown"
                           onChange={(e) => handlePrereqInputChange(e, index)}
                           defaultValue={"-- select an option --"}
@@ -563,7 +563,7 @@ export default function AdvisingRequest() {
                     {courseRows.map((courseRow, index) => (
                       <div key={index}>
                         <select
-                          showSearch={true}
+                          // showSearch={true}
                           required
                           id="dropdown"
                           onChange={(e) => handleCourseInputChange(e, index)}

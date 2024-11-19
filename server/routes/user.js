@@ -44,7 +44,7 @@ user.get("/:email", (req, res) => {
           data: result,
         });
       }
-    }
+    },
   );
 });
 
@@ -62,7 +62,7 @@ user.get("/:id", (req, res) => {
           data: result,
         });
       }
-    }
+    },
   );
 });
 
@@ -82,7 +82,7 @@ user.post("/", (req, res) => {
           data: result,
         });
       }
-    }
+    },
   );
 });
 
@@ -100,7 +100,7 @@ user.delete("/:id", (req, res) => {
           data: result,
         });
       }
-    }
+    },
   );
 });
 
@@ -119,7 +119,7 @@ user.post("/login", (req, res) => {
           SendMail(
             req.body.email,
             "Login Verification",
-            "Your login verification code is 1234567"
+            "Your login verification code is 1234567",
           );
 
           res.json({
@@ -131,7 +131,7 @@ user.post("/login", (req, res) => {
           res.json("Invalid Password");
         }
       }
-    }
+    },
   );
 });
 
@@ -154,7 +154,7 @@ user.post("/verifyIfEmailExists", (req, res) => {
           res.json("Email already in use");
         }
       }
-    }
+    },
   );
 });
 
@@ -185,7 +185,7 @@ user.post("/register", (req, res) => {
                 SendMail(
                   req.body.email,
                   "Registration Verification",
-                  "Your registration verification code is 1234567"
+                  "Your registration verification code is 1234567",
                 );
                 res.json({
                   status: 200,
@@ -193,7 +193,7 @@ user.post("/register", (req, res) => {
                   data: result,
                 });
               }
-            }
+            },
           );
         } else {
           res.json({
@@ -201,7 +201,7 @@ user.post("/register", (req, res) => {
           });
         }
       }
-    }
+    },
   );
 });
 
@@ -233,14 +233,14 @@ user.post("/forgot-password", (req, res) => {
           SendMail(
             req.body.email,
             "Temporary Password",
-            `Your new password is: ${tempPassword}`
+            `Your new password is: ${tempPassword}`,
           );
           return res
             .status(200)
             .json({ message: "A temp password has been sent to your email" });
-        }
+        },
       );
-    }
+    },
   );
 });
 
@@ -279,7 +279,7 @@ user.post("/change-password", (req, res) => {
                   data: result,
                 });
               }
-            }
+            },
           );
         } else {
           res.json({
@@ -288,7 +288,7 @@ user.post("/change-password", (req, res) => {
           });
         }
       }
-    }
+    },
   );
 });
 

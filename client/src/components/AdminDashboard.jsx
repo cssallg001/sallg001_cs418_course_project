@@ -83,12 +83,6 @@ export default function AdminDashboard() {
     navigate("/prerequisiteForm");
   }
 
-  const getSelectedPrereqValues = () => {
-    let selectPrereqElement = document.querySelector("[name=sel1]");
-    let optionValues = [...selectElement.options].map((o) => o.value);
-    console.log({ optionValues });
-  };
-
   return (
     <div className="mysqltesting-container">
       <div className="container">

@@ -9,31 +9,31 @@ import course_prereqs from "./routes/course_prereqs.js";
 import prerequisite_sets from "./routes/prerequisite_sets.js";
 import prerequisites from "./routes/prerequisites.js";
 import user_registration from "./routes/user_registration.js";
-const app=express();
-const port=8080;
+const app = express();
+const port = 8080;
 
-const myLogger=function(req,res,next){
-    console.log('Calling Api');
-    next()
-    console.log('Database has been successfully called');
-}
+const myLogger = function (req, res, next) {
+  console.log("Calling Api");
+  next();
+  console.log("Database has been successfully called");
+};
 
 app.use(myLogger);
 app.use(bodyParser.json());
-app.use(cors({
-    origin:"*"
-}))
-app.use('/user',user);
-app.use('/course',course);
-app.use('/course_prereqs',course_prereqs);
-app.use('/prerequisite_sets',prerequisite_sets);
-app.use('/prerequisites',prerequisites);
-app.use('/user_registration',user_registration);
+app.use(
+  cors({
+    origin: "*",
+  }),
+);
+app.use("/user", user);
+app.use("/course", course);
+app.use("/course_prereqs", course_prereqs);
+app.use("/prerequisite_sets", prerequisite_sets);
+app.use("/prerequisites", prerequisites);
+app.use("/user_registration", user_registration);
 
-
-
-app.listen(port,()=>{
-    console.log(`Server is running at port ${port}`);
+app.listen(port, () => {
+  console.log(`Server is running at port ${port}`);
 });
 
 export default app;
