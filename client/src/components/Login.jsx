@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import ReCaptcha from "react-google-recaptcha";
 import { useNavigate } from "react-router-dom";
 import "../index.css";
@@ -13,6 +13,18 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [userID, setUserID] = useState("");
   const refRecaptcha = useRef(null);
+
+
+  useEffect(() => {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    }
+    link.href = "/public/login.png";
+  }, []);
+
 
   const handleLogin = async (e) => {
     e.preventDefault();

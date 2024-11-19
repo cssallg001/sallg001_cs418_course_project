@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import ReCaptcha from "react-google-recaptcha";
 import "../index.css";
 
 export default function AdvisingRequest() {
@@ -35,6 +36,8 @@ export default function AdvisingRequest() {
       id: "",
     },
   ]);
+
+  const refRecaptcha = useRef(null);
 
   useEffect(() => {
     const fetchLargestAdvisingID = async () => {
@@ -453,7 +456,7 @@ export default function AdvisingRequest() {
   };
 
   function handleRedirecting() {
-    navigate("/advisingPortal");
+    navigate("/advisingHistory");
   }
 
   return (
@@ -469,133 +472,133 @@ export default function AdvisingRequest() {
         </div>
       </div>
       <div className="advising-portal-container">
-        <form onSubmit={handleSubmit}>
+        <div className="Title">
           <div className="Title">
-            <div className="Title">
-              <div className="advising-user-information">
+            <div className="advising-user-information">
+              <div className="testResultOutput">
+                <h1 className="text-center">Enter your information:</h1>
                 <div className="testResultOutput">
-                  <h1 className="text-center">Enter your information:</h1>
-                  <div className="testResultOutput">
-                    <div className="mb-3">
-                      <label className="form-label">Last Term: </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        onChange={(e) => setLastTerm(e.target.value)}
-                        required
-                      />
-                    </div>
-                    <label className="form-label">Last GPA: </label>
+                  <div className="mb-3">
+                    <label className="form-label">Last Term: </label>
                     <input
-                      type="number"
-                      id="number-input"
-                      step="0.1"
-                      min="0"
-                      max="4.0"
-                      aria-describedby="helper-text-explanation"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                      onChange={(e) => setLastGPA(e.target.value)}
+                      type="text"
+                      className="form-control"
+                      onChange={(e) => setLastTerm(e.target.value)}
                       required
                     />
-                    <div className="mb-3">
-                      <label className="form-label">Current Term: </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        onChange={(e) => setCurrentTerm(e.target.value)}
-                        required
-                      />
-                    </div>
+                  </div>
+                  <label className="form-label">Last GPA: </label>
+                  <input
+                    type="number"
+                    id="number-input"
+                    step="0.1"
+                    min="0"
+                    max="4.0"
+                    aria-describedby="helper-text-explanation"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    onChange={(e) => setLastGPA(e.target.value)}
+                    required
+                  />
+                  <div className="mb-3">
+                    <label className="form-label">Current Term: </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      onChange={(e) => setCurrentTerm(e.target.value)}
+                      required
+                    />
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="Title">
-            <div className="prequisite-choices">
+        </div>
+        <div className="Title">
+          <div className="prequisite-choices">
+            <div className="testResultOutput">
+              <h1 className="text-center">
+                <p>Choose your prerequisites:</p>
+              </h1>
               <div className="testResultOutput">
-                <h1 className="text-center">
-                  <p>Choose your prerequisites:</p>
-                </h1>
-                <div className="testResultOutput">
+                <div>
                   <div>
-                    <div>
-                      {prereqRows.map((prereqRow, index) => (
-                        <div key={index}>
-                          <select
-                            required
-                            showSearch={true}
-                            id="dropdown"
-                            onChange={(e) => handlePrereqInputChange(e, index)}
-                            defaultValue={"-- select an option --"}
-                          >
-                            <option selected value>
-                              {"-- select an option --"}
-                            </option>
-                            {prereqOptions.map((prereqOptions) => (
-                              <option
-                                key={prereqOptions.value}
-                                value={prereqOptions.value}
-                                label={prereqOptions.label}
-                              ></option>
-                            ))}
-                          </select>
-                        </div>
-                      ))}
-                    </div>
-                    <button onClick={handlePrereqAddRow}>
-                      Add Prerequisite
-                    </button>
+                    {prereqRows.map((prereqRow, index) => (
+                      <div key={index}>
+                        <select
+                          required
+                          showSearch={true}
+                          id="dropdown"
+                          onChange={(e) => handlePrereqInputChange(e, index)}
+                          defaultValue={"-- select an option --"}
+                        >
+                          <option selected value>
+                            {"-- select an option --"}
+                          </option>
+                          {prereqOptions.map((prereqOptions) => (
+                            <option
+                              key={prereqOptions.value}
+                              value={prereqOptions.value}
+                              label={prereqOptions.label}
+                            ></option>
+                          ))}
+                        </select>
+                      </div>
+                    ))}
                   </div>
+                  <button onClick={handlePrereqAddRow}>
+                    Add Prerequisite
+                  </button>
                 </div>
               </div>
             </div>
           </div>
-          <div className="Title">
-            <div className="course-plan-information">
+        </div>
+        <div className="Title">
+          <div className="course-plan-information">
+            <div className="testResultOutput">
+              <h1 className="text-center">Choose your courses:</h1>
               <div className="testResultOutput">
-                <h1 className="text-center">Choose your courses:</h1>
-                <div className="testResultOutput">
+                <div>
                   <div>
-                    <div>
-                      {courseRows.map((courseRow, index) => (
-                        <div key={index}>
-                          <select
-                            showSearch={true}
-                            required
-                            id="dropdown"
-                            onChange={(e) => handleCourseInputChange(e, index)}
-                            defaultValue={"-- select an option --"}
-                          >
-                            <option selected value>
-                              {"-- select an option --"}
-                            </option>
-                            {courseOptions.map((courseOptions) => (
-                              <option
-                                key={courseOptions.value}
-                                value={courseOptions.value}
-                                label={courseOptions.label}
-                              ></option>
-                            ))}
-                          </select>
-                        </div>
-                      ))}
-                    </div>
-                    <button onClick={handleCourseAddRow}>Add Course</button>
+                    {courseRows.map((courseRow, index) => (
+                      <div key={index}>
+                        <select
+                          showSearch={true}
+                          required
+                          id="dropdown"
+                          onChange={(e) => handleCourseInputChange(e, index)}
+                          defaultValue={"-- select an option --"}
+                        >
+                          <option selected value>
+                            {"-- select an option --"}
+                          </option>
+                          {courseOptions.map((courseOptions) => (
+                            <option
+                              key={courseOptions.value}
+                              value={courseOptions.value}
+                              label={courseOptions.label}
+                            ></option>
+                          ))}
+                        </select>
+                      </div>
+                    ))}
                   </div>
+                  <button onClick={handleCourseAddRow}>Add Course</button>
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          {errorMessage && <p className="text-danger">{errorMessage}</p>}
-          {successMessage && <p className="text-success">{successMessage}</p>}
+        {errorMessage && <p className="text-danger">{errorMessage}</p>}
+        {successMessage && <p className="text-success">{successMessage}</p>}
 
-          {/* {clickStatus ? (
-            <button type="submit" className="large-btn" disabled>
-              Submit
-            </button>
+        {/* {clickStatus ? (
+          <button type="submit" className="large-btn" disabled>
+          Submit
+          </button>
           ) : ( */}
+        <form onSubmit={handleSubmit}>
           <button type="submit" className="large-btn">
             Submit
           </button>

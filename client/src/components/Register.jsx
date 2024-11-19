@@ -1,10 +1,20 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import ReCaptcha from "react-google-recaptcha";
 import { useNavigate } from "react-router-dom";
 import "../index.css";
 
 export default function Register() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    }
+    link.href = "/public/reg.png";
+  }, []);
 
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword1, setEnteredPassword1] = useState("");

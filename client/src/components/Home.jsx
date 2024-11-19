@@ -1,9 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../index.css";
 
 export default function Home() {
   const navigate = useNavigate();
+
+
+  useEffect(() => {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    }
+    link.href = "/public/home.png";
+  }, []);
+
+
+
+
+
+
+
+
+
 
   function handleLoginPage() {
     navigate("/login");

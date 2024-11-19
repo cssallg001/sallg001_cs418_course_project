@@ -17,6 +17,17 @@ export default function TwoFactorAuthentication() {
   const [enteredLastName, setEnteredLastName] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
 
+
+  useEffect(() => {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    }
+    link.href = "/public/2FA.png";
+  }, []);
+
   useEffect(() => {
     const storedUserStateVal = localStorage.getItem("storedUserStateVal");
     if (storedUserStateVal) {

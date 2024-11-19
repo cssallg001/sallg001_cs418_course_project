@@ -5,6 +5,16 @@ import "../index.css";
 export default function MYSQLTesting() {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    }
+    link.href = "/public/test.png";
+  }, []);
+
   const [allSQLErrorMessage, setAllSQLErrorMessage] = useState("");
   const [allSQLSuccessMessage, setAllSQLSuccessMessage] = useState("");
 
