@@ -16,6 +16,11 @@ export default function Home() {
     link.href = "/public/about.png";
   }, []);
 
+  useEffect(() => {
+    document.title = "About - Course Advising"
+ }, []);
+
+
 
   function handleBackPage() {
     navigate("/home");

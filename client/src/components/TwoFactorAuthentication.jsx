@@ -29,6 +29,10 @@ export default function TwoFactorAuthentication() {
   }, []);
 
   useEffect(() => {
+    document.title = "2FA - Course Advising"
+ }, []);
+
+  useEffect(() => {
     const storedUserStateVal = localStorage.getItem("storedUserStateVal");
     if (storedUserStateVal) {
       const parsedData = JSON.parse(storedUserStateVal);

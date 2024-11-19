@@ -15,6 +15,10 @@ export default function Dashboard () {
         link.href = "/public/user.png";
       }, []);
 
+    useEffect(() => {
+    document.title = "User - Course Advising"
+    }, []);
+
     const [userStateVal, setUserStateVal] = useState('');
     
     const [firstName, setFirstName] = useState('');

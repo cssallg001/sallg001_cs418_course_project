@@ -15,6 +15,10 @@ export default function MYSQLTesting() {
     link.href = "/public/test.png";
   }, []);
 
+  useEffect(() => {
+    document.title = "Testing - Course Advising"
+ }, []);
+
   const [allSQLErrorMessage, setAllSQLErrorMessage] = useState("");
   const [allSQLSuccessMessage, setAllSQLSuccessMessage] = useState("");
 

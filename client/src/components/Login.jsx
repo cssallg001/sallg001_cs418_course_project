@@ -25,6 +25,9 @@ export default function Login() {
     link.href = "/public/login.png";
   }, []);
 
+  useEffect(() => {
+    document.title = "Login - Course Advising"
+ }, []);
 
   const handleLogin = async (e) => {
     e.preventDefault();

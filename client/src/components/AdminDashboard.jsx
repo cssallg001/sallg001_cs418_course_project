@@ -15,6 +15,11 @@ export default function AdminDashboard() {
     link.href = "/public/admin.png";
   }, []);
 
+  useEffect(() => {
+    document.title = "Admin - Course Advising"
+ }, []);
+
+
   const [userStateVal, setUserStateVal] = useState("");
 
   const [firstName, setFirstName] = useState("");

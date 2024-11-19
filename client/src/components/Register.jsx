@@ -16,6 +16,10 @@ export default function Register() {
     link.href = "/public/reg.png";
   }, []);
 
+  useEffect(() => {
+    document.title = "Register - Course Advising"
+ }, []);
+
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword1, setEnteredPassword1] = useState("");
   const [enteredPassword2, setEnteredPassword2] = useState("");
