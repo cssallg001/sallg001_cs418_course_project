@@ -38,7 +38,7 @@ export default function Register() {
     const currentValue = refRecaptcha.current.getValue();
 
     if (!currentValue) {
-      alert("Please verify you are human!");
+      alert("Verify you are human!");
     } else {
       try {
         if (enteredPassword1 !== enteredPassword2) {

@@ -19,7 +19,7 @@ export default function ForgotUserPassword() {
     const currentValue = refRecaptcha.current.getValue();
 
     if (!currentValue) {
-      alert("Please verify you are human!");
+      alert("Verify you are human!");
     } else {
       setPasswordError("");
       setPasswordSuccess("");
