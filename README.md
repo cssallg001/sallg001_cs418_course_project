@@ -75,7 +75,7 @@ point 1), and the new status of the student’s record will be updated according
 provided by admin.
 5. - [ ] Now student will be able to see the updated status of their advising sheet on Course Advising
 History form.
-6. - [ ] Add reCAPTCHA to the login page. Verify the reCAPTCHA before login. Once the reCAPTCHA is
+6. - [x] Add reCAPTCHA to the login page. Verify the reCAPTCHA before login. Once the reCAPTCHA is
 verified then user can logged in into the system.
 7. - [ ] Prevent your application from clickjacking attack. Implement the prevention of click jacking.
 Show the clickjacking prevention by using <iframe> in .html form.
