@@ -77,9 +77,9 @@ provided by admin.
 History form.
 6. - [x] Add reCAPTCHA to the login page. Verify the reCAPTCHA before login. Once the reCAPTCHA is
 verified then user can logged in into the system.
-7. - [ ] Prevent your application from clickjacking attack. Implement the prevention of click jacking.
+7. - [x] Prevent your application from clickjacking attack. Implement the prevention of click jacking.
 Show the clickjacking prevention by using <iframe> in .html form.
-8. - [ ] Add a favicon to the website.
+8. - [x] Add a favicon to the website.
 9. - [ ] Add a password rule requiring a mix of capital letters, lowercase letters, special characters, and
 numbers (implement regex for all password fields in the application). The password length
 should be at least 8 characters.
