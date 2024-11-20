@@ -117,10 +117,17 @@ export default function Login() {
 
   return (
     <div className="mysqltesting-container">
-      <div className="container">
-        <h1 className="Title">
+      <div className="Title">
+        <div className="mysqltesting-menu-container">
           <h1 className="text-center">Login</h1>
-        </h1>
+          <form onSubmit={handleBackPage}>
+            <button type="submit" className="btn btn-createAccount">
+              Go back
+            </button>
+          </form>
+        </div>
+      </div>
+      <div className="advising-portal-container">
         <form onSubmit={handleLogin}>
           <div className="mb-3">
             <label className="form-label">Email: </label>
@@ -159,11 +166,6 @@ export default function Login() {
         <form onSubmit={handleForgotPassword}>
           <button type="submit" className="btn btn-createAccount">
             Forgot password?
-          </button>
-        </form>
-        <form onSubmit={handleBackPage}>
-          <button type="submit" className="btn btn-createAccount">
-            Go back
           </button>
         </form>
       </div>

@@ -88,26 +88,34 @@ export default function Dashboard() {
 
   return (
     <div className="mysqltesting-container">
-      <div className="container">
-        <div className="Title">
+      <div className="Title">
+        <div className="mysqltesting-menu-container">
           <h1 className="text-center">Dashboard</h1>
-          <div>Welcome, {enteredEmail}!</div>
-          <form onSubmit={handleUpdateInformation}>
-            <button type="submit" className="btn btn-createAccount">
-              Update Information
-            </button>
-          </form>
-          <form onSubmit={handleAdvisingPortal}>
-            <button type="submit" className="btn btn-createAccount">
-              Advising Portal
-            </button>
-          </form>
           <form onSubmit={handleBackPage}>
             <button type="submit" className="btn btn-createAccount">
-              Log out
+              Go back
             </button>
           </form>
         </div>
+      </div>
+      <div className="advising-portal-container">
+        <h1 className="text-center">Dashboard</h1>
+        <div>Welcome, {enteredEmail}!</div>
+        <form onSubmit={handleUpdateInformation}>
+          <button type="submit" className="btn btn-createAccount">
+            Update Information
+          </button>
+        </form>
+        <form onSubmit={handleAdvisingPortal}>
+          <button type="submit" className="btn btn-createAccount">
+            Advising Portal
+          </button>
+        </form>
+        <form onSubmit={handleBackPage}>
+          <button type="submit" className="btn btn-createAccount">
+            Log out
+          </button>
+        </form>
       </div>
     </div>
   );

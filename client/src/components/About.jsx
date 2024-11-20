@@ -25,19 +25,19 @@ export default function Home() {
 
   return (
     <div className="mysqltesting-container">
-      <div className="container">
-        <div className="Title">
+      <div className="Title">
+        <div className="mysqltesting-menu-container">
           <h1 className="text-center">About</h1>
-
-          <p>CS 418 Course Project</p>
-          <p>By Sean Allgaier</p>
-
           <form onSubmit={handleBackPage}>
             <button type="submit" className="btn btn-createAccount">
               Go back
             </button>
           </form>
         </div>
+      </div>
+      <div className="advising-portal-container">
+        <h2 className="text-center">CS 418 Course Project</h2>
+        <h2 className="text-center">By Sean Allgaier</h2>
       </div>
     </div>
   );

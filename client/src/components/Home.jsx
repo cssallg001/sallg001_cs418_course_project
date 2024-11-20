@@ -37,30 +37,33 @@ export default function Home() {
 
   return (
     <div className="mysqltesting-container">
-      <div className="container">
-        <div className="Title">
+      <div className="Title">
+        <div className="mysqltesting-menu-container">
           <h1 className="text-center">Home</h1>
-          <form onSubmit={handleLoginPage}>
-            <button type="submit" className="btn btn-primary">
-              Login
-            </button>
-          </form>
-          <form onSubmit={handleRegistrationPage}>
-            <button type="submit" className="btn btn-primary">
-              Register
-            </button>
-          </form>
-          <form onSubmit={handleAboutPage}>
-            <button type="submit" className="btn btn-primary">
-              About
-            </button>
-          </form>
-          <form onSubmit={handleMySQLPage}>
-            <button type="submit" className="btn btn-primary">
-              MySQL Testing
-            </button>
-          </form>
         </div>
+      </div>
+
+      <div className="advising-portal-container">
+        <form onSubmit={handleLoginPage}>
+          <button type="submit" className="btn btn-primary">
+            Login
+          </button>
+        </form>
+        <form onSubmit={handleRegistrationPage}>
+          <button type="submit" className="btn btn-primary">
+            Register
+          </button>
+        </form>
+        <form onSubmit={handleAboutPage}>
+          <button type="submit" className="btn btn-primary">
+            About
+          </button>
+        </form>
+        <form onSubmit={handleMySQLPage}>
+          <button type="submit" className="btn btn-primary">
+            MySQL Testing
+          </button>
+        </form>
       </div>
     </div>
   );

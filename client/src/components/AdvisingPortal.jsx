@@ -20,22 +20,30 @@ export default function AdvisingPortal() {
       <div className="Title">
         <div className="mysqltesting-menu-container">
           <h1 className="text-center">Advising Portal</h1>
-          <form onSubmit={handleAdvisingHistory}>
-            <button type="submit" className="btn btn-createAccount">
-              Advising History
-            </button>
-          </form>
-          <form onSubmit={handleAdvisingRequest}>
-            <button type="submit" className="btn btn-createAccount">
-              Advising Request
-            </button>
-          </form>
           <form onSubmit={handleBackPage}>
             <button type="submit" className="btn btn-createAccount">
               Go back
             </button>
           </form>
         </div>
+      </div>
+      <div className="advising-portal-container">
+        <h1 className="text-center">Advising Portal</h1>
+        <form onSubmit={handleAdvisingHistory}>
+          <button type="submit" className="btn btn-createAccount">
+            Advising History
+          </button>
+        </form>
+        <form onSubmit={handleAdvisingRequest}>
+          <button type="submit" className="btn btn-createAccount">
+            Advising Request
+          </button>
+        </form>
+        <form onSubmit={handleBackPage}>
+          <button type="submit" className="btn btn-createAccount">
+            Go back
+          </button>
+        </form>
       </div>
     </div>
   );

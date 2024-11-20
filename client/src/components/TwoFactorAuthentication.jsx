@@ -173,8 +173,17 @@ export default function TwoFactorAuthentication() {
 
   return (
     <div className="mysqltesting-container">
-      <div className="container mt-5">
-        <h1 className="Title">2-Factor-Authentication</h1>
+      <div className="Title">
+        <div className="mysqltesting-menu-container">
+          <h1 className="text-center">2-Factor-Authentication</h1>
+          <form onSubmit={handleBackPage}>
+            <button type="submit" className="btn btn-createAccount">
+              Go back
+            </button>
+          </form>
+        </div>
+      </div>
+      <div className="advising-portal-container">
         <form onSubmit={handleAuthentication}>
           <div className="mb-3">
             <label className="form-label">Code: </label>
@@ -189,12 +198,6 @@ export default function TwoFactorAuthentication() {
           {errorMessage && <p className="text-danger">{errorMessage}</p>}
           <button type="submit" className="btn btn-primary">
             Submit
-          </button>
-        </form>
-
-        <form onSubmit={handleBackPage}>
-          <button type="submit" className="btn btn-createAccount">
-            Go back
           </button>
         </form>
       </div>
