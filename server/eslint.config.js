@@ -1,6 +1,6 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
-import stylistic from "@stylistic/eslint-plugin";
+import stylistic from '@stylistic/eslint-plugin';
 import pluginReact from "eslint-plugin-react";
 
 import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
@@ -25,7 +25,7 @@ export default [
   pluginReact.configs.flat.recommended,
   {
     plugins: {
-      "@stylistic": stylistic,
+      '@stylistic': stylistic
     },
     rules: {
       "valid-jsdoc": "off",

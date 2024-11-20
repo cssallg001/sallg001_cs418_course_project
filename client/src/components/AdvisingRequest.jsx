@@ -43,7 +43,7 @@ export default function AdvisingRequest() {
     const fetchLargestAdvisingID = async () => {
       const response = await fetch(
         //http://localhost:8080/user_registration/yoink_advising_id"
-        "https://sallg001-cs418-course-project.onrender.com/user_registration/yoink_advising_id"
+        "https://sallg001-cs418-course-project.onrender.com/user_registration/yoink_advising_id",
         //import.meta.env.VITE_API_KEY + '/user_registration/yoink_advising_id'
       );
       const data = await response.json();
@@ -122,7 +122,7 @@ export default function AdvisingRequest() {
     const fetchPrereqData = async () => {
       const response = await fetch(
         //http://localhost:8080/prerequisites/prereqAdvisingPortalRequest"
-        "https://sallg001-cs418-course-project.onrender.com/prerequisites/prereqAdvisingPortalRequest"
+        "https://sallg001-cs418-course-project.onrender.com/prerequisites/prereqAdvisingPortalRequest",
         //import.meta.env.VITE_API_KEY + '/prerequisites/prereqAdvisingPortalRequest'
       );
       const data = await response.json();
@@ -172,7 +172,7 @@ export default function AdvisingRequest() {
       const response = await fetch(
         //import.meta.env.VITE_API_KEY + '/course/courseAdvisingPortalRequest'
         //'http://localhost:8080/prerequisites/course/courseAdvisingPortalRequest'
-        "https://sallg001-cs418-course-project.onrender.com/course/courseAdvisingPortalRequest"
+        "https://sallg001-cs418-course-project.onrender.com/course/courseAdvisingPortalRequest",
       );
       const data = await response.json();
 
@@ -310,20 +310,20 @@ export default function AdvisingRequest() {
 
       if (currentTerm === lastTerm) {
         setSubErrorMessage(
-          "The last term cannot be the same as the current term. Please try again"
+          "The last term cannot be the same as the current term. Please try again",
         );
         throw new Error(
-          "The last term cannot be the same as the current term. Please try again"
+          "The last term cannot be the same as the current term. Please try again",
         );
       } else if (
         invalidOutputPrereq === true &&
         invalidOutputCourses === true
       ) {
         setSubErrorMessage(
-          "Invalid courses and prerequisite input. Please try again"
+          "Invalid courses and prerequisite input. Please try again",
         );
         throw new Error(
-          "Invalid courses and prerequisite input. Please try again"
+          "Invalid courses and prerequisite input. Please try again",
         );
       } else if (
         invalidOutputCourses === true &&
@@ -339,20 +339,20 @@ export default function AdvisingRequest() {
         throw new Error("Invalid prerequisite input. Please try again");
       } else if (hasMatchingValues(outputCourses, outputPrereqs)) {
         setSubErrorMessage(
-          "Courses and prerequisites can't be the same. Please try again"
+          "Courses and prerequisites can't be the same. Please try again",
         );
         throw new Error(
-          "Courses and prerequisites can't be the same. Please try again"
+          "Courses and prerequisites can't be the same. Please try again",
         );
       } else if (hasDuplicates(outputPrereqs)) {
         setSubErrorMessage("Can't choose duplicate courses. Please try again");
         throw new Error("Can't choose duplicate courses. Please try again");
       } else if (hasDuplicates(outputCourses)) {
         setSubErrorMessage(
-          "Can't choose duplicate prerequisites. Please try again"
+          "Can't choose duplicate prerequisites. Please try again",
         );
         throw new Error(
-          "Can't choose duplicate prerequisites. Please try again"
+          "Can't choose duplicate prerequisites. Please try again",
         );
       }
 
@@ -373,11 +373,11 @@ export default function AdvisingRequest() {
               headers: {
                 "content-type": "application/json",
               },
-            }
+            },
           );
           if (!response.ok) {
             throw new Error(
-              "Error occured while adding courses to advising records. Please try again."
+              "Error occured while adding courses to advising records. Please try again.",
             );
           }
         }
@@ -397,11 +397,11 @@ export default function AdvisingRequest() {
                 headers: {
                   "content-type": "application/json",
                 },
-              }
+              },
             );
             if (!response.ok) {
               throw new Error(
-                "Error occured while adding courses to advising records. Please try again."
+                "Error occured while adding courses to advising records. Please try again.",
               );
             }
           }
@@ -424,11 +424,11 @@ export default function AdvisingRequest() {
                 headers: {
                   "content-type": "application/json",
                 },
-              }
+              },
             );
             if (!response.ok) {
               throw new Error(
-                "Error occured while adding user information to advising records. Please try again."
+                "Error occured while adding user information to advising records. Please try again.",
               );
             }
             setClickStatus(true);
@@ -446,7 +446,7 @@ export default function AdvisingRequest() {
       }
 
       setSuccessMessage(
-        "Registration information saved successfully! Redirecting to advising history..."
+        "Registration information saved successfully! Redirecting to advising history...",
       );
       setTimeout(handleRedirecting, 1500);
     } catch (error) {
@@ -545,9 +545,7 @@ export default function AdvisingRequest() {
                       </div>
                     ))}
                   </div>
-                  <button onClick={handlePrereqAddRow}>
-                    Add Prerequisite
-                  </button>
+                  <button onClick={handlePrereqAddRow}>Add Prerequisite</button>
                 </div>
               </div>
             </div>

@@ -8,17 +8,16 @@ export default function AdminDashboard() {
   useEffect(() => {
     let link = document.querySelector("link[rel~='icon']");
     if (!link) {
-      link = document.createElement('link');
-      link.rel = 'icon';
-      document.getElementsByTagName('head')[0].appendChild(link);
+      link = document.createElement("link");
+      link.rel = "icon";
+      document.getElementsByTagName("head")[0].appendChild(link);
     }
     link.href = "/public/admin.png";
   }, []);
 
   useEffect(() => {
-    document.title = "Admin - Course Advising"
- }, []);
-
+    document.title = "Admin - Course Advising";
+  }, []);
 
   const [userStateVal, setUserStateVal] = useState("");
 
@@ -67,7 +66,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     const storedConfirmedPassword = localStorage.getItem(
-      "storedConfirmedPassword"
+      "storedConfirmedPassword",
     );
     if (storedConfirmedPassword) {
       const parsedData = storedConfirmedPassword;

@@ -20,8 +20,7 @@ export default function ChangeInformation() {
   const [newPassword, setNewPassword] = useState("");
   const [enteredOldPassword, setEnteredOldPassword] = useState("");
   const [inputtedEmail, setInputtedEmail] = useState("");
-  const refRecaptcha=useRef(null);
-
+  const refRecaptcha = useRef(null);
 
   useEffect(() => {
     const storedUserStateVal = localStorage.getItem("storedUserStateVal");
@@ -55,7 +54,7 @@ export default function ChangeInformation() {
 
   useEffect(() => {
     const storedConfirmedPassword = localStorage.getItem(
-      "storedConfirmedPassword"
+      "storedConfirmedPassword",
     );
     if (storedConfirmedPassword) {
       const parsedData = storedConfirmedPassword;
@@ -66,15 +65,11 @@ export default function ChangeInformation() {
   const handleChangingInformation = async (e) => {
     e.preventDefault();
 
-    const currentValue=refRecaptcha.current.getValue();
+    const currentValue = refRecaptcha.current.getValue();
 
     if (!currentValue) {
-      alert("Verify you are human!")
-    } else 
-    {
-
-
-
+      alert("Verify you are human!");
+    } else {
       setPasswordError("");
       setPasswordSuccess("");
 
@@ -114,7 +109,7 @@ export default function ChangeInformation() {
               currentPassword: enteredOldPassword,
               newPassword: enteredPassword1,
             }),
-          }
+          },
         );
 
         if (!response.ok) {
@@ -194,10 +189,12 @@ export default function ChangeInformation() {
               <p className="text-success">{passwordSuccess}</p>
             )}
             <div className="form_group_recaptcha">
-                    <ReCaptcha required sitekey={import.meta.env.VITE_SITE_KEY} ref={refRecaptcha}>
-
-</ReCaptcha>
-</div>
+              <ReCaptcha
+                required
+                sitekey={import.meta.env.VITE_SITE_KEY}
+                ref={refRecaptcha}
+              ></ReCaptcha>
+            </div>
             <button type="submit" className="btn btn-primary">
               Submit
             </button>
