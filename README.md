@@ -86,7 +86,7 @@ Professor: Dr. Nasreen Arif
 7. - [x] Prevent your application from clickjacking attack. Implement the prevention of click jacking.
          Show the clickjacking prevention by using <iframe> in .html form.
 8. - [x] Add a favicon to the website.
-9. - [ ] Add a password rule requiring a mix of capital letters, lowercase letters, special characters, and
+9. - [x] Add a password rule requiring a mix of capital letters, lowercase letters, special characters, and
          numbers (implement regex for all password fields in the application). The password length
          should be at least 8 characters.
 10. - [ ] Create test cases and execute in your BE application (Create at least 3 test cases).
