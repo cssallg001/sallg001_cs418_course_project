@@ -39,6 +39,10 @@ export default function PrerequisiteForm() {
 
   const [updateToggleVal, setUpdateToggleVal] = useState(false);
 
+  useEffect(() => {
+    handleDisplayPrerequisites();
+  }, []);
+
   const handleDisplayPrerequisites = async (e) => {
     setDisplayPrereqErrorMessage("");
     setDisplayPrereqSuccessMessage("");
@@ -87,6 +91,7 @@ export default function PrerequisiteForm() {
       setDisplayPrereqErrorMessage("Error occurred: Please try again");
     }
   };
+
   // function renderPrereqMap(prereqData) {
 
   //     this.state.
@@ -196,7 +201,7 @@ export default function PrerequisiteForm() {
   }
 
   // function handleResetBoxes() {
-  //     setSelectedBoxes([])
+  //   setSelectedBoxes([]);
   // }
 
   const handleCheckBoxChanges = async (fixedToggleVal, id) => {
@@ -377,7 +382,7 @@ export default function PrerequisiteForm() {
                     {/* <th>MESSAGE</th> */}
                     {prereqData.map((prereq, index) => {
                       return (
-                        <tbody key={"prereqKey"}>
+                        <tbody key={"prereqFormKey"}>
                           <tr>
                             {/* <td>{prereq.prereq_id}</td> */}
                             <td>{prereq.prereq_level}</td>

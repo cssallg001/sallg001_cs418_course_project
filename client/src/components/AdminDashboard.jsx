@@ -89,7 +89,7 @@ export default function AdminDashboard() {
           <h1 className="text-center">Admin Dashboard</h1>
           <form onSubmit={handleBackPage}>
             <button type="submit" className="btn btn-createAccount">
-              Go back
+              Log out
             </button>
           </form>
         </div>
@@ -100,11 +100,6 @@ export default function AdminDashboard() {
         <form onSubmit={handlePrerequisiteForm}>
           <button type="submit" className="btn btn-createAccount">
             Prerequisite Form
-          </button>
-        </form>
-        <form onSubmit={handleBackPage}>
-          <button type="submit" className="btn btn-createAccount">
-            Log out
           </button>
         </form>
       </div>

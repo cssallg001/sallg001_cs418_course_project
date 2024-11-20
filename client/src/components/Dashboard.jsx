@@ -93,7 +93,7 @@ export default function Dashboard() {
           <h1 className="text-center">Dashboard</h1>
           <form onSubmit={handleBackPage}>
             <button type="submit" className="btn btn-createAccount">
-              Go back
+              Log out
             </button>
           </form>
         </div>
@@ -109,11 +109,6 @@ export default function Dashboard() {
         <form onSubmit={handleAdvisingPortal}>
           <button type="submit" className="btn btn-createAccount">
             Advising Portal
-          </button>
-        </form>
-        <form onSubmit={handleBackPage}>
-          <button type="submit" className="btn btn-createAccount">
-            Log out
           </button>
         </form>
       </div>
