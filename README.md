@@ -79,7 +79,7 @@ Professor: Dr. Nasreen Arif
 3. - [ ] Implement status update of student records upon submission of approval or rejection.
 4. - [ ] Upon submission, student will receive an email where they can see the status and message
          provided by admin.
-5. - [ ] Now student will be able to see the updated status of their advising sheet on Course Advising
+5. - [ ] New student will be able to see the updated status of their advising sheet on Course Advising
          History form.
 6. - [x] Add reCAPTCHA to the login page. Verify the reCAPTCHA before login. Once the reCAPTCHA is
          verified then user can logged in into the system.
