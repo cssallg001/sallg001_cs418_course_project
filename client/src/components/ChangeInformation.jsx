@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import ReCaptcha from "react-google-recaptcha";
 import { useNavigate } from "react-router-dom";
+import PasswordChecklist from "react-password-checklist";
 import "../index.css";
 
 export default function ChangeInformation() {
@@ -140,9 +141,16 @@ export default function ChangeInformation() {
 
   return (
     <div className="mysqltesting-container">
-      <div className="container">
-        <div className="Title">
+      <div className="Title">
+        <div className="mysqltesting-menu-container">
           <h1 className="text-center">Update Information</h1>
+          <form onSubmit={handleBackPage}>
+            <button type="submit" className="btn btn-createAccount">
+              Go back
+            </button>
+          </form>
+        </div>
+        <div className="advising-portal-container">
           <form onSubmit={handleChangingInformation}>
             <div className="mb-3">
               <label className="form-label">Confirm Email: </label>
@@ -184,6 +192,21 @@ export default function ChangeInformation() {
                 required
               />
             </div>
+            <div className="passwordCheckList">
+              <PasswordChecklist
+                rules={[
+                  "minLength",
+                  "specialChar",
+                  "number",
+                  "capital",
+                  "match",
+                ]}
+                minLength={8}
+                value={enteredPassword1}
+                valueAgain={enteredPassword2}
+                onChange={(isValid) => {}}
+              ></PasswordChecklist>
+            </div>
             {passwordError && <p className="text-danger">{passwordError}</p>}
             {passwordSuccess && (
               <p className="text-success">{passwordSuccess}</p>
@@ -197,11 +220,6 @@ export default function ChangeInformation() {
             </div>
             <button type="submit" className="btn btn-primary">
               Submit
-            </button>
-          </form>
-          <form onSubmit={handleBackPage}>
-            <button type="submit" className="btn btn-createAccount">
-              Go back
             </button>
           </form>
         </div>

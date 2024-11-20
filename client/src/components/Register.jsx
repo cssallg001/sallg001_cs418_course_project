@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import ReCaptcha from "react-google-recaptcha";
 import { useNavigate } from "react-router-dom";
+import PasswordChecklist from "react-password-checklist";
 import "../index.css";
 
 export default function Register() {
@@ -114,8 +115,8 @@ export default function Register() {
         }
       } catch (error) {
         if (errVal === 0) {
-          console.error("Registration Error: Passwords do not match", error);
-          setErrorMessage("Error: Passwords do not match");
+          // console.error("Registration Error: Passwords do not match", error);
+          // setErrorMessage("Error: Passwords do not match");
         } else if (errVal === 1) {
           console.error("Registration Error: Email already in use", error);
           setErrorMessage("Error: Email already in use. Please try again.");
@@ -130,81 +131,98 @@ export default function Register() {
 
   return (
     <div className="mysqltesting-container">
-      <div className="container mt-5">
-        <h1 className="Title">
+      <div className="Title">
+        <div className="mysqltesting-menu-container">
           <h1 className="text-center">Register</h1>
-        </h1>
-        <form onSubmit={handleRegister}>
-          <div className="mb-3">
-            <label className="form-label">First Name: </label>
-            <input
-              type="text"
-              className="form-control"
-              value={enteredFirstName}
-              onChange={(e) => setEnteredFirstName(e.target.value)}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Last Name: </label>
-            <input
-              type="text"
-              className="form-control"
-              value={enteredLastName}
-              onChange={(e) => setEnteredLastName(e.target.value)}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Email: </label>
-            <input
-              type="email"
-              className="form-control"
-              value={enteredEmail}
-              onChange={(e) => setEnteredEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Password: </label>
-            <input
-              type="Password"
-              className="form-control"
-              value={enteredPassword1}
-              onChange={(e) => setEnteredPassword1(e.target.value)}
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <label className="form-label">Confirm Password: </label>
-            <input
-              type="Password"
-              className="form-control"
-              value={enteredPassword2}
-              onChange={(e) => setEnteredPassword2(e.target.value)}
-              required
-            />
-          </div>
-          {errorMessage && <p className="text-danger">{errorMessage}</p>}
+          <form onSubmit={handleBackPage}>
+            <button type="submit" className="btn btn-createAccount">
+              Go back
+            </button>
+          </form>
+        </div>
+        <div className="advising-portal-container">
+          <form onSubmit={handleRegister}>
+            <div className="mb-3">
+              <label className="form-label">First Name: </label>
+              <input
+                type="text"
+                className="form-control"
+                value={enteredFirstName}
+                onChange={(e) => setEnteredFirstName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Last Name: </label>
+              <input
+                type="text"
+                className="form-control"
+                value={enteredLastName}
+                onChange={(e) => setEnteredLastName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Email: </label>
+              <input
+                type="email"
+                className="form-control"
+                value={enteredEmail}
+                onChange={(e) => setEnteredEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Password: </label>
+              <input
+                type="Password"
+                className="form-control"
+                value={enteredPassword1}
+                onChange={(e) => setEnteredPassword1(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Confirm Password: </label>
+              <input
+                type="Password"
+                className="form-control"
+                value={enteredPassword2}
+                onChange={(e) => setEnteredPassword2(e.target.value)}
+                required
+              />
+            </div>
+            <div className="passwordCheckList">
+              <PasswordChecklist
+                rules={[
+                  "minLength",
+                  "specialChar",
+                  "number",
+                  "capital",
+                  "match",
+                ]}
+                minLength={8}
+                value={enteredPassword1}
+                valueAgain={enteredPassword2}
+                onChange={(isValid) => {}}
+              ></PasswordChecklist>
+            </div>
+            {errorMessage && <p className="text-danger">{errorMessage}</p>}
 
-          <div className="form_group_recaptcha">
-            <ReCaptcha
-              required
-              sitekey={import.meta.env.VITE_SITE_KEY}
-              ref={refRecaptcha}
-            ></ReCaptcha>
-          </div>
-        </form>
-        <form onSubmit={handleRegister}>
-          <button type="submit" className="btn btn-primary">
-            Register
-          </button>
-        </form>
-        <form onSubmit={handleBackPage}>
-          <button type="submit" className="btn btn-createAccount">
-            Go back
-          </button>
-        </form>
+            <div className="form_group_recaptcha">
+              <ReCaptcha
+                required
+                sitekey={import.meta.env.VITE_SITE_KEY}
+                ref={refRecaptcha}
+              ></ReCaptcha>
+            </div>
+          </form>
+          <form onSubmit={handleRegister}>
+            <button type="submit" className="btn btn-primary">
+              Register
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

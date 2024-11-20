@@ -21,6 +21,7 @@
         "react-google-recaptcha": "^3.1.0",
         "react-google-recaptcha-v3": "^1.10.1",
         "react-helmet": "^6.1.0",
+        "react-password-checklist": "^1.8.1",
         "react-resizable": "^3.0.5",
         "react-router-dom": "^6.26.2",
         "react-table": "^7.8.0",

@@ -123,6 +123,20 @@ button {
     margin-right: auto;
 }
 
+.container {
+    height: 200px;
+    width: 100%;
+    border: 5px solid green;
+    border-radius: 25px;
+    border-style: solid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
 .mysqltesting-menu-container {
     height: 200px;
     width: 100%;
@@ -312,6 +326,12 @@ button {
     margin-bottom: 2rem;
     display: flex;
     flex-direction: column;
+}
+
+.passwordCheckList {
+    color: white;
+    justify-content: center;
+    align-items: center;
 }
 
 .option[disabled] {
