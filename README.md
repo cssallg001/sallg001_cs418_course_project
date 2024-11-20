@@ -12,7 +12,7 @@ Professor: Dr. Nasreen Arif
 3. - [x] Password must be encrypted before storing in the database.
 4. - [x] Users cannot register duplicate accounts using the same email address.
 5. - [ ] The user should receive a verification email upon successful registration.
-   - [ ] Current 2-Factor-Authentication email does not count because it is hard-coded
+     - [ ] Current 2-Factor-Authentication email does not count because it is hard-coded
 6. - [x] Users cannot log in to the system until their email has been verified.
 7. - [x] Users should be able to log into your website using the accounts they registered.
 8. - [x] Users should be able to reset their passwords if they forget it.
