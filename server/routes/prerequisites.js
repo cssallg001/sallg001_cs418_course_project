@@ -19,9 +19,30 @@ prerequisites.get("/", (req, res) => {
   );
 });
 
-prerequisites.get("/prereqAdvisingPortalRequest", (req, res) => {
+prerequisites.get("/prereqAdvisingPortalRequest/:id", (req, res) => {
   connection.execute(
-    "SELECT prereq_id, CONCAT(prereq_tag,\" - \", prereq_name) AS prereqName FROM prerequisites WHERE enable_disable = '1'",
+    "\
+    SELECT \
+      d.prereq_id AS oututprereqID, \
+      CONCAT(d.prereq_tag," - ", d.prereq_name) AS outputprereqName \
+    FROM\
+      prereq AS d\
+    WHERE \
+      NOT EXISTS \
+      (\
+        SELECT \
+          c.prereq_id AS prereq_id, \
+          CONCAT(c.prereq_tag," - ", c.prereq_name) AS prereqName\
+        FROM \
+          records AS a \
+          INNER JOIN prereq_mapping AS b ON a.advising_id\
+          INNER JOIN prerequisites AS c ON b.prereq_id\
+        WHERE \
+          a.user_id=? \
+          AND \
+          b.prereq_id = d.prereq_id\
+      );", 
+      [req.params.id],
     function (err, result) {
       if (err) {
         res.json(err.message);
