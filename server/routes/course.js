@@ -14,30 +14,10 @@ course.get("/", (req, res) => {
   });
 });
 
-course.get("/courseAdvisingPortalRequest/:id", (req, res) => {
+course.get("/courseAdvisingPortalRequest", (req, res) => {
   connection.execute(
     // 'SELECT course_id, CONCAT(course_tag," - ", course_name) AS courseName FROM course',
-    '\
-    SELECT \
-      d.course_id AS oututCourseID, \
-      CONCAT(d.course_tag," - ", d.course_name) AS outputCourseName \
-    FROM\
-      course AS d\
-    WHERE \
-      NOT EXISTS \
-      (\
-        SELECT \
-          c.course_id AS course_id, \
-          CONCAT(c.course_tag," - ", c.course_name) AS courseName\
-        FROM \
-          records AS a \
-          INNER JOIN course_mapping AS b ON a.advising_id\
-          INNER JOIN course AS c ON b.course_id\
-        WHERE \
-          a.user_id=? \
-          AND \
-          b.course_id = d.course_id\
-      );\ ',
+    'SELECT course_id, CONCAT(course_tag," - ", course_name) AS courseName FROM course',
       [req.params.id],
     function (err, result) {
       if (err) {
