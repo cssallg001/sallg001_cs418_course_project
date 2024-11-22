@@ -41,7 +41,10 @@ prerequisites.get("/prereqAdvisingPortalRequest/:id", (req, res) => {
           a.user_id=? \
           AND \
           b.prereq_id = d.prereq_id\
-      );", 
+      )\
+      AND\
+      enable_disable='1'\
+      ", 
       [req.params.id],
     function (err, result) {
       if (err) {
