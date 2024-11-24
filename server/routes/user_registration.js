@@ -63,6 +63,7 @@ user_registration.get("/advisingRequests", (req, res) => {
         CONCAT(c.First_Name,\" \", c.Last_Name) AS name,\
         b.user_id,\
         b.advising_id,\
+        b.current_term,\
         b.status,\
         b.date_submitted\
       FROM \
