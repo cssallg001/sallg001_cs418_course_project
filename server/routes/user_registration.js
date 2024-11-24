@@ -52,6 +52,51 @@ user_registration.get("/advisingHistory/:user_id", (req, res) => {
   );
 });
 
+
+
+
+
+user_registration.get("/advisingRequests", (req, res) => {
+  connection.execute(
+    "\
+      SELECT \
+        CONCAT(c.First_Name,\" \", c.Last_Name) AS name,\
+        b.user_id,\
+        b.advising_id,\
+        b.status,\
+        b.date_submitted\
+      FROM \
+        records AS b\
+        INNER JOIN user_information AS c on b.user_id \
+      GROUP BY \
+        b.advising_id\
+      ORDER BY \
+        b.advising_id ASC",
+    function (err, result) {
+      if (err) {
+        res.json(err.message);
+      } else {
+        res.json({
+          data: result,
+        });
+      }
+    },
+  );
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 user_registration.get("/advisingHistory/courses/:advising_id", (req, res) => {
   connection.execute(
     '\
