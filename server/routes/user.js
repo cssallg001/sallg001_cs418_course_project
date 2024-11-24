@@ -48,6 +48,24 @@ user.get("/:email", (req, res) => {
   );
 });
 
+user.get("/getEmail/:id", (req, res) => {
+  connection.execute(
+    "select Email from user_information where user_id=?",
+    [req.params.id],
+    function (err, result) {
+      if (err) {
+        res.json(err.message);
+      } else {
+        res.json({
+          status: 200,
+          message: "Retrieved email from user_information database",
+          data: result,
+        });
+      }
+    },
+  );
+});
+
 user.get("/:id", (req, res) => {
   connection.execute(
     "select * from user_information where user_id=?",
