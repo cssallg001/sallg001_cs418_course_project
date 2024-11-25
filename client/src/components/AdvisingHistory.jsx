@@ -5,12 +5,26 @@ import "../index.css";
 export default function AdvisingHistory() {
   const navigate = useNavigate();
 
+
+  useEffect(() => {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "icon";
+      document.getElementsByTagName("head")[0].appendChild(link);
+    }
+    link.href = "/public/user.png";
+  }, []);
+
+
+  
   function handleBackPage() {
     navigate("/advisingPortal");
   }
 
   function resetPage() {
-    setAdvisingHistoryReveal(false);
+    //setAdvisingHistoryReveal(false);
+    window.location.reload();
   }
 
   const [userID, setUserID] = useState("");
@@ -30,6 +44,13 @@ export default function AdvisingHistory() {
   const [approvalStatus, setApprovalStatus] = useState(false);
 
   const [advisingID, setAdvisingID] = useState("");
+
+  const [editingState, setEditingState] = useState(false);
+  const [prereqEditingState, setPrereqEditingState] = useState(false);
+  const [courseEditingState, setCourseEditingState] = useState(false);
+
+
+
 
   //const [isToggled, setIsToggled] = useState(false);
 
@@ -54,19 +75,19 @@ export default function AdvisingHistory() {
     console.log("advisingHistoryReveal = " + advisingHistoryReveal);
     console.log(approvalStatus)
     const coursePrereqsDiv = document.getElementById("Course&PrereqOutputs");
-    const editPrereqHeader = document.getElementById("tableEditPrereqHeader");
-    const editPrereqButton = document.getElementById("tableEditPrereqButton");
+    const editingDiv = document.getElementById("Course&PrereqEditing");
+    const prereqsEditingDiv = document.getElementById("prereqEditing");
+    const courseEditingDiv = document.getElementById("courseEditing");
+
+
     if (advisingHistoryReveal) {
       coursePrereqsDiv.style.display = "block";
     } else {
       coursePrereqsDiv.style.display = "none";
     }
 
-    if (advisingHistoryReveal && approvalStatus) {
-      //editPrereqHeader.style.display = "block";
-    } else {
-      //editPrereqHeader.style.display = "none";
-    }
+
+
 
   });
 
@@ -215,7 +236,6 @@ export default function AdvisingHistory() {
     console.log("advisingID = " + advisingIDVal);
 
     setAdvisingHistoryReveal(true);
-
     setAdvisingID(advisingIDVal);
 
     outputAdvisingHistoryPrereqs(advisingInfo, advisingIDVal);
@@ -236,8 +256,13 @@ export default function AdvisingHistory() {
 
 
 
-  function handleEditPrereqs () {
+  function handleEditPrereqs (e, index, advisingID, prereqID, advisingPrereqs) {
+    setEditingState(true);
+    setPrereqEditingState(true);
+    console.log("editingAdvisingID = " + advisingID);
 
+    console.log("editingPrereqID = " + prereqID);
+    
   }
 
 
@@ -247,7 +272,12 @@ export default function AdvisingHistory() {
 
 
 
-  function handleEditCourses () {
+  function handleEditCourses (e, index, advisingID, courseID, advisingCourses) {
+    setEditingState(true);
+    setCourseEditingState(true);
+    console.log("editingAdvisingID = " + advisingID);
+
+    console.log("editingCourseID = " + courseID);
 
   }
 
@@ -340,7 +370,7 @@ export default function AdvisingHistory() {
 
                   <form onSubmit={resetPage}>
             <button type="submit" className="btn btn-createAccount">
-              Reset
+              Reload
             </button>
           </form>
 
@@ -373,7 +403,6 @@ export default function AdvisingHistory() {
                         <th>Advising ID </th>
                         <th>Prereq ID </th>
                         <th>Prerequisite Name </th>
-                        <th style={{display : (advisingHistoryReveal && approvalStatus) ? 'table-cell' : 'none'}}>Edit</th>
                         {advisingPrereqData.map((advisingPrereqs, index) => {
                           return (
                             <Fragment>
@@ -382,22 +411,6 @@ export default function AdvisingHistory() {
                                   <td>{advisingPrereqs.advising_id}</td>
                                   <td>{advisingPrereqs.prereq_id}</td>
                                   <td>{advisingPrereqs.prereqName}</td>
-                                  <td style={{display : (advisingHistoryReveal && approvalStatus) ? 'table-cell' : 'none'}}>
-                                    <button
-                                      type="submit"
-                                      className="py-4 px-4 font-bold"
-                                      onClick={(e) =>
-                                        handleEditPrereqs(
-                                          e,
-                                          index,
-                                          advisingInfo.advising_id,
-                                          advisingInfo,
-                                        )
-                                      }
-                                      >
-                                      O
-                                    </button>
-                                  </td>
                                 </tr>
                               </tbody>
                             </Fragment>
@@ -418,7 +431,7 @@ export default function AdvisingHistory() {
                     <p>Courses</p>
                   </h1>
                   <div>
-                    {loadingPrereqs ? (
+                    {loadingCourses ? (
                       <Fragment>loading...</Fragment>
                     ) : (
                       <table className="blueTable th">
@@ -426,7 +439,6 @@ export default function AdvisingHistory() {
                         <th>Advising ID </th>
                         <th>Course ID </th>
                         <th>Course Name </th>
-                        <th style={{display : (advisingHistoryReveal && approvalStatus) ? 'table-cell' : 'none'}}>Edit</th>
                         {advisingCourseData.map((advisingCourses, index) => {
                           return (
                             <Fragment>
@@ -435,22 +447,6 @@ export default function AdvisingHistory() {
                                   <td>{advisingCourses.advising_id}</td>
                                   <td>{advisingCourses.course_id}</td>
                                   <td>{advisingCourses.courseName}</td>
-                                  <td style={{display : (advisingHistoryReveal && approvalStatus) ? 'table-cell' : 'none'}}>
-                                    <button
-                                      type="submit"
-                                      className="py-4 px-4 font-bold"
-                                      onClick={(e) =>
-                                        handleEditCourses(
-                                          e,
-                                          index,
-                                          advisingInfo.advising_id,
-                                          advisingInfo,
-                                        )
-                                      }
-                                      >
-                                      O
-                                    </button>
-                                  </td>
                                 </tr> 
                               </tbody>
                             </Fragment>
@@ -471,16 +467,6 @@ export default function AdvisingHistory() {
             </button>
           </form>
         </div> */}
-
-
-
-
-
-
-
-
-
-
 
 
 

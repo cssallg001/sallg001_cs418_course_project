@@ -39,11 +39,6 @@ export default function AdvisingPortal() {
             Advising Request
           </button>
         </form>
-        <form onSubmit={handleBackPage}>
-          <button type="submit" className="btn btn-createAccount">
-            Go back
-          </button>
-        </form>
       </div>
     </div>
   );

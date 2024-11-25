@@ -7,6 +7,16 @@ import "../index.css";
 export default function ChangeInformation() {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "icon";
+      document.getElementsByTagName("head")[0].appendChild(link);
+    }
+    link.href = "/public/user.png";
+  }, []);
+
   const [userStateVal, setUserStateVal] = useState("");
 
   const [firstName, setFirstName] = useState("");

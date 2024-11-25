@@ -6,6 +6,16 @@ import "../index.css";
 export default function AdvisingRequest() {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "icon";
+      document.getElementsByTagName("head")[0].appendChild(link);
+    }
+    link.href = "/public/user.png";
+  }, []);
+
   const [lastTerm, setLastTerm] = useState("");
   const [currentTerm, setCurrentTerm] = useState("");
   const [lastGPA, setLastGPA] = useState("");
@@ -360,10 +370,10 @@ export default function AdvisingRequest() {
 
       //api POST request to fill in the "course_mapping" table
       try {
-        for (var i = 0; i < outputCourses.length; i++) {
+        for (var x = 0; x < outputCourses.length; x++) {
           const formBody = JSON.stringify({
             advising_id: nextAdvisingID,
-            course_id: outputCourses[i],
+            course_id: outputCourses[x],
           });
           const response = await fetch(
             "https://sallg001-cs418-course-project.onrender.com/user_registration/updateCourseMapping",
@@ -401,7 +411,7 @@ export default function AdvisingRequest() {
             );
             if (!response.ok) {
               throw new Error(
-                "Error occured while adding courses to advising records. Please try again.",
+                "Error occured while adding prereqs to advising records. Please try again.",
               );
             }
           }

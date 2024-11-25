@@ -82,6 +82,10 @@ export default function AdminDashboard() {
     navigate("/prerequisiteForm");
   }
 
+  function handleAdminAdvisingRequests() {
+    navigate("/adminAdvisingRequests");
+  }
+
   return (
     <div className="mysqltesting-container">
       <div className="Title">
@@ -100,6 +104,11 @@ export default function AdminDashboard() {
         <form onSubmit={handlePrerequisiteForm}>
           <button type="submit" className="btn btn-createAccount">
             Prerequisite Form
+          </button>
+        </form>
+        <form onSubmit={handleAdminAdvisingRequests}>
+          <button type="submit" className="btn btn-createAccount">
+            Advising Requests
           </button>
         </form>
       </div>

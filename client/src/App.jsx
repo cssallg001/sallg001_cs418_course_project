@@ -14,6 +14,7 @@ import PrerequisiteForm from "./components/PrerequisiteForm.jsx";
 import ChangeInformation from "./components/ChangeInformation.jsx";
 import AdvisingHistory from "./components/AdvisingHistory.jsx";
 import AdvisingPortal from "./components/AdvisingPortal.jsx";
+import AdminAdvisingRequests from "./components/AdminAdvisingRequests.jsx";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
       <Route path="/changeInformation" element={<ChangeInformation />} />
       <Route path="/advisingHistory" element={<AdvisingHistory />} />
       <Route path="/advisingPortal" element={<AdvisingPortal />} />
+      <Route path="/adminAdvisingRequests" element={<AdminAdvisingRequests />} />
     </Routes>
   );
 }

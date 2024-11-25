@@ -243,7 +243,7 @@ user_registration.post("/updateCourseMapping", (req, res) => {
     },
   );
 });
-
+ 
 user_registration.post("/updatePrereqMapping", (req, res) => {
   connection.execute(
     "Insert into prereq_mapping (advising_id, prereq_id) values(?,?)",
