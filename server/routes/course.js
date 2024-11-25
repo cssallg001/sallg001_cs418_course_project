@@ -16,9 +16,7 @@ course.get("/", (req, res) => {
 
 course.get("/courseAdvisingPortalRequest", (req, res) => {
   connection.execute(
-    // 'SELECT course_id, CONCAT(course_tag," - ", course_name) AS courseName FROM course',
     'SELECT course_id, CONCAT(course_tag," - ", course_name) AS courseName FROM course',
-      [req.params.id],
     function (err, result) {
       if (err) {
         res.json(err.message);
