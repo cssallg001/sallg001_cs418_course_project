@@ -89,4 +89,4 @@ Professor: Dr. Nasreen Arif
 9. - [x] Add a password rule requiring a mix of capital letters, lowercase letters, special characters, and
          numbers (implement regex for all password fields in the application). The password length
          should be at least 8 characters.
-10. - [ ] Create test cases and execute in your BE application (Create at least 3 test cases).
+10. - [x] Create test cases and execute in your BE application (Create at least 3 test cases).
