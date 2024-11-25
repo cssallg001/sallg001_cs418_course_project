@@ -58,7 +58,7 @@ Professor: Dr. Nasreen Arif
 
 ## Functionality for Admin Portal
 
-1. - [ ] Develop a screen to display advising sheets submitted by CS department students.
+1. - [x] Develop a screen to display advising sheets submitted by CS department students.
 
 <center>
 
@@ -71,15 +71,15 @@ Professor: Dr. Nasreen Arif
 
 </center>
 
-2. - [ ] Clicking on a student's name will redirect to a page displaying the student-submitted record. On
+2. - [x] Clicking on a student's name will redirect to a page displaying the student-submitted record. On
          this page, there will be options to approve or reject the record. When the admin submits their
          decision, they must also provide a text message with their feedback on the advising sheet. After
          clicking the submit button, the system will redirect to the advising sheet form (as described in
          point 1), and the new status of the student’s record will be updated accordingly.
-3. - [ ] Implement status update of student records upon submission of approval or rejection.
-4. - [ ] Upon submission, student will receive an email where they can see the status and message
+3. - [x] Implement status update of student records upon submission of approval or rejection.
+4. - [x] Upon submission, student will receive an email where they can see the status and message
          provided by admin.
-5. - [ ] New student will be able to see the updated status of their advising sheet on Course Advising
+5. - [x] New student will be able to see the updated status of their advising sheet on Course Advising
          History form.
 6. - [x] Add reCAPTCHA to the login page. Verify the reCAPTCHA before login. Once the reCAPTCHA is
          verified then user can logged in into the system.
