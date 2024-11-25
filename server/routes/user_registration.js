@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { connection } from "../database/database.js";
 const user_registration = Router();
+import { SendMail } from "../utils/SendMail.js";
+
 
 user_registration.get("/yoink_advising_id", (req, res) => {
   connection.execute(
@@ -85,10 +87,45 @@ user_registration.get("/advisingRequests", (req, res) => {
   );
 });
 
+user_registration.post("/advisingRequestApprove", (req, res) => {
+  connection.execute(
+    "UPDATE records SET status='Approved' WHERE advising_id=?",
+    [req.body.id],
+    (updateErr) => {
+      if (updateErr) {
+        return res.status(500).json({ message: `Error approving advising request. (id: '${req.body.id}')`});
+      }
+      SendMail(
+        req.body.email,
+        `Advising Request ${req.body.id} Update`,
+        `Your advising request with the id '${req.body.id}' has been approved.\nAdvisor's Feedback: '${req.body.feedbackMessage}'`,
+      );
+      return res
+        .status(200)
+        .json({ message: `Email for approving advising request has been sent. \n (id: '${req.body.id}') \n  (email: '${req.body.email}')`});
+    },
+  );
+});
 
-
-
-
+user_registration.post("/advisingRequestDecline", (req, res) => {
+  connection.execute(
+    "UPDATE records SET status='Declined' WHERE advising_id=?",
+    [req.body.id],
+    (updateErr) => {
+      if (updateErr) {
+        return res.status(500).json({ message: `Error declining advising request. (id: '${req.body.id}')`});
+      }
+      SendMail(
+        req.body.email,
+        `Advising Request ${req.body.id} Update`,
+        `Your advising request with the id '${req.body.id}' has been declined.\nAdvisor's Feedback: '${req.body.feedbackMessage}'`,
+      );
+      return res
+        .status(200)
+        .json({ message: `Email for declining advising request has been sent. \n (id: '${req.body.id}') \n  (email: '${req.body.email}')`});
+    },
+  );
+});
 
 
 
