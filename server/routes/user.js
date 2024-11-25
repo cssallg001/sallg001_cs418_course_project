@@ -50,7 +50,7 @@ user.get("/:email", (req, res) => {
 
 user.get("/getEmail/:id", (req, res) => {
   connection.execute(
-    "select Email from user_information where user_id=?",
+    "SELECT Email as email, CONCAT(First_Name,\" \", Last_Name) AS name FROM user_information WHERE user_id=?",
     [req.params.id],
     function (err, result) {
       if (err) {
