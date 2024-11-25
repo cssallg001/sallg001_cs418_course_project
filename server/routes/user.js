@@ -153,6 +153,34 @@ user.post("/login", (req, res) => {
   );
 });
 
+
+user.post("/login/test", (req, res) => {
+  connection.execute(
+    "select * from user_information where email=?",
+    [req.body.email],
+    function (err, result) {
+      if (err) {
+        res.json(err.message);
+      } else if (result.length === 0) {
+        res.json("Invalid Password");
+      } else {
+        console.log(result[0].Password);
+        if (ComparePasword(req.body.Password, result[0].Password)) {
+
+          res.json({
+            status: 200,
+            message: "user logged in successfully",
+            data: result,
+          });
+        } else {
+          res.json("Invalid Password");
+        }
+      }
+    },
+  );
+});
+
+
 user.post("/verifyIfEmailExists", (req, res) => {
   connection.execute(
     "select email from user_information where email=?",

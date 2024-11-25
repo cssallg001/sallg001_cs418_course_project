@@ -25,6 +25,7 @@ app.use(
     origin: "*",
   }),
 );
+
 app.use("/user", user);
 app.use("/course", course);
 app.use("/course_prereqs", course_prereqs);
