@@ -82,7 +82,7 @@ Professor: Dr. Nasreen Arif
 5. - [x] New student will be able to see the updated status of their advising sheet on Course Advising
          History form.
 6. - [x] Add reCAPTCHA to the login page. Verify the reCAPTCHA before login. Once the reCAPTCHA is
-         verified then user can logged in into the system.
+         verified then user can log in into the system.
 7. - [x] Prevent your application from clickjacking attack. Implement the prevention of click jacking.
          Show the clickjacking prevention by using <iframe> in .html form.
 8. - [x] Add a favicon to the website.
