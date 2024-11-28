@@ -5,8 +5,10 @@ Course: CS 418
 Semester: Fall 2024  
 Professor: Dr. Nasreen Arif
 
-# Milestone 1 Specs
-
+# Milestone 1
+## Report
+[Link](https://github.com/cssallg001/sallg001_cs418_course_project/blob/main/reports/milestone1-report/milestone1-report-seanallgaier.pdf)
+## Specs
 1. - [x] Users should be able to register new accounts using email addresses.
 2. - [x] Users are identified by email address.
 3. - [x] Password must be encrypted before storing in the database.
@@ -22,8 +24,11 @@ Professor: Dr. Nasreen Arif
 12. - [x] An admin user should be created from the backend. (Only 1)
 13. - [x] An admin user has a different view from a regular user. (Later admin will approve the submitted advising sheet by student)
 
-# Milestone 2 Specs
+# Milestone 2
+## Report
+[Link](https://github.com/cssallg001/sallg001_cs418_course_project/blob/main/reports/milestone2-report/milestone2-report-seanallgaier.pdf)
 
+## Specs
 ### Admin Portal
 
 1. - [x] Design and create the prerequisite form for admin, displaying courses from levels 100 to 499 with fields: Level, Course, Enable/Disable
@@ -54,9 +59,14 @@ Professor: Dr. Nasreen Arif
       - [ ] The display portion is currently working, however, it is currently missing the ability to make changes.
 12. - [x] Deploy your Frontend, Backend and Database on server and your demo should be demonstrate from live server. (For milestone 2 and milestone 3).
 
-# Milestone 3 Specs
+# Milestone 3
 
-## Functionality for Admin Portal
+## Report
+[Link](https://github.com/cssallg001/sallg001_cs418_course_project/blob/main/reports/milestone3-report/milestone3-report-seanallgaier.pdf)
+
+## Specs
+
+### Functionality for Admin Portal
 
 1. - [x] Develop a screen to display advising sheets submitted by CS department students.
 
@@ -71,22 +81,12 @@ Professor: Dr. Nasreen Arif
 
 </center>
 
-2. - [x] Clicking on a student's name will redirect to a page displaying the student-submitted record. On
-         this page, there will be options to approve or reject the record. When the admin submits their
-         decision, they must also provide a text message with their feedback on the advising sheet. After
-         clicking the submit button, the system will redirect to the advising sheet form (as described in
-         point 1), and the new status of the student’s record will be updated accordingly.
+2. - [x] Clicking on a student's name will redirect to a page displaying the student-submitted record. On this page, there will be options to approve or reject the record. When the admin submits their decision, they must also provide a text message with their feedback on the advising sheet. After clicking the submit button, the system will redirect to the advising sheet form (as described in point 1), and the new status of the student’s record will be updated accordingly.
 3. - [x] Implement status update of student records upon submission of approval or rejection.
-4. - [x] Upon submission, student will receive an email where they can see the status and message
-         provided by admin.
-5. - [x] New student will be able to see the updated status of their advising sheet on Course Advising
-         History form.
-6. - [x] Add reCAPTCHA to the login page. Verify the reCAPTCHA before login. Once the reCAPTCHA is
-         verified then user can log in into the system.
-7. - [x] Prevent your application from clickjacking attack. Implement the prevention of click jacking.
-         Show the clickjacking prevention by using <iframe> in .html form.
+4. - [x] Upon submission, student will receive an email where they can see the status and message provided by admin.
+5. - [x] New student will be able to see the updated status of their advising sheet on Course Advising History form.
+6. - [x] Add reCAPTCHA to the login page. Verify the reCAPTCHA before login. Once the reCAPTCHA is verified then user can log in into the system.
+7. - [x] Prevent your application from clickjacking attack. Implement the prevention of click jacking. Show the clickjacking prevention by using `<iframe>` in .html form.
 8. - [x] Add a favicon to the website.
-9. - [x] Add a password rule requiring a mix of capital letters, lowercase letters, special characters, and
-         numbers (implement regex for all password fields in the application). The password length
-         should be at least 8 characters.
+9. - [x] Add a password rule requiring a mix of capital letters, lowercase letters, special characters, and numbers (implement regex for all password fields in the application). The password length should be at least 8 characters.
 10. - [x] Create test cases and execute in your BE application (Create at least 3 test cases).

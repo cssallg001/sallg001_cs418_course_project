@@ -1,0 +1,14 @@
+*.aux
+*.bkp
+*.log
+*.out
+*.gz
+*.tex
+*.docx
+*.png
+*.sql
+*.drawio
+milestone1-report-template.pdf
+milestone2-report-template.pdf
+milestone3-report-template.pdf
+MySQLCode.pdf
