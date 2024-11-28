@@ -17,13 +17,13 @@
     "chai": "^5.1.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "express": "^4.21.0",
+    "express": "^4.21.1",
     "mocha": "^10.8.2",
-    "mysql2": "^3.11.3",
-    "nodemailer": "^6.9.15",
+    "mysql2": "^3.11.4",
+    "nodemailer": "^6.9.16",
     "nodemon": "^3.1.7",
-    "prettier": "^3.3.3",
-    "react-native": "^0.76.1",
+    "prettier": "^3.4.1",
+    "react-native": "^0.76.3",
     "supertest": "^7.0.0"
   },
   "devDependencies": {
