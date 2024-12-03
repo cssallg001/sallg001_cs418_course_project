@@ -231,7 +231,7 @@ user_registration.post("/updateRecords", (req, res) => {
 user_registration.post("/updateCourseMapping", (req, res) => {
   connection.execute(
     "Insert into course_mapping (advising_id, course_id) values(?,?)",
-    [req.body.advising_id, req.body.course_id],
+    [req.body.advising_id, req.body.courses_id],
     function (err, result) {
       if (err) {
         res.json(err.message);
@@ -247,7 +247,7 @@ user_registration.post("/updateCourseMapping", (req, res) => {
 user_registration.post("/updatePrereqMapping", (req, res) => {
   connection.execute(
     "Insert into prereq_mapping (advising_id, prereq_id) values(?,?)",
-    [req.body.advising_id, req.body.prereq_id],
+    [req.body.advising_id, req.body.prereqs_id],
     function (err, result) {
       if (err) {
         res.json(err.message);

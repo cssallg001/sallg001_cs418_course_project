@@ -2,30 +2,30 @@ import { expect } from "chai";
 import supertest from "supertest";
 import app from "../app.js";
 
-// describe('Addition Testing', ()=>{
+describe('Addition Testing', ()=>{
 
-//     it('Should Add two numbers',function(){
-//         var num1=2;
-//         var num2=5;
-//         expect(num1+num2).equal(7)
-//     })
+    it('Should Add two numbers',function(){
+        var num1=2;
+        var num2=5;
+        expect(num1+num2).equal(7)
+    })
 
-//     it('Should Add 3 numbers',function(){
-//         var num1=2;
-//         var num2=5;
-//         var num3=1;
-//         expect(num1+num2+num3).equal(8)
-//     })
+    it('Should Add 3 numbers',function(){
+        var num1=2;
+        var num2=5;
+        var num3=1;
+        expect(num1+num2+num3).equal(8)
+    })
 
-//     it('Should Add 4 numbers',function(){
-//         var num1=2;
-//         var num2=5;
-//         var num3=1;
-//         var num4=6;
-//         expect(num1+num2+num3+num4).equal(14)
-//     })
+    it('Should Add 4 numbers',function(){
+        var num1=2;
+        var num2=5;
+        var num3=1;
+        var num4=6;
+        expect(num1+num2+num3+num4).equal(14)
+    })
 
-// })
+})
 
 describe('TEST: List All Courses And Prerequisites in Database', ()=>{
 

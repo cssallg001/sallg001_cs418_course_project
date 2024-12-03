@@ -373,7 +373,7 @@ export default function AdvisingRequest() {
         for (var x = 0; x < outputCourses.length; x++) {
           const formBody = JSON.stringify({
             advising_id: nextAdvisingID,
-            course_id: outputCourses[x],
+            courses_id: outputCourses[x],
           });
           const response = await fetch(
             "https://sallg001-cs418-course-project.onrender.com/user_registration/updateCourseMapping",
@@ -397,7 +397,7 @@ export default function AdvisingRequest() {
           for (var a = 0; a < outputPrereqs.length; a++) {
             const formBody = JSON.stringify({
               advising_id: nextAdvisingID,
-              prereq_id: outputPrereqs[a],
+              prereqs_id: outputPrereqs[a],
             });
             const response = await fetch(
               "https://sallg001-cs418-course-project.onrender.com/user_registration/updatePrereqMapping",
@@ -533,7 +533,7 @@ export default function AdvisingRequest() {
                 <div>
                   <div>
                     {prereqRows.map((prereqRow, index) => (
-                      <div key={index}>
+                      <div>
                         <select
                           required
                           //showSearch={true}
@@ -546,7 +546,6 @@ export default function AdvisingRequest() {
                           </option>
                           {prereqOptions.map((prereqOptions) => (
                             <option
-                              key={prereqOptions.value}
                               value={prereqOptions.value}
                               label={prereqOptions.label}
                             ></option>
@@ -569,7 +568,7 @@ export default function AdvisingRequest() {
                 <div>
                   <div>
                     {courseRows.map((courseRow, index) => (
-                      <div key={index}>
+                      <div>
                         <select
                           // showSearch={true}
                           required
@@ -582,7 +581,6 @@ export default function AdvisingRequest() {
                           </option>
                           {courseOptions.map((courseOptions) => (
                             <option
-                              key={courseOptions.value}
                               value={courseOptions.value}
                               label={courseOptions.label}
                             ></option>

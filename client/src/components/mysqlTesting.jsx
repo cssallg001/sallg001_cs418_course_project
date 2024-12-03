@@ -157,10 +157,10 @@ export default function MYSQLTesting() {
                   {loading ? (
                     <Fragment>loading...</Fragment>
                   ) : (
-                    allSQLData.map((course) => {
+                    allSQLData.map((course) => { 
                       return (
-                        <Fragment key={"courseKey"}>
-                          <div key={course.course_id}></div>
+                        <Fragment>
+                          <div></div>
                           <ul>
                             <table className="centerTable">
                               <thead key="thead">
@@ -226,7 +226,7 @@ export default function MYSQLTesting() {
                   ) : (
                     prereqData.map((prereq) => {
                       return (
-                        <Fragment key={"Key"}>
+                        <Fragment>
                           <div key={prereq.course_id}></div>
                           <ul>
                             <table className="orangeTable th">
